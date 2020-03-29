@@ -35,7 +35,7 @@ Route::group(['middleware' => ['role:student']], function () {
     Route::get('autocomplete2', 'ScienceworkController@autocomplete')->name('autocomplete2');
     //перевірено
     Route::get('/register-sciencework-as-student', 'ScienceworkController@registerScienceworkAsStudent')->name('register-sciencework-as-student');
-   //зробити редирект на шов
+   //перевірено
     Route::post('/add-sciencework-as-student', 'ScienceworkController@addScienceworkAsStudent')->name('add-sciencework-as-student');
     //перевірено
     Route::get('/student/edit/{id}', 'ScienceworkController@editScienceworkAsStudent')->name('edit-sciencework-as-student');
