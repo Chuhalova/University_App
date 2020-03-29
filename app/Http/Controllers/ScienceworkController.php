@@ -7,6 +7,7 @@ use Redirect;
 use Carbon\Carbon;
 use App\Sciencework;
 use App\Student;
+use App\Teacher;
 use App\Baseinfo;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,39 @@ class ScienceworkController extends Controller
         return view ('sciencework.registerScienceworkAsStudent');
     }
 
+    public function registerScienceworkAsCathedraworker(){ 
+        return view ('sciencework.registerScienceworkAsCathedraworker');
+    }
+
+    public function autocompleteStudent(Request $request)
+    {
+    if($request->ajax()) {
+        $data = DB::table('students')
+        ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "students.degree", "students.specialty","students.group")
+        ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
+        ->leftJoin('users', 'students.baseinfo_id_for_student', '=', 'users.baseinfo_id')
+        ->where('baseinfos.cathedra_id','=', 1)
+        ->where(function ($query) {
+            $query->whereNull('students.real_grad_date')
+                  ->orWhere('students.real_grad_date', '>=', Carbon::now('Europe/Kiev'));
+        })
+        ->where("baseinfos.surname","like","{$request->student}%")
+            ->get();
+            $output = ''; 
+            if (count($data)>0) {
+                $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
+                foreach ($data as $row){
+                    $output .= '<li id='.$row->id.' class="student_li list-group-item">'.$row->name .' '. $row->surname .' '. $row->degree .' '. $row->specialty.' '. $row->group.'</li>';
+                }
+                $output .= '</ul>';
+            }
+            else {
+                 $output .= '<li class="student_li list-group-item">'.'No results'.'</li>';
+                }
+                return $output;
+            }
+    }
+
     public function autocomplete(Request $request)
     {
     if($request->ajax()) {
@@ -25,19 +59,22 @@ class ScienceworkController extends Controller
         ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id')
         ->leftJoin('users', 'teachers.baseinfo_id_for_teacher', '=', 'users.baseinfo_id')
         ->where('baseinfos.cathedra_id','=', 1)
-        ->whereNull('teachers.end_of_work_date')
-        ->where("baseinfos.surname","like","%{$request->input('query')}%")
+        ->where(function ($query) {
+            $query->whereNull('teachers.end_of_work_date')
+                  ->orWhere('teachers.end_of_work_date', '>=', Carbon::now('Europe/Kiev'));
+        })
+        ->where("baseinfos.surname","like","{$request->teacher}%")
             ->get();
             $output = ''; 
             if (count($data)>0) {
                 $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
                 foreach ($data as $row){
-                    $output .= '<li id='.$row->id.' class="list-group-item">'.$row->name .' '. $row->surname .' '. $row->science_degree .' '. $row->scientific_rank.'</li>';
+                    $output .= '<li id='.$row->id.' class="teacher_li list-group-item">'.$row->name .' '. $row->surname .' '. $row->science_degree .' '. $row->scientific_rank.'</li>';
                 }
                 $output .= '</ul>';
             }
             else {
-                 $output .= '<li class="list-group-item">'.'No results'.'</li>';
+                 $output .= '<li class="teacher_li list-group-item">'.'No results'.'</li>';
                 }
                 return $output;
             }
@@ -436,6 +473,107 @@ class ScienceworkController extends Controller
         return Redirect::back();
     }
 
+    public function addScienceworkAsCathedraworker(Request $request, MessageBag $error_with_degree)
+    {
+            $today = Carbon::today()->format('Y-m-d');
+            $ten_years_from_now = Carbon::today()->addYears(10)->format('Y-m-d');
+            $rules = array(
+                'type' =>  ['required'],
+                'topic' => ['required', 'min:5'],
+                'presenting_date' => ['required', 'before:' . $ten_years_from_now,'after:' . $today],
+                'student_id' => ['required','exists:students,id'],
+                'teacher_id' =>  ['required','exists:teachers,id'],
+            );
+            $customMessages = [
+                'student_id.required' => "Студент повинен бути обраним.",
+                'student_id.exists' => "Студент повинен бути обраним з бази.",
+                'teacher_id.required' => "Викладач повинен бути обраним",
+                'teacher_id.exists' => "Викладач повинен бути обраним з бази",
+                'type.required' => "Тип роботи повинен бути обов'язково вказаним.",
+                'topic.required' => "Назва роботи повинна бути обов'язково вказаною.",
+                'topic.min' => 'Назва роботи повинна вміщати більш ніж 5 символів.',
+                'presenting_date.required'=> "Дата захисту роботи повинна бути обов'язково вказаною.",
+                'presenting_date.before'=> "Дата захисту роботи повинна бути запланованою раніше ніж через десять років.",
+                'presenting_date.after'=> "Дата захисту роботи повинна бути запланованою не раніше ніж сьогодні.",
+            ];
+            $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+            if ($validator->fails()) {
+                return Redirect::to('/cathedraworker/register')
+                    ->withErrors($validator);
+            } else {
+                $st_real_grad_date = Student::whereId($request->student_id)->first()->real_grad_date;
+                $tc_end_date = Teacher::whereId($request->teacher_id)->first()->end_of_work_date;
+                if(($st_real_grad_date!=null && $st_real_grad_date<=Carbon::now('Europe/Kiev'))||($tc_end_date!=null && $tc_end_date<=Carbon::now('Europe/Kiev'))){
+                    $error_with_degree->add('token', 'Викладач або студент вже недоступні');
+                    return Redirect::to('/cathedraworker/register')
+                    ->withErrors($error_with_degree);
+                }
+                else{
+                    $st_degree = Student::whereId($request->student_id)->first()->degree;
+                    if($st_degree == 'bachelor'){
+                     if($request->type == 'bachaelor coursework'){
+                        if($this->checkForWorkForCathedraworker($request,"bachaelor coursework")){
+                            $error_with_degree->add('token', 'Заявка на даний тип роботи для цього студента вже створена.');
+                            return Redirect::to('/cathedraworker/register')
+                            ->withErrors($error_with_degree);
+                        }
+                        else{
+                            $this->addScienceworkCw($request);
+                            return Redirect::to('/cathedraworker/show');
+                        };
+                    }
+                    else if($request->type == 'bachaelor dyploma'){
+                        if($this->checkForWorkForCathedraworker($request,"bachaelor dyploma")){
+                            $error_with_degree->add('token', 'Заявка на даний тип роботи для цього студента вже створена.');
+                            return Redirect::to('/cathedraworker/register')
+                            ->withErrors($error_with_degree);
+                        }
+                        else{
+                            $this->addScienceworkCw($request);
+                            return Redirect::to('/cathedraworker/show');
+                        };
+                    }
+                    else{
+                        $error_with_degree->add('token', 'Недопустимий тип роботи для степені студента.');
+                        return Redirect::to('/cathedraworker/register')
+                        ->withErrors($error_with_degree);
+                    }
+                }
+                else if($st_degree == 'master'){
+                    if($request->type == 'major coursework'){
+                        if($this->checkForWorkForCathedraworker($request,"major coursework")){
+                            $error_with_degree->add('token', 'Заявка на даний тип роботи для цього студента вже створена.');
+                            return Redirect::to('/cathedraworker/register')
+                            ->withErrors($error_with_degree);
+                        }
+                        else{
+                            $this->addScienceworkCw($request);
+                            return Redirect::to('/cathedraworker/show');
+                        };
+                    }
+                    else if($request->type == 'major dyploma'){
+                        if($this->checkForWorkForCathedraworker($request,"major dyploma")){
+                            $error_with_degree->add('token', 'Заявка на даний тип роботи для цього студента вже створена.');
+                            return Redirect::to('/cathedraworker/register')
+                            ->withErrors($error_with_degree);
+                        }
+                        else{
+                            $this->addScienceworkCw($request);
+                            return Redirect::to('/cathedraworker/show');
+                        };
+                    }
+                    else{
+                        $error_with_degree->add('token', 'Недопустимий тип роботи для степені студента.');
+                        return Redirect::to('/cathedraworker/register')
+                        ->withErrors($error_with_degree);
+                    }
+                }
+            }   
+        }
+        
+    }
+
+
     public function addScienceworkAsStudent(Request $request, MessageBag $error_with_degree)
     {
         $user_id = $user = auth()->user()->baseinfo_id;
@@ -570,6 +708,22 @@ class ScienceworkController extends Controller
        }
     }
 
+    public function checkForWorkForCathedraworker($request,$sciencework_type){
+        $st_degree = Student::whereId($request->student_id)->first() -> degree;
+        $result = [];
+        $works = Sciencework::where('presenting_date', '>=', Carbon::now('Europe/Kiev'))->whereType($sciencework_type)->get();
+        foreach($works as $key => $value){
+            array_push( $result, $value->student_id);
+        }
+        if(in_array($request->student_id, $result))
+        {
+            return true; 
+        }
+        else{
+            return false; 
+       }
+    }
+
 
     public function addSciencework($st_id,$ct_id,Request $request)
     {
@@ -581,6 +735,19 @@ class ScienceworkController extends Controller
         $sciencework->student_id = $st_id;
         $sciencework->teacher_id = $request->teacher_id;
         $sciencework->cathedra_id = $ct_id;
+        $sciencework->save();
+    }
+
+    public function addScienceworkCw(Request $request)
+    {
+        $sciencework = new Sciencework();
+        $sciencework->topic = $request->topic;
+        $sciencework->type = $request->type;
+        $sciencework->presenting_date = $request->presenting_date;
+        $sciencework->status = 'approved_by_teacher';
+        $sciencework->student_id = $request->student_id;
+        $sciencework->teacher_id = $request->teacher_id;
+        $sciencework->cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
         $sciencework->save();
     }
 

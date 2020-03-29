@@ -26,13 +26,19 @@ Route::group(['middleware' => ['role:superadmin']], function () {
     Route::post('/add-cathedraworker', 'CustomRegisterController@addCathedraworker')->name('add-cathedraworker');
 });
 
-Route::group(['middleware' => ['role:student']], function () {
-    //перевірено
-    Route::get('/student/show', 'ScienceworksController@showForStudent')->name('show-for-student');
+Route::group(['middleware' => ['role:student|cathedraworker']], function () {
     //перевірено  
     Route::get('search', array('as'=>'search','uses'=>'SearchController@search'));
     //перевірено
     Route::get('autocomplete2', 'ScienceworkController@autocomplete')->name('autocomplete2');
+    //перевірено
+    Route::get('autocomplete', 'ScienceworkController@autocompleteStudent')->name('autocomplete');
+});
+
+Route::group(['middleware' => ['role:student']], function () {
+    //перевірено
+    Route::get('/student/show', 'ScienceworksController@showForStudent')->name('show-for-student');
+
     //перевірено
     Route::get('/register-sciencework-as-student', 'ScienceworkController@registerScienceworkAsStudent')->name('register-sciencework-as-student');
    //перевірено
@@ -62,7 +68,9 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 Route::group(['middleware' => ['role:cathedraworker']], function () {
     Route::group(['prefix' => 'cathedraworker'], function () {
-        //перевірено
+        Route::get('/register', 'ScienceworkController@registerScienceworkAsCathedraworker')->name('register-sciencework-as-cathedraworker');
+        Route::post('/add', 'ScienceworkController@addScienceworkAsCathedraworker')->name('add-sciencework-as-cathedraworker');
+    //перевірено
         Route::get('/show', 'ScienceworksController@showForCathedraworker')->name('show-for-cathedraworker');
         //перевірено
         Route::patch('/change-status/{id}', 'ScienceworksController@changeStatus')->name('change-status');
