@@ -74,9 +74,25 @@ class CustomRegisterController extends Controller
 public function addTeacher(Request $request)
 {
     $rules = array(
-        'workbooknumber' =>  ['required', 'exists:teachers,workbooknumber']
+        'workbooknumber' =>  ['required', 'exists:teachers,workbooknumber'],
+        'email' => ['required', 'email','min:5','max:50'],
+        'password'=> ['required','min:8','max:50'],
+        'password_confirmation' => 'required|same:password'
     );
-    $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules);
+    $customMessages = [
+        'workbooknumber.required' => 'Номер трудової книжки повинен бути обовязково вказаний.',
+        'workbooknumber.exists' => 'Номер трудової книжки повинен існувати в базі.',
+        'email.required' => 'Адреса електронної пошти повинна бути обовязково вказана.',
+        'email.email' => 'Адреса електронної пошти повинна мати формат алреси електронної пошти, а не інакший.',
+        'email.min' => 'Адреса електронної пошти повинна вміщувати не менш ніж 5 символів.',
+        'email.max' => 'Адреса електронної пошти повинна вміщувати не більш ніж 50 символів.',
+        'password.required' => 'Пароль повинен бути обовязково вказаний.',
+        'password_confirmation.required' => 'Підтвердження паролю обовязкове.',
+        'password.min' => 'Пароль повинен вміщувати більш ніж 8 символів.',
+        'password.max' => 'Пароль повинен вміщувати менш ніж 50 символів.',
+        'password_confirmation.same' => 'Паролі повинні співпадати.',
+    ];
+    $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
     if ($validator->fails()) {
         return Redirect::to('/register-as-teacher')
             ->withErrors($validator);

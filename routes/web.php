@@ -1,17 +1,22 @@
 <?php
 
-
+//перевірено
 Route::get('/', function () {
     return view('welcome');
 });
 
+//перевірено
 Auth::routes();
 
+//перевірено
 Route::get('/home', 'HomeController@index')->name('home');
 //перевірено
 Route::get('/register-as-student', 'CustomRegisterController@registerAsStudent')->name('register-as-student');
-Route::get('/register-as-teacher', 'CustomRegisterController@registerAsTeacher')->name('register-as-teacher');
+//перевірено
+Route::get('/register-as-teacher', 'CustomRegisterController@')->name('register-as-teacher');
+//перевірено
 Route::post('/add-student', 'CustomRegisterController@addStudent')->name('add-student');
+//перевірено
 Route::post('/add-teacher', 'CustomRegisterController@addTeacher')->name('add-teacher');
 
 
@@ -23,8 +28,10 @@ Route::group(['middleware' => ['role:superadmin']], function () {
 
 Route::group(['middleware' => ['role:student']], function () {
     Route::get('search', array('as'=>'search','uses'=>'SearchController@search'));
-    Route::get('autocomplete', array('as'=>'autocomplete','uses'=>'ScienceworkController@autocomplete'));
+    Route::get('autocomplete2', 'ScienceworkController@autocomplete')->name('autocomplete2');
+    //
     Route::get('/register-sciencework-as-student', 'ScienceworkController@registerScienceworkAsStudent')->name('register-sciencework-as-student');
+   //
     Route::post('/add-sciencework-as-student', 'ScienceworkController@addScienceworkAsStudent')->name('add-sciencework-as-student');
 });
 

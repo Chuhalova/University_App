@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-body">
                 @if($errors->any())
                     <ul class="alert alert-danger">
                         @foreach ($errors->all() as $error)
@@ -13,7 +14,6 @@
                         @endforeach
                     </ul>
                 @endif 
-                <div class="card-body">
                     <form method="POST" action="{{ route('add-teacher') }}">
                         @csrf
 
