@@ -18,7 +18,7 @@ class CreateScienceworksTable extends Migration
             $table->string('topic');
             $table->enum('type',['bachaelor coursework','bachaelor dyploma', 'major coursework','major dyploma'])->default('bachaelor coursework');
             $table->date('presenting_date');
-            $table->enum('status',['disapproved_by_teacher','disapproved_by_cathedraworker','inactive', 'approved_by_teacher', 'active'])->default('inactive');
+            $table->enum('status',['disapproved_for_teacher','disapproved_for_student','inactive', 'approved_by_teacher', 'active'])->default('inactive');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students');
             $table->integer('teacher_id')->unsigned();

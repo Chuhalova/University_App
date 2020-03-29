@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use \Illuminate\Support\Facades\View;
 use App\Sciencework;
+use App\Student;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,22 @@ class ScienceworksController extends Controller
          ->paginate(6);
     }
 
+    public function getScienceworksForStudent($id){
+        return DB::table('scienceworks')
+        ->select('*')
+        ->where('scienceworks.student_id','=',$id)
+        ->where('scienceworks.status','!=','disapproved_for_teacher')
+        ->paginate(6);
+    }
+    public function showForStudent(){
+        $role = auth()->user()->roles->first()->name;
+        $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
+        $sws = $this -> getScienceworksForStudent($student_id);
+        return View::make('scienceworks.showForStudent', [
+            'sws' => $sws,
+            'role' => $role,
+        ]);
+    }
 
     public function showInactive()
     {

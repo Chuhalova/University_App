@@ -174,7 +174,6 @@ class DatabaseSeeder extends Seeder
         $student1->studnumber = 'KV12312123';
         $student1->entry_date='2014-09-01';
         $student1->planned_grad_date='2018-06-01';
-        $student1->real_grad_date='2019-06-01';
         $student1->specialty='Software ingeneering';
         $student1->degree = 'bachelor';
         $student1->group = 1;
@@ -280,6 +279,54 @@ class DatabaseSeeder extends Seeder
         $sciencework2 -> cathedra_id = 1;
         $sciencework2 -> application = false;
         $sciencework2 -> save();
+        
+        $sciencework22 = new Sciencework();
+        $sciencework22 -> id = 22;
+        $sciencework22 -> topic = 'Розробка алгоритму';
+        $sciencework22 -> type = 'bachaelor dyploma';
+        $sciencework22 -> presenting_date = '2019-06-01';
+        $sciencework22 -> status = 'disapproved_for_student';
+        $sciencework22 -> student_id = 2;
+        $sciencework22 -> teacher_id = 11;
+        $sciencework22 -> cathedra_id = 1;
+        $sciencework22 -> application = false;
+        $sciencework22 -> save();
+
+        $sciencework222 = new Sciencework();
+        $sciencework222 -> id = 222;
+        $sciencework222 -> topic = 'Розробка алгоритму';
+        $sciencework222 -> type = 'bachaelor dyploma';
+        $sciencework222 -> presenting_date = '2019-06-01';
+        $sciencework222 -> status = 'disapproved_for_teacher';
+        $sciencework222 -> student_id = 2;
+        $sciencework222 -> teacher_id = 11;
+        $sciencework222 -> cathedra_id = 1;
+        $sciencework222 -> application = false;
+        $sciencework222 -> save();
+
+        $sciencework2222 = new Sciencework();
+        $sciencework2222 -> id = 2222;
+        $sciencework2222 -> topic = 'Розробка алгоритму';
+        $sciencework2222 -> type = 'bachaelor dyploma';
+        $sciencework2222 -> presenting_date = '2019-06-01';
+        $sciencework2222 -> status = 'inactive';
+        $sciencework2222 -> student_id = 2;
+        $sciencework2222 -> teacher_id = 11;
+        $sciencework2222 -> cathedra_id = 1;
+        $sciencework2222 -> application = false;
+        $sciencework2222 -> save();
+
+        $sciencework22222 = new Sciencework();
+        $sciencework22222 -> id = 22222;
+        $sciencework22222 -> topic = 'Розробка алгоритму';
+        $sciencework22222 -> type = 'bachaelor dyploma';
+        $sciencework22222 -> presenting_date = '2019-06-01';
+        $sciencework22222 -> status = 'approved_by_teacher';
+        $sciencework22222 -> student_id = 2;
+        $sciencework22222 -> teacher_id = 11;
+        $sciencework22222 -> cathedra_id = 1;
+        $sciencework22222 -> application = false;
+        $sciencework22222 -> save();
 
         $sciencework3 = new Sciencework();
         $sciencework3 -> id = 3;
