@@ -55,7 +55,8 @@ Route::group(['middleware' => ['role:teacher']], function () {
         Route::patch('/update/{id}', 'ScienceworkController@updateScienceworkAsTeacher')->name('update-sciencework-as-teacher');
        //перевірено
         Route::patch('/change-status/{id}', 'ScienceworksController@changeStatus')->name('change-status');
-        
+       //перевірено
+        Route::patch('/disapprove/{id}', 'ScienceworksController@disapproveForStudent')->name('disapprove-for-student'); 
     });
 });
 

@@ -37,6 +37,14 @@
                         </td>
                         @elseif($sw->status == 'inactive')
                         <td>
+                            <form style='display:inline-block' action="{{url('/teacher/disapprove/'.$sw->id) }}" method='POST' >
+                                {{method_field('PATCH')}}
+                                @csrf
+                                <input placeholder="comment" id="comment" type="text"  name="comment" value="{{ old('comment') }}" required autocomplete="comment" autofocus>                     
+                                <button type="submit" class="btn btn-warning" >disapproveForStudent</button>
+                            </form>
+                        </td>
+                        <td>
                             <form style='display:inline-block' action="{{url('/teacher/edit/'.$sw->id) }}" method='GET' >
                                 {{method_field('GET')}}
                                 @csrf

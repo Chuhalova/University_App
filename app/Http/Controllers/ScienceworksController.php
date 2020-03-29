@@ -80,9 +80,30 @@ class ScienceworksController extends Controller
         ]);
     }
 
+    public function disapproveForStudent(Request $request, $id){
+        $role = auth()->user()->roles->first()->name;
+        $sw= Sciencework::find($id);
+        $st = $sw -> status;
+        $rules = array(
+            'comment' =>  ['required'],
+        );
+        $customMessages = [
+            'comment.required' => "Зауваження повинно бути обов'язково вказане.",
+        ];
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator);
+        } else {
+            $sw->comment = $request->comment;
+            $sw->status = 'disapproved_for_student';
+            $sw->save();
+            return redirect()->action('ScienceworksController@showForTeacher');
+        }
+    }
     public function changeStatus(Request $request, $id)
     {
-        $role = Auth::user()->roles->first()->name;
+        $role = auth()->user()->roles->first()->name;
         $sw= Sciencework::find($id);
         $st = $sw -> status;
         if($st == 'approved_by_teacher'){
