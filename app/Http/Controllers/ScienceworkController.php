@@ -54,6 +54,127 @@ class ScienceworkController extends Controller
         }
     }
 
+    public function editScienceworkAsTeacher($id){
+        $sw = Sciencework::find($id);
+        if (!isset($sw)) {
+            abort(402);
+        } else {
+            return View::make('scienceworks.editForTeacher', [
+                'sw' => $sw,
+            ]);
+        }
+    }
+
+    public function updateScienceworkAsTeacher($id,Request $request,MessageBag $error_with_degree){
+        $sw = Sciencework::find($id);
+        if (!isset($sw)) {
+            abort(402);
+        } else {
+            $st = Student::whereId($sw->student_id)->first();
+            $st_id = $st->id;
+            $st_gr_date = $st->real_grad_date;
+            $st_degree = $st -> degree;
+            if($st_gr_date!=null && $st_gr_date<=Carbon::now('Europe/Kiev')){
+                $error_with_degree->add('token', 'Студент вже випустився.');
+                return Redirect::back()
+                ->withErrors($error_with_degree);
+            }
+            else{
+                $today = Carbon::today()->format('Y-m-d');
+                $ten_years_from_now = Carbon::today()->addYears(10)->format('Y-m-d');
+                $rules = array(
+                    'type' =>  ['required'],
+                    'topic' => ['required', 'min:5'],
+                    'presenting_date' => ['required', 'before:' . $ten_years_from_now,'after:' . $today],
+                );
+                $customMessages = [
+                    'type.required' => "Тип роботи повинен бути обов'язково вказаним.",
+                    'topic.required' => "Назва роботи повинна бути обов'язково вказаною.",
+                    'topic.min' => 'Назва роботи повинна вміщати більш ніж 5 символів.',
+                    'presenting_date.required'=> "Дата захисту роботи повинна бути обов'язково вказаною.",
+                    'presenting_date.before'=> "Дата захисту роботи повинна бути запланованою раніше ніж через десять років.",
+                    'presenting_date.after'=> "Дата захисту роботи повинна бути запланованою не раніше ніж сьогодні.",
+                ];
+                $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+                if ($validator->fails()) {
+                    return Redirect::back()
+                        ->withErrors($validator);
+                } else {
+                    
+                    if($request->type!=$sw->type){
+                     if($st_degree == 'bachelor'){
+                        if($request->type == 'bachaelor coursework'){
+                            if($this->checkForWorkForTeacher($sw,"bachaelor coursework")){
+                                $error_with_degree->add('token', 'Заявка на даний тип роботи вже створена для цього студента');
+                                return Redirect::back()
+                                ->withErrors($error_with_degree);
+                            }
+                            else{
+                                $this->updateSciencework($sw,$request);
+                                return Redirect::to('/teacher/show');
+                            };
+                        }
+                        else if($request->type == 'bachaelor dyploma'){
+                            if($this->checkForWorkForTeacher($sw,"bachaelor dyploma")){
+                                $error_with_degree->add('token', 'Заявка на даний тип роботи вже створена для цього студента');
+                                return Redirect::back()
+                                ->withErrors($error_with_degree);
+                            }
+                            else{
+                                $this->updateSciencework($sw,$request);
+                                return Redirect::to('/teacher/show');
+                            };
+                        }
+                        else{
+                            $error_with_degree->add('token', 'Недопустимий тип роботи для степені студента');
+                            return Redirect::back()
+                                ->withErrors($error_with_degree);
+                        }
+                    }
+                    else if($st_degree == 'master'){
+                        
+                        if($request->type == 'major coursework'){
+                            
+
+                            if($this->checkForWorkForTeacher($sw,"major coursework")){
+                                $error_with_degree->add('token', 'Заявка на даний тип роботи вже створена для цього студента');
+                                return Redirect::back()
+                                ->withErrors($error_with_degree);
+                            }
+                            else{
+                                $this->updateSciencework($sw,$request);
+                                return Redirect::to('/teacher/show');
+                            };
+                        }
+                        else if($request->type == 'major dyploma'){
+                           
+
+                            if($this->checkForWorkForTeacher($sw,"major dyploma")){
+                                $error_with_degree->add('token', 'Заявка на даний тип роботи вже створена для цього студента');
+                                return Redirect::back()
+                                ->withErrors($error_with_degree);
+                            }
+                            else{
+                                $this->updateSciencework($sw,$request);
+                                return Redirect::to('/teacher/show');
+                            };
+                        }
+                        else{
+                            $error_with_degree->add('token', 'Недопустимий тип роботи для степені студента');
+                            return Redirect::back()
+                                ->withErrors($error_with_degree);
+                        }
+                    }
+                }
+                    else{
+                        $this->updateSciencework($sw,$request);
+                        return Redirect::to('/teacher/show');
+                    }
+                }
+            }
+        }
+    }
+
     public function updateScienceworkAsStudent($id,Request $request,MessageBag $error_with_degree){
        
         $sw = Sciencework::find($id);
@@ -280,6 +401,24 @@ class ScienceworkController extends Controller
         }
         
     }
+
+     function checkForWorkForTeacher($sw, $sciencework_type){
+        $st = Student::whereBaseinfo_id_for_student($sw->student_id)->first();
+        $st_id = $st->id;
+        $st_degree = $st -> degree;
+        $result = [];
+        $works = Sciencework::where('presenting_date', '>=', Carbon::now('Europe/Kiev'))->whereType($sciencework_type)->get();
+        foreach($works as $key => $value){
+            array_push( $result, $value->student_id);
+        }
+        if(in_array($st_id, $result))
+        {
+            return true; 
+        }
+        else{
+            return false; 
+       }
+     }
 
      function checkForWork($sciencework_type){
         $user_id = auth()->user()->baseinfo_id;

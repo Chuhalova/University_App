@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use \Illuminate\Support\Facades\View;
 use App\Sciencework;
 use App\Student;
+use App\Teacher;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,11 +27,30 @@ class ScienceworksController extends Controller
         ->where('scienceworks.status','!=','disapproved_for_teacher')
         ->paginate(6);
     }
+
+    public function getScienceworksForTeacher($id){
+        return DB::table('scienceworks')
+        ->select('*')
+        ->where('scienceworks.teacher_id','=',$id)
+        ->where('scienceworks.status','!=','disapproved_for_student')
+        ->paginate(6);
+    }
+
     public function showForStudent(){
         $role = auth()->user()->roles->first()->name;
         $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
         $sws = $this -> getScienceworksForStudent($student_id);
         return View::make('scienceworks.showForStudent', [
+            'sws' => $sws,
+            'role' => $role,
+        ]);
+    }
+
+    public function showForTeacher(){
+        $role = auth()->user()->roles->first()->name;
+        $teacher_id = Teacher::whereBaseinfo_id_for_teacher(auth()->user()->baseinfo_id)->first()->id;
+        $sws = $this -> getScienceworksForTeacher($teacher_id);
+        return View::make('scienceworks.showForTeacher', [
             'sws' => $sws,
             'role' => $role,
         ]);
@@ -68,12 +88,12 @@ class ScienceworksController extends Controller
         if($st == 'approved_by_teacher'){
             $sw->status = 'inactive';
             $sw->save();
-            return redirect()->action('TeachersController@showApproved');
+            return redirect()->action('ScienceworksController@showForTeacher');
         }
         else if($st == 'inactive' && $role == 'teacher'){
             $sw->status = 'approved_by_teacher';
             $sw->save();            
-            return redirect()->action('ScienceworksController@showInactive');
+            return redirect()->action('ScienceworksController@showForTeacher');
         }
     }
 
