@@ -73,7 +73,7 @@
                             </li>
                             @role('student')
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Переглянути власні заявки') }}</a>
+                                    <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Переглянути власні') }}</a>
                                 </li>
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Зареєструватись роботу') }}</a>

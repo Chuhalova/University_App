@@ -62,11 +62,16 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 Route::group(['middleware' => ['role:cathedraworker']], function () {
     Route::group(['prefix' => 'cathedraworker'], function () {
-        Route::get('/show-approved', 'CathedraworkersController@showApproved')->name('show-approved');
-        Route::get('/show-active', 'CathedraworkersController@showActive')->name('show-active');
-        
-        // Route::patch('/change-status/{id}', 'TeachersController@changeStatus')->name('change-status');
-        // Route::delete('/delete/{id}', 'TeachersController@delete')->name('delete');
-        // Route::get('/show-approved', 'TeachersController@showApproved')->name('show-approved');
+        //перевірено
+        Route::get('/show', 'ScienceworksController@showForCathedraworker')->name('show-for-cathedraworker');
+        //перевірено
+        Route::patch('/change-status/{id}', 'ScienceworksController@changeStatus')->name('change-status');
+        //перевірено
+        Route::patch('/disapprove/{id}', 'ScienceworksController@disapproveByCathedraworker')->name('disapprove-by-cathedraworker');
+        //перевірено
+        Route::get('/edit/{id}', 'ScienceworkController@editScienceworkAsCathedraworker')->name('edit-sciencework-as-cathedraworker');
+        //перевірено
+        Route::patch('/update/{id}', 'ScienceworkController@updateScienceworkAsCathedraworker')->name('update-sciencework-as-cathedraworker');
+    
     });
 }); 
