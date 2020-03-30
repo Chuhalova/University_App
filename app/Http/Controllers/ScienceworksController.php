@@ -39,15 +39,38 @@ class ScienceworksController extends Controller
         ->paginate(6);
     }
 
-    public function getScienceworksForCathedraworker(){
+    public function getScienceworksForCathedraworker($cathedra_id){
         return DB::table('scienceworks')
         ->select('*')
+        ->where('scienceworks.cathedra_id','=',$cathedra_id)
         ->where(function ($query) {
             $query->where('scienceworks.status', '=', 'active')
                   ->orWhere('scienceworks.status', '=', 'approved_by_teacher');
         })
         ->paginate(6);
     }
+
+    public function getScienceworksForReport($cathedra_id){
+        return DB::table('scienceworks')
+        ->select("scienceworks.*", "baseinfos.name as name", "baseinfos.surname as surname", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
+        ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id') 
+        ->where('scienceworks.cathedra_id','=',$cathedra_id)
+        ->where('scienceworks.status', '=', 'active')
+        ->get();
+    }
+
+    public function getScienceworksForFiltratedReport($cathedra_id, $teacher_id){
+        return DB::table('scienceworks')
+        ->select("scienceworks.*", "baseinfos.name as name", "baseinfos.surname as surname", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
+        ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id') 
+        ->where('scienceworks.cathedra_id','=',$cathedra_id)
+        ->where('scienceworks.teacher_id','=',$teacher_id)
+        ->where('scienceworks.status', '=', 'active')
+        ->get();
+    }
+
 
     public function showForStudent(){
         $role = auth()->user()->roles->first()->name;
@@ -103,10 +126,24 @@ class ScienceworksController extends Controller
 
     public function showForCathedraworker(){
         $role = auth()->user()->roles->first()->name;
-        $sws = $this->getScienceworksForCathedraworker();
+        $cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
+        $sws = $this->getScienceworksForCathedraworker($cathedra_id);
         return View::make('scienceworks.showForCathedraworker', [
             'sws' => $sws,
             'role' => $role,
+        ]); 
+    }
+
+    public function report(Request $request){
+        $cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
+        if($request->teacher_id!=null){
+            $sws = $this->getScienceworksForFiltratedReport($cathedra_id, $request->teacher_id);
+        }
+        else{
+            $sws = $this->getScienceworksForReport($cathedra_id);
+        } 
+        return View::make('scienceworks.showForReport', [
+            'sws' => $sws,
         ]); 
     }
 

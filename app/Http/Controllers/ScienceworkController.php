@@ -62,7 +62,7 @@ class ScienceworkController extends Controller
         ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "teachers.science_degree", "teachers.scientific_rank")
         ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id')
         ->leftJoin('users', 'teachers.baseinfo_id_for_teacher', '=', 'users.baseinfo_id')
-        ->where('baseinfos.cathedra_id','=', 1)
+        ->where('baseinfos.cathedra_id','=', 2)
         ->where(function ($query) {
             $query->whereNull('teachers.end_of_work_date')
                   ->orWhere('teachers.end_of_work_date', '>=', Carbon::now('Europe/Kiev'));

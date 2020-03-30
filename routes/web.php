@@ -93,6 +93,8 @@ Route::group(['middleware' => ['role:cathedraworker']], function () {
         Route::get('/edit/{id}', 'ScienceworkController@editScienceworkAsCathedraworker')->name('edit-sciencework-as-cathedraworker');
         //перевірено
         Route::patch('/update/{id}', 'ScienceworkController@updateScienceworkAsCathedraworker')->name('update-sciencework-as-cathedraworker');
+        //перевірено
         Route::patch('add-application/{id}', 'ScienceworkController@addApplication')->name('add-application');
+        Route::get('/report', 'ScienceworksController@report')->name('report');
     });
 }); 
