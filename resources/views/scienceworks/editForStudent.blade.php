@@ -24,7 +24,12 @@
                             </div>
                         </div>
                         <div class="form-group row">                        
-                                 <label for="type" class="col-md-4 col-form-label text-md-right">{{ __("type") }}</label>
+                            @if($sw->status=='created_by_teacher')
+                            <select hidden name="type" id="type">
+                                <option value="{{$sw->type}}" selected="selected"></option>
+                            </select>
+                            @else
+                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __("type") }}</label>
                                      <div class="col-md-6">
                                           <select class='type' id="type" name="type">
                                         @if($sw->type=='bachaelor coursework')
@@ -55,6 +60,7 @@
                                         @endif
                                          </select>
                                     </div>
+                                    @endif
                             </div>
                         <div class="form-group row">
                             <label for="presenting_date" class="col-md-4 col-form-label text-md-right">{{ __('presenting_date') }}</label>

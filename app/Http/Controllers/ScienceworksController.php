@@ -5,6 +5,7 @@ use \Illuminate\Support\Facades\View;
 use App\Sciencework;
 use App\Student;
 use App\Teacher;
+use App\Baseinfo;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class ScienceworksController extends Controller
         ->select('*')
         ->where('scienceworks.student_id','=',$id)
         ->where('scienceworks.status','!=','disapproved_for_teacher')
+        ->where('scienceworks.status','!=','created_by_teacher')
         ->paginate(6);
     }
 
@@ -54,6 +56,38 @@ class ScienceworksController extends Controller
         return View::make('scienceworks.showForStudent', [
             'sws' => $sws,
             'role' => $role,
+        ]);
+    }
+    
+    public function showTopicsForStudent(){
+        $ct = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
+        $st_degree = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->degree;
+        if($st_degree=="bachelor"){
+            $sws =  DB::table('scienceworks')
+            ->select('scienceworks.*')
+            ->where('scienceworks.cathedra_id','=',$ct)
+            ->where('scienceworks.status','=','created_by_teacher')
+            ->where(function ($query) {
+                $query->where('scienceworks.type', '=', 'bachaelor coursework')
+                      ->orWhere('scienceworks.type', '=', 'bachaelor dyploma')
+                      ;
+            })
+            ->paginate(6);
+        }
+        elseif($st_degree=='master'){
+            $sws =  DB::table('scienceworks')
+            ->select('scienceworks.*')
+            ->where('scienceworks.cathedra_id','=',$ct)
+            ->where('scienceworks.status','=','created_by_teacher')
+            ->where(function ($query) {
+                $query->where('scienceworks.type', '=', 'major coursework')
+                      ->orWhere('scienceworks.type', '=', 'major dyploma')
+                      ;
+            })
+            ->paginate(6);
+        }
+        return View::make('scienceworks.showTopicsForStudent', [
+            'sws' => $sws,
         ]);
     }
 

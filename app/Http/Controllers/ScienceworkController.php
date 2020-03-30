@@ -95,6 +95,8 @@ class ScienceworkController extends Controller
         }
     }
 
+    
+
     public function editScienceworkAsTeacher($id){
         $sw = Sciencework::find($id);
         if (!isset($sw)) {
@@ -386,7 +388,6 @@ class ScienceworkController extends Controller
     }
 
     public function updateScienceworkAsStudent($id,Request $request,MessageBag $error_with_degree){
-       
         $sw = Sciencework::find($id);
         if (!isset($sw)) {
             abort(402);
@@ -394,6 +395,9 @@ class ScienceworkController extends Controller
             $user_id = auth()->user()->baseinfo_id;
             $st = Student::whereBaseinfo_id_for_student($user_id)->first();
             $st_id = $st->id;
+            if($sw->student_id==null){
+                $sw->student_id = $st_id;
+            }
             $st_gr_date = $st->real_grad_date;
             $st_degree = $st -> degree;
             $ct_id = Baseinfo::whereId($user_id)->first()->cathedra_id;
@@ -422,8 +426,7 @@ class ScienceworkController extends Controller
                 if ($validator->fails()) {
                     return Redirect::back()
                         ->withErrors($validator);
-                } else {
-                    
+                } else {                   
                     if($request->type!=$sw->type){
                      if($st_degree == 'bachelor'){
                         if($request->type == 'bachaelor coursework'){
@@ -575,8 +578,7 @@ class ScienceworkController extends Controller
         $sws = DB::table('scienceworks')
         ->select('scienceworks.*')
         ->where('scienceworks.teacher_id','=',$tc)
-        ->whereNull('scienceworks.student_id')
-        ->whereNull('scienceworks.presenting_date')
+        ->where('scienceworks.status','=','created_by_teacher')
         ->paginate(6);
         return View::make('scienceworks.showTopics', [
             'sws' => $sws,
