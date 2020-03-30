@@ -33,6 +33,7 @@ class ScienceworksController extends Controller
         ->select('*')
         ->where('scienceworks.teacher_id','=',$id)
         ->where('scienceworks.status','!=','disapproved_for_student')
+        ->where('scienceworks.status','!=','created_by_teacher')
         ->paginate(6);
     }
 

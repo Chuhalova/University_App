@@ -279,54 +279,6 @@ class DatabaseSeeder extends Seeder
         $sciencework2 -> cathedra_id = 1;
         $sciencework2 -> application = false;
         $sciencework2 -> save();
-        
-        $sciencework22 = new Sciencework();
-        $sciencework22 -> id = 22;
-        $sciencework22 -> topic = 'Розробка алгоритму';
-        $sciencework22 -> type = 'bachaelor dyploma';
-        $sciencework22 -> presenting_date = '2019-06-01';
-        $sciencework22 -> status = 'disapproved_for_student';
-        $sciencework22 -> student_id = 2;
-        $sciencework22 -> teacher_id = 11;
-        $sciencework22 -> cathedra_id = 1;
-        $sciencework22 -> application = false;
-        $sciencework22 -> save();
-
-        $sciencework222 = new Sciencework();
-        $sciencework222 -> id = 222;
-        $sciencework222 -> topic = 'Розробка алгоритму';
-        $sciencework222 -> type = 'bachaelor dyploma';
-        $sciencework222 -> presenting_date = '2019-06-01';
-        $sciencework222 -> status = 'disapproved_for_teacher';
-        $sciencework222 -> student_id = 2;
-        $sciencework222 -> teacher_id = 11;
-        $sciencework222 -> cathedra_id = 1;
-        $sciencework222 -> application = false;
-        $sciencework222 -> save();
-
-        $sciencework2222 = new Sciencework();
-        $sciencework2222 -> id = 2222;
-        $sciencework2222 -> topic = 'Розробка алгоритму';
-        $sciencework2222 -> type = 'bachaelor dyploma';
-        $sciencework2222 -> presenting_date = '2019-06-01';
-        $sciencework2222 -> status = 'inactive';
-        $sciencework2222 -> student_id = 2;
-        $sciencework2222 -> teacher_id = 11;
-        $sciencework2222 -> cathedra_id = 1;
-        $sciencework2222 -> application = false;
-        $sciencework2222 -> save();
-
-        $sciencework22222 = new Sciencework();
-        $sciencework22222 -> id = 22222;
-        $sciencework22222 -> topic = 'Розробка алгоритму';
-        $sciencework22222 -> type = 'bachaelor dyploma';
-        $sciencework22222 -> presenting_date = '2019-06-01';
-        $sciencework22222 -> status = 'approved_by_teacher';
-        $sciencework22222 -> student_id = 2;
-        $sciencework22222 -> teacher_id = 11;
-        $sciencework22222 -> cathedra_id = 1;
-        $sciencework22222 -> application = false;
-        $sciencework22222 -> save();
 
         $sciencework3 = new Sciencework();
         $sciencework3 -> id = 3;
@@ -339,5 +291,17 @@ class DatabaseSeeder extends Seeder
         $sciencework3 -> cathedra_id = 2;
         $sciencework3 -> application = false;
         $sciencework3 -> save();
+
+        $sciencework4 = new Sciencework();
+        $sciencework4 -> id = 4;
+        $sciencework4 -> topic = 'Розробка роботу';
+        $sciencework4 -> type = 'major coursework';
+        $sciencework4 -> presenting_date = '2023-06-01';
+        $sciencework4 -> status = 'active';
+        $sciencework4 -> student_id = 4;
+        $sciencework4 -> teacher_id = 12;
+        $sciencework4 -> cathedra_id = 2;
+        $sciencework4 -> application = false;
+        $sciencework4 -> save();
     }
 }

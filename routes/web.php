@@ -54,6 +54,10 @@ Route::group(['middleware' => ['role:student']], function () {
 Route::group(['middleware' => ['role:teacher']], function () {
     Route::group(['prefix' => 'teacher'], function () {
         //перевірено
+        Route::get('/propose', 'ScienceworkController@proposeTopic')->name('propose-topic-as-teacher');
+        //перевірено
+        Route::post('/post', 'ScienceworkController@postTopic')->name('post-topic-as-teacher');
+        //перевірено
         Route::get('/show', 'ScienceworksController@showForTeacher')->name('show-for-teacher');
         //перевірено
         Route::get('/edit/{id}', 'ScienceworkController@editScienceworkAsTeacher')->name('edit-sciencework-as-teacher');
@@ -70,7 +74,7 @@ Route::group(['middleware' => ['role:cathedraworker']], function () {
     Route::group(['prefix' => 'cathedraworker'], function () {
         Route::get('/register', 'ScienceworkController@registerScienceworkAsCathedraworker')->name('register-sciencework-as-cathedraworker');
         Route::post('/add', 'ScienceworkController@addScienceworkAsCathedraworker')->name('add-sciencework-as-cathedraworker');
-    //перевірено
+        //перевірено
         Route::get('/show', 'ScienceworksController@showForCathedraworker')->name('show-for-cathedraworker');
         //перевірено
         Route::patch('/change-status/{id}', 'ScienceworksController@changeStatus')->name('change-status');

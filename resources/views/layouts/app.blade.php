@@ -79,6 +79,11 @@
                                     <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Зареєструватись роботу') }}</a>
                                 </li>
                             @endrole
+                            @role('teacher')
+                            <li class='nav-link'>
+                                <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Propose') }}</a>
+                            </li>
+                            @endrole
                         @endguest
                     </ul>
                 </div>

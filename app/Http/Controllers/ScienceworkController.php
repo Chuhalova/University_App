@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 class ScienceworkController extends Controller
 {
 
+    public function proposeTopic(){
+        return view ('sciencework.postTopic');
+    }
+
     public function registerScienceworkAsStudent(){ 
         return view ('sciencework.registerScienceworkAsStudent');
     }
@@ -473,6 +477,44 @@ class ScienceworkController extends Controller
         return Redirect::back();
     }
 
+    public function postTopic(Request $request, MessageBag $error_with_degree){
+        $rules = array(
+            'type' =>  ['required'],
+            'topic' => ['required', 'min:5'],
+        );
+        $customMessages = [
+            'type.required' => "Тип роботи повинен бути обов'язково вказаним.",
+            'topic.required' => "Назва роботи повинна бути обов'язково вказаною.",
+            'topic.min' => 'Назва роботи повинна вміщати більш ніж 5 символів.',
+        ];
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+            if ($validator->fails()) {
+                return Redirect::to('/teacher/propose')
+                    ->withErrors($validator);
+            } else {
+                $user_id = $user = auth()->user()->baseinfo_id;
+                $tc = Teacher::whereBaseinfo_id_for_teacher($user_id)->first();
+                $tc_id = $tc->id;
+                $tc_end_work = $tc->end_of_work_date;
+                $ct_id = Baseinfo::whereId($user_id)->first()->cathedra_id;
+                if(($tc_end_work!=null && $tc_end_work<=Carbon::now('Europe/Kiev'))){
+                    $error_with_degree->add('token', 'Ви вже не можете створювати роботи.');
+                    return Redirect::to('/teacher/propose')
+                    ->withErrors($error_with_degree);
+                }
+                else{
+                    $sciencework = new Sciencework();
+                    $sciencework->topic = $request->topic;
+                    $sciencework->type = $request->type;
+                    $sciencework->status = 'created_by_teacher';
+                    $sciencework->teacher_id = $tc_id;
+                    $sciencework->cathedra_id = $ct_id;
+                    $sciencework->save();
+                    return Redirect::to('/teacher/show');
+                }
+            }
+    }
+
     public function addScienceworkAsCathedraworker(Request $request, MessageBag $error_with_degree)
     {
             $today = Carbon::today()->format('Y-m-d');
@@ -711,7 +753,7 @@ class ScienceworkController extends Controller
     public function checkForWorkForCathedraworker($request,$sciencework_type){
         $st_degree = Student::whereId($request->student_id)->first() -> degree;
         $result = [];
-        $works = Sciencework::where('presenting_date', '>=', Carbon::now('Europe/Kiev'))->whereType($sciencework_type)->get();
+        $works = Sciencework::where('presenting_date', '>=', Carbon::now('Europe/Kiev'))->whereType($sciencework_type   )->get();
         foreach($works as $key => $value){
             array_push( $result, $value->student_id);
         }
