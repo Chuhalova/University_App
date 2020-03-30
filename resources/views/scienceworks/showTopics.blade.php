@@ -21,6 +21,20 @@
                         <tr>
                         <th scope="row">{{$sw->topic}}</th>
                         <td>{{$sw->type}}</td>
+                        <td>
+                            <form style='display:inline-block' action="{{url('/teacher/editTopic/'.$sw->id) }}" method='GET' >
+                                 {{method_field('GET')}}
+                                 @csrf
+                                 <button type="submit" class="btn btn-warning" >edittopic</button>
+                             </form>
+                        </td>
+                        <td>
+                            <form style='display:inline-block' action="{{ url('/teacher/deleteTopic/'.$sw->id) }}" method="POST">
+                                {{method_field('DELETE')}}
+                                @csrf
+                                <button type="submit" class="btn btn-danger" >deletetopic</button>
+                            </form>
+                        </td>
                         </tr>
                     @endforeach
                     </tbody>

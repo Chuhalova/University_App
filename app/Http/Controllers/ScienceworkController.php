@@ -106,6 +106,17 @@ class ScienceworkController extends Controller
         }
     }
 
+    public function editTopicAsTeacher($id){
+        $sw = Sciencework::find($id);
+        if (!isset($sw)) {
+            abort(402);
+        } else {
+            return View::make('scienceworks.editTopicForTeacher', [
+                'sw' => $sw,
+            ]);
+        }
+    }
+
     public function editScienceworkAsCathedraworker($id){
         $sw = Sciencework::find($id);
         if (!isset($sw)) {
@@ -227,6 +238,42 @@ class ScienceworkController extends Controller
         }
     }
 
+    public function updateTopicAsTeacher($id,Request $request,MessageBag $error_with_degree){
+        $sw = Sciencework::find($id);
+        if (!isset($sw)) {
+            abort(402);
+        } else {
+            $rules = array(
+                'type' =>  ['required'],
+                'topic' => ['required', 'min:5'],
+            );
+            $customMessages = [
+                'type.required' => "Тип роботи повинен бути обов'язково вказаним.",
+                'topic.required' => "Назва роботи повинна бути обов'язково вказаною.",
+                'topic.min' => 'Назва роботи повинна вміщати більш ніж 5 символів.',
+            ];
+            $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+                if ($validator->fails()) {
+                    return Redirect::back()
+                        ->withErrors($validator);
+                } else {
+                    $user_id = auth()->user()->baseinfo_id;
+                    $tc = Teacher::whereBaseinfo_id_for_teacher($user_id)->first();
+                    $tc_end_work = $tc->end_of_work_date;
+                    if(($tc_end_work!=null && $tc_end_work<=Carbon::now('Europe/Kiev'))){
+                        $error_with_degree->add('token', 'Ви вже не можете змінювати роботи.');
+                        return Redirect::back()
+                        ->withErrors($error_with_degree);
+                    }
+                    else{
+                        $sw->topic = $request->topic;
+                        $sw->type = $request->type;
+                        $sw->save();
+                        return Redirect::to('/teacher/get-topics');
+                    }
+                }
+        }
+    }
 
     public function updateScienceworkAsTeacher($id,Request $request,MessageBag $error_with_degree){
         $sw = Sciencework::find($id);
@@ -470,6 +517,14 @@ class ScienceworkController extends Controller
     }
 
     public function deleteScienceworkAsStudent($id){
+        $sw= Sciencework::find($id);
+        if(isset($sw)){
+            $sw->delete();
+        }
+        return Redirect::back();
+    }
+
+    public function deleteTopicAsTeacher($id){
         $sw= Sciencework::find($id);
         if(isset($sw)){
             $sw->delete();

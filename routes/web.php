@@ -57,17 +57,24 @@ Route::group(['middleware' => ['role:teacher']], function () {
         Route::get('/propose', 'ScienceworkController@proposeTopic')->name('propose-topic-as-teacher');
         //перевірено
         Route::post('/post', 'ScienceworkController@postTopic')->name('post-topic-as-teacher');
+        //перевірено
         Route::get('/get-topics', 'ScienceworkController@getTopics')->name('get-topics-as-teacher');
         //перевірено
         Route::get('/show', 'ScienceworksController@showForTeacher')->name('show-for-teacher');
         //перевірено
         Route::get('/edit/{id}', 'ScienceworkController@editScienceworkAsTeacher')->name('edit-sciencework-as-teacher');
-         //перевірено
+        //перевірено
+        Route::get('/editTopic/{id}', 'ScienceworkController@editTopicAsTeacher')->name('edit-topic-as-teacher');
+        //перевірено
         Route::patch('/update/{id}', 'ScienceworkController@updateScienceworkAsTeacher')->name('update-sciencework-as-teacher');
        //перевірено
+        Route::patch('/updateTopic/{id}', 'ScienceworkController@updateTopicAsTeacher')->name('update-topic-as-teacher');
+        //перевірено
         Route::patch('/change-status/{id}', 'ScienceworksController@changeStatus')->name('change-status');
        //перевірено
         Route::patch('/disapprove/{id}', 'ScienceworksController@disapproveForStudent')->name('disapprove-for-student'); 
+        //
+        Route::delete('/deleteTopic/{id}', 'ScienceworkController@deleteTopicAsTeacher')->name('delete-topic-as-teacher');
     });
 });
 
