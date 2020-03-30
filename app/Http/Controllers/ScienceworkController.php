@@ -503,6 +503,7 @@ class ScienceworkController extends Controller
     
     public function updateSciencework($sw, $request){
         $sw->comment = "";
+        $sw->application = false;
         $sw->status="inactive";
         $sw->topic = $request->topic;
         $sw ->type = $request ->type;
@@ -512,11 +513,21 @@ class ScienceworkController extends Controller
 
     public function updateScienceworkAsCw($sw, $request){
         $sw->comment = "";
+        $sw->application = false;
         $sw->status="approved_by_teacher";
         $sw->topic = $request->topic;
         $sw ->type = $request ->type;
         $sw->presenting_date=$request->presenting_date;
         $sw->save();
+    }
+
+    public function addApplication($id){
+        $sw= Sciencework::find($id);
+        if(isset($sw)){
+            $sw->application = true;
+            $sw->save();
+        }
+        return Redirect::back();
     }
 
     public function deleteScienceworkAsStudent($id){

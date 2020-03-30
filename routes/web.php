@@ -40,8 +40,6 @@ Route::group(['middleware' => ['role:student']], function () {
     Route::get('/student/show', 'ScienceworksController@showForStudent')->name('show-for-student');
     //перевірено
     Route::get('/student/show-topics', 'ScienceworksController@showTopicsForStudent')->name('show-topics-for-student');
-  
-
     //перевірено
     Route::get('/register-sciencework-as-student', 'ScienceworkController@registerScienceworkAsStudent')->name('register-sciencework-as-student');
    //перевірено
@@ -95,6 +93,6 @@ Route::group(['middleware' => ['role:cathedraworker']], function () {
         Route::get('/edit/{id}', 'ScienceworkController@editScienceworkAsCathedraworker')->name('edit-sciencework-as-cathedraworker');
         //перевірено
         Route::patch('/update/{id}', 'ScienceworkController@updateScienceworkAsCathedraworker')->name('update-sciencework-as-cathedraworker');
-    
+        Route::patch('add-application/{id}', 'ScienceworkController@addApplication')->name('add-application');
     });
 }); 

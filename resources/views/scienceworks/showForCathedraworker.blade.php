@@ -56,6 +56,15 @@
                             </form>
                         </td>
                         @elseif($sw->status=="active")
+                        @if($sw->application==false)
+                        <td>
+                            <form style='display:inline-block' action="{{url('/cathedraworker/add-application/'.$sw->id) }}" method='POST' >
+                                {{method_field('PATCH')}}
+                                @csrf
+                                <button type="submit" class="btn btn-warning" >add application</button>
+                            </form>
+                        </td>
+                        @endif
                         <td>
                             <form style='display:inline-block' action="{{url('/cathedraworker/change-status/'.$sw->id) }}" method='POST' >
                                 {{method_field('PATCH')}}

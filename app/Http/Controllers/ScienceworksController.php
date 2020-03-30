@@ -165,6 +165,7 @@ class ScienceworksController extends Controller
     {
         $role = auth()->user()->roles->first()->name;
         $sw= Sciencework::find($id);
+        $sw->application = false;
         $st = $sw -> status;
         if($st == 'approved_by_teacher'&& $role == 'teacher'){
             $sw->status = 'inactive';
