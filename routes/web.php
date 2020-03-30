@@ -57,6 +57,7 @@ Route::group(['middleware' => ['role:teacher']], function () {
         Route::get('/propose', 'ScienceworkController@proposeTopic')->name('propose-topic-as-teacher');
         //перевірено
         Route::post('/post', 'ScienceworkController@postTopic')->name('post-topic-as-teacher');
+        Route::get('/get-topics', 'ScienceworkController@getTopics')->name('get-topics-as-teacher');
         //перевірено
         Route::get('/show', 'ScienceworksController@showForTeacher')->name('show-for-teacher');
         //перевірено

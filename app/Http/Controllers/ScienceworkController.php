@@ -492,7 +492,7 @@ class ScienceworkController extends Controller
                 return Redirect::to('/teacher/propose')
                     ->withErrors($validator);
             } else {
-                $user_id = $user = auth()->user()->baseinfo_id;
+                $user_id = auth()->user()->baseinfo_id;
                 $tc = Teacher::whereBaseinfo_id_for_teacher($user_id)->first();
                 $tc_id = $tc->id;
                 $tc_end_work = $tc->end_of_work_date;
@@ -510,9 +510,22 @@ class ScienceworkController extends Controller
                     $sciencework->teacher_id = $tc_id;
                     $sciencework->cathedra_id = $ct_id;
                     $sciencework->save();
-                    return Redirect::to('/teacher/show');
+                    return Redirect::to('/teacher/get-topics');
                 }
             }
+    }
+
+    public function getTopics(){
+        $tc = Teacher::whereBaseinfo_id_for_teacher(auth()->user()->baseinfo_id)->first()->id;
+        $sws = DB::table('scienceworks')
+        ->select('scienceworks.*')
+        ->where('scienceworks.teacher_id','=',$tc)
+        ->whereNull('scienceworks.student_id')
+        ->whereNull('scienceworks.presenting_date')
+        ->paginate(6);
+        return View::make('scienceworks.showTopics', [
+            'sws' => $sws,
+        ]);
     }
 
     public function addScienceworkAsCathedraworker(Request $request, MessageBag $error_with_degree)
