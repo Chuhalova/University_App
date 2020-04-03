@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('baseinfo_id_for_student')->references('id')->on('baseinfos');
             $table->string('studnumber');
             $table->date('entry_date');
-            $table->date('planned_grad_date');
+            $table->integer('year')->unsigned();
             $table->date('real_grad_date')->nullable();
             $table->enum('degree',['bachelor', 'master'])->default('master');
             $table->string('specialty');

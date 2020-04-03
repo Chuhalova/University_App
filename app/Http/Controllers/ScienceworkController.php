@@ -84,6 +84,50 @@ class ScienceworkController extends Controller
             }
     }
 
+    public function autocompleteGroup(Request $request){
+        $data = DB::table("students")
+        ->select('students.*')
+        ->where(function ($query) {
+            $query->whereNull('students.real_grad_date')
+                  ->orWhere('students.real_grad_date', '>=', Carbon::now('Europe/Kiev'));
+        })
+        ->get();
+        $result = array();
+        foreach($data as $key => $d){
+            $result["string"][][][] = implode('',array_diff_assoc(str_split(ucwords($d->specialty)),str_split(strtolower($d->specialty)))).''.$d->year.'-'.$d->group;
+            $result[]["group"][][] = $d->group;
+            $result[][]["year"][] = $d->year;
+            $result[][][]["specialty"] = $d->specialty;
+        }
+        return response()->json($result);
+    }
+
+    public function autocomplete2(Request $request)
+    {
+    if($request->ajax()) {
+        $data = DB::table('teachers')
+        ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "teachers.science_degree", "teachers.scientific_rank")
+        ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id')
+        ->leftJoin('users', 'teachers.baseinfo_id_for_teacher', '=', 'users.baseinfo_id')
+        ->where('baseinfos.cathedra_id','=', 2)
+        ->where("baseinfos.surname","like","{$request->teacher}%")
+            ->get();
+            $output = ''; 
+            if (count($data)>0) {
+                $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
+                foreach ($data as $row){
+                    $output .= '<li id='.$row->id.' class="teacher_li list-group-item">'.$row->name .' '. $row->surname .' '. $row->science_degree .' '. $row->scientific_rank.'</li>';
+                }
+                $output .= '</ul>';
+            }
+            else {
+                 $output .= '<li class="teacher_li list-group-item">'.'No results'.'</li>';
+                }
+                return $output;
+            }
+    }
+
+
     public function editScienceworkAsStudent($id){
         $sw = Sciencework::find($id);
         if (!isset($sw)) {

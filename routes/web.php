@@ -31,6 +31,9 @@ Route::group(['middleware' => ['role:student|cathedraworker']], function () {
     Route::get('search', array('as'=>'search','uses'=>'SearchController@search'));
     //перевірено
     Route::get('autocomplete2', 'ScienceworkController@autocomplete')->name('autocomplete2');
+    Route::get('autocomplete3', 'ScienceworkController@autocomplete2')->name('autocomplete3');
+    Route::get('autocompleteGroup', 'ScienceworkController@autocompleteGroup')->name('autocompleteGroup');
+
     //перевірено
     Route::get('autocomplete', 'ScienceworkController@autocompleteStudent')->name('autocomplete');
 });

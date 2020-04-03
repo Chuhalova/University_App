@@ -170,10 +170,10 @@ class DatabaseSeeder extends Seeder
 
         $student1 = new Student();
         $student1->id = 1;
+        $student1->year = 1;
         $student1->baseinfo_id_for_student = 1;
         $student1->studnumber = 'KV12312123';
         $student1->entry_date='2014-09-01';
-        $student1->planned_grad_date='2018-06-01';
         $student1->specialty='Software ingeneering';
         $student1->degree = 'bachelor';
         $student1->group = 1;
@@ -181,10 +181,10 @@ class DatabaseSeeder extends Seeder
 
         $student2 = new Student();
         $student2->id = 2;
+        $student2->year = 2;
         $student2->baseinfo_id_for_student = 2;
         $student2->studnumber = 'KV23423234';
         $student2->entry_date='2017-09-01';
-        $student2->planned_grad_date='2021-06-01';
         $student2->specialty='Software ingeneering';
         $student2->degree = 'master';
         $student2->group = 2;
@@ -192,10 +192,10 @@ class DatabaseSeeder extends Seeder
 
         $student3 = new Student();
         $student3->id = 3;
+        $student3->year = 3;
         $student3->baseinfo_id_for_student = 3;
         $student3->studnumber = 'KV34534345';
         $student3->entry_date='2010-09-01';
-        $student3->planned_grad_date='2014-06-01';
         $student3->real_grad_date='2016-06-01';
         $student3->specialty='Software ingeneering';
         $student3->degree = 'bachelor';
@@ -204,10 +204,10 @@ class DatabaseSeeder extends Seeder
 
         $student4 = new Student();
         $student4->id = 4;
+        $student4->year = 2;
         $student4->baseinfo_id_for_student = 4;
         $student4->studnumber = 'KV45645456';
         $student4->entry_date='2015-09-01';
-        $student4->planned_grad_date='2019-06-01';
         $student4->real_grad_date='2019-06-01';
         $student4->specialty='Software ingeneering';
         $student4->degree = 'master';

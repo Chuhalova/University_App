@@ -33,8 +33,11 @@
         <div class="col-md-12">
         <div class="col-md-3 form-group">
                     <label for="teacher">{{ __('Науковий керівник (будь-ласка здійсніть пошук за прізвищем викладача)') }}</label>
-                                    <input required='required' placeholder="Науковий керівник" id="teacher" name="teacher" class="typeahead form-control" type="text">
-                                   <form action="{{url('/cathedraworker/report/') }}" method='GET' >
+                                    <input  placeholder="Науковий керівник" id="teacher" name="teacher" class="typeahead form-control" type="text">
+                                    <select name="group" id="group">
+                                        <option>Select group</option>
+                                    </select>
+                                    <form action="{{url('/cathedraworker/report/') }}" method='GET' >
                                     {{method_field('GET')}}
                                     @csrf
                                     <input id="teacher_id" name="teacher_id" class="typeahead form-control" type="text" hidden>
@@ -42,7 +45,8 @@
                                     {{ __('report') }}
                                 </button>  
                                 </form>
-                                    <div id="teacher_list"></div> 
+                                    <div id="teacher_list"></div>
+                                    <div id="group_list"></div>
                                 </div>
             <div class="col-md-9 card">
                 <div class="card-header"></div>
@@ -85,13 +89,22 @@
                 $('#teacher').on('keyup',function() {
                     var query = $(this).val();
                     $.ajax({
-                        url:"{{ route('autocomplete2') }}",
+                        url:"{{ route('autocomplete3') }}",
                         type:"GET",
                         data:{'teacher':query},
                         success:function (data) {
                             $('#teacher_list').html(data);
                         }
                     })
+                });
+                $(document).ready(function() {
+                    $.get("/autocompleteGroup", function(data, status){
+                        alert(data.group);
+                        data.forEach(function(item) {
+                            $('#group').append(`<option value="`+item+`">` + item +`</option>`);
+                            console.log(item);
+                        });
+                    });
                 });
                 $(document).on('click', '.teacher_li', function(){
                     var value = $(this).text();
