@@ -694,12 +694,14 @@ class ScienceworkController extends Controller
                         };
                     }
                     else{
-                        $error->add('token', 'Наразі студент даного курсу, даної програми не може створити роботу.');
+                        $error->add('token', 'Студент даного курсу, даної програми не може створити данний тип роботи.');
                         return Redirect::to($sucview)
                         ->withErrors($error);
-                        }
+                        }                 
     }
 }
+
+
 
 
     public function addScienceworkAsCathedraworker(Request $request, MessageBag $error)
