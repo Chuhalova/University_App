@@ -9,6 +9,7 @@ use App\Sciencework;
 use App\Student;
 use App\Teacher;
 use App\Baseinfo;
+use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Auth;
 class ScienceworkController extends Controller
@@ -87,36 +88,44 @@ class ScienceworkController extends Controller
     public function autocompleteGroup(Request $request){
         $data = DB::table("students")
         ->select('students.*')
+        ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
+        ->leftJoin('users', 'students.baseinfo_id_for_student', '=', 'users.baseinfo_id')
+        ->where('baseinfos.cathedra_id','=', 2)
         ->where(function ($query) {
             $query->whereNull('students.real_grad_date')
                   ->orWhere('students.real_grad_date', '>=', Carbon::now('Europe/Kiev'));
         })
         ->get();
-        $result = array();
-        foreach($data as $key => $d){
-            $result["string"][][][] = implode('',array_diff_assoc(str_split(ucwords($d->specialty)),str_split(strtolower($d->specialty)))).''.$d->year.'-'.$d->group;
-            $result[]["group"][][] = $d->group;
-            $result[][]["year"][] = $d->year;
-            $result[][][]["specialty"] = $d->specialty;
+        $collection = new Collection([]);
+        foreach($data as $d){
+            $collection->push([
+                    'name'=>implode('',array_diff_assoc(str_split(ucwords($d->specialty)),str_split(strtolower($d->specialty)))).''.$d->year.'-'.$d->group,
+                    'group'=> $d->group,
+                    'year'=> $d->year,
+                    'specialty'=> $d->specialty
+            ]);
         }
-        return response()->json($result);
+        return response()->json( $collection);
+        
     }
 
     public function autocomplete2(Request $request)
     {
     if($request->ajax()) {
-        $data = DB::table('teachers')
-        ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "teachers.science_degree", "teachers.scientific_rank")
-        ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id')
-        ->leftJoin('users', 'teachers.baseinfo_id_for_teacher', '=', 'users.baseinfo_id')
-        ->where('baseinfos.cathedra_id','=', 2)
-        ->where("baseinfos.surname","like","{$request->teacher}%")
-            ->get();
+        $data = DB::table('scienceworks')
+        ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "teachers.science_degree as science_degree", "teachers.scientific_rank as scientific_rank")
+        ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
+        ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
+        ->where('scienceworks.cathedra_id','=',2)
+        ->where("bit.surname","like","{$request->teacher}%")
+        ->where('scienceworks.status', '=', 'active')
+        ->get()
+        ->unique('scienceworks.teacher_id');
             $output = ''; 
             if (count($data)>0) {
                 $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
                 foreach ($data as $row){
-                    $output .= '<li id='.$row->id.' class="teacher_li list-group-item">'.$row->name .' '. $row->surname .' '. $row->science_degree .' '. $row->scientific_rank.'</li>';
+                    $output .= '<li id='.$row->teacher_id.' class="teacher_li list-group-item">'.$row->name .' '. $row->surname .' '. $row->science_degree .' '. $row->scientific_rank.'</li>';
                 }
                 $output .= '</ul>';
             }

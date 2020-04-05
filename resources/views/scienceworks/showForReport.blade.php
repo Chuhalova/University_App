@@ -41,6 +41,9 @@
                                     {{method_field('GET')}}
                                     @csrf
                                     <input id="teacher_id" name="teacher_id" class="typeahead form-control" type="text" hidden>
+                                    <input id="group_group" name="group_group" class="typeahead form-control" type="text" >
+                                    <input id="group_year" name="group_year" class="typeahead form-control" type="text" >
+                                    <input id="group_specialty" name="group_specialty" class="typeahead form-control" type="text" >
                                     <button  type="submit" class="btn btn-primary" >
                                     {{ __('report') }}
                                 </button>  
@@ -58,6 +61,7 @@
                         <th scope="col">presenting_date</th>
                         <th scope="col">status</th>
                         <th scope="col">teacher</th>
+                        <th scope="col">student</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,6 +73,7 @@
                         <td>{{$sw->status}}</td>
                         <td>{{$sw->comment}}</td>
                         <td>{{$sw->name .' '. $sw->surname .' '. $sw->scrank .' '. $sw->degree}}</td>
+                        <td>{{implode('',array_diff_assoc(str_split(ucwords($sw->specialty)),str_split(strtolower($sw->specialty)))).''.$sw->year.'-'.$sw->group}}</td> 
                         </tr>
                     @endforeach
                     </tbody>
@@ -98,11 +103,12 @@
                     })
                 });
                 $(document).ready(function() {
-                    $.get("/autocompleteGroup", function(data, status){
-                        alert(data.group);
+                    $.get("/autocompleteGroup", function(data, status){           
                         data.forEach(function(item) {
-                            $('#group').append(`<option value="`+item+`">` + item +`</option>`);
-                            console.log(item);
+                            var items = new Array();
+                            var items = [item.year, item.group, item.specialty]; 
+                            $('#group').append(`<option value="`+items+`">` + item.name +`</option>`);
+                            console.log(items);
                         });
                     });
                 });
@@ -112,6 +118,14 @@
                     $('#teacher_id').val($(this).attr("id"));
                     $('#teacher_list').html("");
                 });
+                var eSelect = document.getElementById('group');
+                eSelect.onchange = function() {
+                    var data = eSelect.options[eSelect.selectedIndex].value;
+                    var dataArr = data.split(',');
+                    $('#group_year').val(dataArr[0]);
+                    $('#group_group').val(dataArr[1]);
+                    $('#group_specialty').val(dataArr[2]);
+                }
             });
         </script>
     <script type="text/javascript" src="{{asset('Eshopper/js/bootstrap.min.js')}}"></script>

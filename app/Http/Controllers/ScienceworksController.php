@@ -52,9 +52,11 @@ class ScienceworksController extends Controller
 
     public function getScienceworksForReport($cathedra_id){
         return DB::table('scienceworks')
-        ->select("scienceworks.*", "baseinfos.name as name", "baseinfos.surname as surname", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
+        ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
         ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
-        ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id') 
+        ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
         ->where('scienceworks.cathedra_id','=',$cathedra_id)
         ->where('scienceworks.status', '=', 'active')
         ->get();
@@ -62,15 +64,47 @@ class ScienceworksController extends Controller
 
     public function getScienceworksForFiltratedReport($cathedra_id, $teacher_id){
         return DB::table('scienceworks')
-        ->select("scienceworks.*", "baseinfos.name as name", "baseinfos.surname as surname", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
+        ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
         ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
-        ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id') 
+        ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
         ->where('scienceworks.cathedra_id','=',$cathedra_id)
         ->where('scienceworks.teacher_id','=',$teacher_id)
         ->where('scienceworks.status', '=', 'active')
         ->get();
     }
 
+    public function filtratedByGroupReport($cathedra_id, $group, $year, $specialty){
+        return DB::table('scienceworks')
+        ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
+        ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
+        ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
+        ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
+        ->where('scienceworks.cathedra_id','=',$cathedra_id)
+        ->where('scienceworks.status', '=', 'active')
+        ->where('students.specialty', '=', $specialty)
+        ->where('students.group', '=', $group)
+        ->where('students.year', '=', $year)
+        ->get();
+    }
+
+    public function filtratedByGroupAndTeacherReport($cathedra_id, $teacher_id, $group, $year, $specialty){
+        return DB::table('scienceworks')
+        ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+        ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
+        ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
+        ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
+        ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
+        ->where('scienceworks.cathedra_id','=',$cathedra_id)
+        ->where('scienceworks.status', '=', 'active')
+        ->where('students.specialty', '=', $specialty)
+        ->where('students.group', '=', $group)
+        ->where('scienceworks.teacher_id','=',$teacher_id)
+        ->where('students.year', '=', $year)
+        ->get();
+    }
 
     public function showForStudent(){
         $role = auth()->user()->roles->first()->name;
@@ -134,10 +168,16 @@ class ScienceworksController extends Controller
         ]); 
     }
 
-    public function report(Request $request){
+    public function report(Request $request){        
         $cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
-        if($request->teacher_id!=null){
+        if($request->teacher_id!=null && $request->group_group == null && $request->group_year==null && $request->group_specialty==null){
             $sws = $this->getScienceworksForFiltratedReport($cathedra_id, $request->teacher_id);
+        }
+        elseif($request->teacher_id==null && $request->group_group!=null && $request->group_specialty!=null && $request->group_year!=null){
+            $sws = $this->filtratedByGroupReport($cathedra_id,$request->group_group, $request->group_year, $request->group_specialty);
+        }
+        elseif($request->teacher_id!=null && $request->group_group!=null && $request->group_specialty!=null && $request->group_year!=null){
+            $sws = $this->filtratedByGroupAndTeacherReport($cathedra_id,$request->teacher_id,$request->group_group, $request->group_year, $request->group_specialty);
         }
         else{
             $sws = $this->getScienceworksForReport($cathedra_id);
