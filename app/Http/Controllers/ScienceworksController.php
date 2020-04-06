@@ -168,7 +168,49 @@ class ScienceworksController extends Controller
         ]); 
     }
 
-    public function report(Request $request){        
+    public function applicationReport(Request $request){
+        $checked = false;
+        $cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
+        if($request->application == null || $request->application == 'all'){
+            $checked = false;
+            $sws = DB::table('scienceworks')
+            ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+            ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
+            ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
+            ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
+            ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
+            ->where('scienceworks.cathedra_id','=',$cathedra_id)
+            ->where(function ($query) {
+                $query->where('scienceworks.status', '=', 'active')
+                      ->orWhere('scienceworks.type', '=', 'approved_by_teacher')
+                      ;
+            })
+            ->get();
+        }
+        else if($request->application == 'without'){
+            $checked = true;
+            $sws = DB::table('scienceworks')
+            ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+            ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
+            ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
+            ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
+            ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
+            ->where('scienceworks.cathedra_id','=',$cathedra_id)
+            ->where('scienceworks.application','=',false)
+            ->where(function ($query) {
+                $query->where('scienceworks.status', '=', 'active')
+                      ->orWhere('scienceworks.type', '=', 'approved_by_teacher')
+                      ;
+            })
+            ->get();
+        }
+        return View::make('scienceworks.showForApplicationReport', [
+            'sws' => $sws,
+            'checked' => $checked,
+        ]);
+    }
+
+    public function report(Request $request){      
         $cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
         if($request->teacher_id!=null && $request->group_group == null && $request->group_year==null && $request->group_specialty==null){
             $sws = $this->getScienceworksForFiltratedReport($cathedra_id, $request->teacher_id);

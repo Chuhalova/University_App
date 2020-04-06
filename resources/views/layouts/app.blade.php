@@ -84,6 +84,11 @@
                                 <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Propose') }}</a>
                             </li>
                             @endrole
+                            @role('cathedraworker')
+                            <li class='nav-link'>
+                                <a class="nav-link" href="{{ route('application-report') }}">{{ __('Application report') }}</a>
+                            </li>
+                            @endrole
                         @endguest
                     </ul>
                 </div>

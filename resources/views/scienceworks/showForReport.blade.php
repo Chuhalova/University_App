@@ -71,7 +71,7 @@
                         <td>{{$sw->status}}</td>
                         <td>{{$sw->application}}</td>
                         <td>{{$sw->name .' '. $sw->surname .' '. $sw->scrank .' '. $sw->degree}}</td>
-                        <td>{{implode('',array_diff_assoc(str_split(ucwords($sw->specialty)),str_split(strtolower($sw->specialty)))).''.$sw->year.'-'.$sw->group}}</td> 
+                        <td>{{$sw->sname .' '. $sw->ssurname .' '.implode('',array_diff_assoc(str_split(ucwords($sw->specialty)),str_split(strtolower($sw->specialty)))).''.$sw->year.'-'.$sw->group}}</td>
                         </tr>
                     @endforeach
                     </tbody>
