@@ -100,5 +100,6 @@ Route::group(['middleware' => ['role:cathedraworker']], function () {
         Route::patch('add-application/{id}', 'ScienceworkController@addApplication')->name('add-application');
         Route::get('/report', 'ScienceworksController@report')->name('report');
         Route::get('/application-report', 'ScienceworksController@applicationReport')->name('application-report');
+        Route::get('/send','MailController@send')->name('send-mail');
     });
 }); 
