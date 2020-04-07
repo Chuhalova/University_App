@@ -30,7 +30,6 @@ return [
     */
 
     'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-    'host' => 'smtp.gmail.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 465),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'judith2019johnson@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'judith2019johnson@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
@@ -72,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -85,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('judith2019johnson@gmail.com'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('Laravel@2020'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

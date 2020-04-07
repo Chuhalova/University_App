@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Mail;
 
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
 class MailController extends Controller
 {
-    public function send(){
-        Mail::send(['text'=>'mail'], ['name'=>'Web dev blog'], function($message){
-            $message->to('veronika.chuhalova@uvoteam.com', 'To web dev blog')->subject('Test email');
-            $message->from('chuhalovaveronika@gmail.com', 'Web dev blog');
+    public function send() {
+        $data = array('name'=>"Judith Johnson");
+     
+        Mail::send(['text'=>'mail'], $data, function($message) {
+           $message->to('veronika.chuhalova@uvoteam.com', 'Tutorials Point')->subject
+              ('Laravel Basic Testing Mail');
+           $message->from('judith2019johnson@gmail.com','Judith Johnson');
         });
-    }
+     }
 }
