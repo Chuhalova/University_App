@@ -49,6 +49,13 @@
                                     {{ __('report') }}
                                 </button>
                             </form>
+                            <form action="{{url('/cathedraworker/app-send-letters/')}}" method='GET'>
+                            {{method_field('GET')}}
+                            @csrf
+                            <button type="submit" class="btn btn-primary">
+                                    {{ __('send letters') }}
+                                </button>
+                            </form>
                         </div>
                         <div class="col-md-9 card">
                             <div class="card-header"></div>
