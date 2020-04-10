@@ -101,5 +101,7 @@ Route::group(['middleware' => ['role:cathedraworker']], function () {
         Route::get('/report', 'ScienceworksController@report')->name('report');
         Route::get('/application-report', 'ScienceworksController@applicationReport')->name('application-report');
         Route::get('/app-send-letters','MailController@appSendLetters')->name('app-send-letters');
+        Route::get('/works-report', "ScienceworksController@worksReport")->name('works-report');
+        Route::get('/works-send-letters','MailController@worksSendLetters')->name('works-send-letters');
     });
 }); 

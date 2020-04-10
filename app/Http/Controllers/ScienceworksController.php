@@ -6,6 +6,7 @@ use App\Sciencework;
 use App\Student;
 use App\Teacher;
 use App\Baseinfo;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -166,6 +167,60 @@ class ScienceworksController extends Controller
             'sws' => $sws,
             'role' => $role,
         ]); 
+    }
+
+    public function worksReport(Request $request){    
+        $checked = false;
+        $cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
+        if($request->sciencework == null || $request->sciencework == 'all'){
+            $checked = false;
+            $sws = DB::table('scienceworks')
+            ->select('scienceworks.*', 'students.*','baseinfos.surname as surname','baseinfos.name as name')
+            ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id')
+            ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
+            ->where('scienceworks.cathedra_id', '=', $cathedra_id)
+            ->where(function ($query) {
+                $query->whereNull('students.real_grad_date')
+                    ->orWhere('students.real_grad_date', '>=', Carbon::now('Europe/Kiev'));
+            })
+            ->where(function ($query) {
+                $query->where('students.degree', '=', 'master')
+                    ->orWhere(function ($query) {
+                        $query->where('students.year', '=', '3')
+                            ->orWhere('students.year', '=', '4');
+                    });
+            })
+            ->get();   
+            $sts = null;
+        }
+        else if($request->sciencework == 'without'){
+            $checked = true;
+            $sts = DB::table('students')
+            ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "students.degree", "students.year", "students.specialty", "students.group")
+            ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
+            ->where('baseinfos.cathedra_id', '=', $cathedra_id)
+            ->where(function ($query) {
+                $query->whereNull('students.real_grad_date')
+                    ->orWhere('students.real_grad_date', '>=', Carbon::now('Europe/Kiev'));
+            })
+            ->where(function ($query) {
+                $query->where('students.degree', '=', 'master')
+                    ->orWhere(function ($query) {
+                        $query->where('students.year', '=', '3')
+                            ->orWhere('students.year', '=', '4');
+                    });
+            })
+            ->whereNotIn('students.id',function($query){
+                $query->select('student_id')->from('scienceworks');
+             })
+            ->get();
+            $sws = null;
+        }
+        return View::make('scienceworks.showForWorksReport', [
+            'sws' => $sws,
+            'sts' => $sts,
+            'checked' => $checked,
+        ]);
     }
 
     public function applicationReport(Request $request){
