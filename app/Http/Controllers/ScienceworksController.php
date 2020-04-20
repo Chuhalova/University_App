@@ -117,6 +117,7 @@ class ScienceworksController extends Controller
         ]);
     }
     
+    
     public function showTopicsForStudent(){
         $ct = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
         $st_degree = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->degree;

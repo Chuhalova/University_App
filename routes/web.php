@@ -13,7 +13,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //перевірено
 Route::get('/register-as-student', 'CustomRegisterController@registerAsStudent')->name('register-as-student');
 //перевірено
-Route::get('/register-as-teacher', 'CustomRegisterController@')->name('register-as-teacher');
+Route::get('/register-as-teacher', 'CustomRegisterController@registerAsTeacher')->name('register-as-teacher');
 //перевірено
 Route::post('/add-student', 'CustomRegisterController@addStudent')->name('add-student');
 //перевірено

@@ -3,7 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="{{ asset('Eshopper/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('Eshopper/css/font-awesome.min.css ') }}" rel="stylesheet">
+    <link href="{{ asset('Eshopper/css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ asset('Eshopper/css/price-range.css') }}" rel="stylesheet">
+    <link href="{{ asset('Eshopper/css/animate.css') }}" rel="stylesheet">
+	<link href="{{ asset('Eshopper/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('Eshopper/css/responsive.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="Eshopper/images/ico/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('Eshopper/images/ico/apple-touch-icon-144-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('Eshopper/images/ico/apple-touch-icon-114-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('Eshopper/images/ico/apple-touch-icon-72-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('Eshopper/images/ico/apple-touch-icon-57-precomposed.png') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -18,75 +29,81 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/customCss.css') }}" rel="stylesheet">
+
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">          
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="custom-menu-li nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Залогінитись') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="custom-menu-li nav-item">
                                     <a class="nav-link" href="{{ route('register-as-student') }}">{{ __('Зареєструватись як студент') }}</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="custom-menu-li nav-item">
                                     <a class="nav-link" href="{{ route('register-as-teacher') }}">{{ __('Зареєструватись як викладач') }}</a>
                                 </li>
                             @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        @else  <li class="custom-menu-li nav-item">
+                                   <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Вийти') }}
                                     </a>
-
+                                   </li> 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
-                            </li>
                             @role('student')
-                            <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Переглянути власні') }}</a>
+                            <li class="custom-menu-li nav-item">
+                                    <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Власні роботи') }}</a>
                                 </li>
-                            <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Зареєструватись роботу') }}</a>
+                                <li class="custom-menu-li nav-item">
+                                    <a class="nav-link" href="{{ route('show-topics-for-student') }}">{{ __('Вільні теми') }}</a>
+                                </li>
+                            <li class="custom-menu-li nav-item">
+                                    <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Створити роботу') }}</a>
                                 </li>
                             @endrole
                             @role('teacher')
-                            <li class='nav-link'>
-                                <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Propose') }}</a>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Створити тему') }}</a>
+                            </li>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('get-topics-as-teacher') }}">{{ __('Створені теми') }}</a>
+                            </li>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('show-for-teacher') }}">{{ __('Роботи') }}</a>
                             </li>
                             @endrole
                             @role('cathedraworker')
-                            <li class='nav-link'>
-                                <a class="nav-link" href="{{ route('application-report') }}">{{ __('Application report') }}</a>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('show-for-cathedraworker') }}">{{ __('Всі роботи') }}</a>
+                            </li>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('register-sciencework-as-cathedraworker') }}">{{ __('Створити роботу') }}</a>
+                            </li>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('report') }}">{{ __('Загальний звіт') }}</a>
+                            </li>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('application-report') }}">{{ __('Звіт по заявам') }}</a>
+                            </li>
+                            <li class='custom-menu-li nav-link'>
+                                <a class="nav-link" href="{{ route('works-report') }}">{{ __('Звіт по створеним роботам') }}</a>
                             </li>
                             @endrole
                         @endguest
@@ -94,9 +111,11 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
+            <script type="text/javascript" src="{{asset('Eshopper/js/jquery.js')}}"></script>
+            <script type="text/javascript" src="{{asset('Eshopper/js/bootstrap.min.js')}}"></script>
+            <script src="{{asset('Eshopper/js/jquery.js')}}"></script>
         </main>
     </div>
 </body>

@@ -36,13 +36,7 @@
                             </form>
                         </td>
                         @elseif($sw->status == 'inactive')
-                        <td>
-                            <form style='display:inline-block' action="{{url('/student/edit/'.$sw->id) }}" method='GET' >
-                                {{method_field('GET')}}
-                                @csrf
-                                <button type="submit" class="btn btn-warning" >edit</button>
-                            </form>
-                        </td>
+                       
                         <td>
                             <form style='display:inline-block' action="{{ url('/student/delete/'.$sw->id) }}" method="POST">
                                 {{method_field('DELETE')}}
