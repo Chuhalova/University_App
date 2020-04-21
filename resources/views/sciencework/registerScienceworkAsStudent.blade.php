@@ -131,16 +131,16 @@
                                                 <option value='major dyploma'>дипломна робота / магістр</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-12">
                                             <label for="presenting_date">{{ __('Дата здачі роботи') }}</label>
                                             <input class="form-control" placeholder="Дата здачі роботи" type="date" id="presenting_date" name="presenting_date" value="2018-07-22" min="1990-01-01" max="2040-12-31">
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label for="teacher">{{ __('Науковий керівник (будь-ласка здійсніть пошук за прізвищем викладача)') }}</label>
+                                            <label for="teacher">{{ __('Науковий керівник (здійсніть пошук за прізвищем)') }}</label>
                                             <input class="form-control" required='required' placeholder="Науковий керівник" id="teacher" name="teacher" class="typeahead form-control" type="text">
                                             <input class="form-control" required='required' id="teacher_id" name="teacher_id" class="typeahead form-control" type="text" hidden>
+                                            <div style="position:absolute;left:0;" class="col-md-12" id="teacher_list"></div>
                                         </div>
-                                        <div class="form-group col-md-12" id="teacher_list"></div>
                                         <button style="margin:auto" type="submit" class="btn btn-primary">
                                             {{ __('Надіслати') }}
                                         </button>
