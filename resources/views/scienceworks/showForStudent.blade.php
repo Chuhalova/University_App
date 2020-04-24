@@ -130,16 +130,16 @@
                         <td>{{$sw->presenting_date}}</td>
                         <td>
                             @if($sw->status=='disapproved_for_student')
-                            Потребує змін від студента
+                            потребує змін від студента
                             @elseif($sw->status=='inactive')
-                            Неактивна
+                            неактивна
                             @elseif($sw->status=='approved_by_teacher')
-                            Схвалена викладачем
+                            схвалена викладачем
                             @elseif($sw->status=='active')
-                            Активна
+                            активна
                             @endif
                         </td>
-                        <td>{{$sw->comment}}</td>
+                        <td id='td-with-scroll'><div class='scrollable'>{{$sw->comment}}</div></td>
                         @if($sw->status == 'disapproved_for_student')
                         <td>
                             <form style='display:inline-block' action="{{url('/student/edit/'.$sw->id) }}" method='GET'>
@@ -168,7 +168,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position:absolute; top: 60vh; text-align: center;margin: auto;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin: auto;">
             {!! $sws->links()!!}
         </div>
     </div>

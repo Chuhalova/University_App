@@ -146,7 +146,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position:absolute; top: 60vh; text-align: center;margin: auto;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin: auto;">
             {!! $sws->links()!!}
         </div>
     </div>
