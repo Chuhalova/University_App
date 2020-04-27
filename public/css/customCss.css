@@ -1,3 +1,16 @@
+.app-buttons{
+    width: 150px !important;
+}
+#app-nav-block form, #app-nav-block li{
+    align-content: center;
+
+    margin: 0 auto;
+}
+#app-nav-block form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 .custom-menu-li{
     padding: 10px !important;
 }
@@ -112,6 +125,16 @@
 }
 
 @media (max-width: 767px) {
+    #app-nav-block{
+        margin-bottom: 20px;
+        font-size: 5pt !important;
+    }
+    #app-nav-block label{
+        font-size: 10pt !important;
+    }
+    #app-nav-block button{
+        width:80px !important;
+    }
     #td-with-scroll{
         height: 60px;
         max-height: 60px;

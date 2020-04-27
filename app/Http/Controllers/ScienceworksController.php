@@ -236,11 +236,7 @@ class ScienceworksController extends Controller
             ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
             ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
             ->where('scienceworks.cathedra_id','=',$cathedra_id)
-            ->where(function ($query) {
-                $query->where('scienceworks.status', '=', 'active')
-                      ->orWhere('scienceworks.type', '=', 'approved_by_teacher')
-                      ;
-            })
+            ->where('scienceworks.status', '=', 'active')
             ->get();
         }
         else if($request->application == 'without'){
@@ -253,11 +249,7 @@ class ScienceworksController extends Controller
             ->leftJoin('baseinfos as bit', 'teachers.baseinfo_id_for_teacher', '=', 'bit.id')
             ->where('scienceworks.cathedra_id','=',$cathedra_id)
             ->where('scienceworks.application','=',false)
-            ->where(function ($query) {
-                $query->where('scienceworks.status', '=', 'active')
-                      ->orWhere('scienceworks.type', '=', 'approved_by_teacher')
-                      ;
-            })
+            ->where('scienceworks.status', '=', 'active')
             ->get();
         }
         return View::make('scienceworks.showForApplicationReport', [
