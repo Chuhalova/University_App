@@ -211,10 +211,28 @@ class ScienceworksController extends Controller
                             ->orWhere('students.year', '=', '4');
                     });
             })
-            ->whereNotIn('students.id',function($query){
-                $query->select('student_id')->from('scienceworks');
-             })
+
+                        // ->whereNotIn('students.id', function($query){
+                        //     $query->select('student_id')->from('scienceworks');
+                        // })
             ->get();
+
+            //  $a = DB::table('scienceworks')
+            // ->select('student_id')
+            // ->get()
+            // ->unique('student_id')
+            // ->pluck('student_id')
+            // ->toArray();
+
+            //  DB::table('students')
+            // ->select('id')
+            // ->get();
+
+            // return DB::table('students')
+            // ->select('id')
+            // ->whereNotIn('students.id',$a)
+            // ->get();
+            
             $sws = null;
         }
         return View::make('scienceworks.showForWorksReport', [
