@@ -212,9 +212,9 @@ class ScienceworksController extends Controller
                     });
             })
 
-                        // ->whereNotIn('students.id', function($query){
-                        //     $query->select('student_id')->from('scienceworks');
-                        // })
+                        ->whereNotIn('students.id', function($query){
+                            $query->select('student_id')->from('scienceworks');
+                        })
             ->get();
 
             //  $a = DB::table('scienceworks')
