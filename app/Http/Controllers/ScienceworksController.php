@@ -276,7 +276,7 @@ class ScienceworksController extends Controller
         ]);
     }
 
-    public function report(Request $request){      
+    public function report(Request $request){     
         $cathedra_id = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
         if($request->teacher_id!=null && $request->group_group == null && $request->group_year==null && $request->group_specialty==null){
             $sws = $this->getScienceworksForFiltratedReport($cathedra_id, $request->teacher_id);
