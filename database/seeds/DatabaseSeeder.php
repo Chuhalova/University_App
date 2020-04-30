@@ -22,13 +22,14 @@ class DatabaseSeeder extends Seeder
     {
         $cathedra1 = new Cathedra();
         $cathedra1->id = 1;
-        $cathedra1->name = 'Program systems and technologies';
+        $cathedra1->name = 'Програмних систем і технологій';
         $cathedra1->save();
 
         $cathedra2 = new Cathedra();
         $cathedra2->id = 2;
-        $cathedra2->name = 'networking and internet technology';
+        $cathedra2->name = 'Інтелектуальних технологій';
         $cathedra2->save();
+
 
         $rolestudent = Role::create(['name' => 'student']);
         $roleteacher = Role::create(['name' => 'teacher']);
@@ -37,271 +38,757 @@ class DatabaseSeeder extends Seeder
 
         $baseinfost1 = new Baseinfo();
         $baseinfost1->id = 1;
-        $baseinfost1->name = 'Veronika';
-        $baseinfost1->surname = 'Chuhalova';
+        $baseinfost1->name = 'Ігор';
+        $baseinfost1->surname = 'Кондро';
         $baseinfost1->cathedra_id = 1;
         $baseinfost1->save();
-
-        $baseinfost2 = new Baseinfo();
-        $baseinfost2->id = 2;
-        $baseinfost2->name = 'Maryna';
-        $baseinfost2->surname = 'Budyshevska';
-        $baseinfost2->cathedra_id = 1;
-        $baseinfost2->save();
-
-        $baseinfost3 = new Baseinfo();
-        $baseinfost3->id = 3;
-        $baseinfost3->name = 'Denys';
-        $baseinfost3->surname = 'Starostyuk';
-        $baseinfost3->cathedra_id = 2;
-        $baseinfost3->save();
-
-        $baseinfost4 = new Baseinfo();
-        $baseinfost4->id = 4;
-        $baseinfost4->name = 'May';
-        $baseinfost4->surname = 'Komarova';
-        $baseinfost4->cathedra_id = 2;
-        $baseinfost4->save();
-
-        $baseinfot1 = new Baseinfo();
-        $baseinfot1->id = 11;
-        $baseinfot1->name = 'Evgen';
-        $baseinfot1->surname = 'Franchuk';
-        $baseinfot1->cathedra_id = 1;
-        $baseinfot1->save();
-
-        $baseinfot2 = new Baseinfo();
-        $baseinfot2->id = 12;
-        $baseinfot2->name = 'Katerina';
-        $baseinfot2->surname = 'Vovk';
-        $baseinfot2->cathedra_id = 2;
-        $baseinfot2->save();
-
-        $baseinfot3 = new Baseinfo();
-        $baseinfot3->id = 13;
-        $baseinfot3->name = 'Tetyana';
-        $baseinfot3->surname = 'Kyryenko';
-        $baseinfot3->cathedra_id = 1;
-        $baseinfot3->save();
-
-        $baseinfot4 = new Baseinfo();
-        $baseinfot4->id = 14;
-        $baseinfot4->name = 'Volodymyr';
-        $baseinfot4->surname = 'Trygub';
-        $baseinfot4->cathedra_id = 2;
-        $baseinfot4->save();
-
-        $baseinfocw1 = new Baseinfo();
-        $baseinfocw1->id = 21;
-        $baseinfocw1->name = 'Laura';
-        $baseinfocw1->surname = 'Stecenko';
-        $baseinfocw1->cathedra_id = 2;
-        $baseinfocw1->save();
-
-        $baseinfocw2 = new Baseinfo();
-        $baseinfocw2->id = 22;
-        $baseinfocw2->name = 'Volodymyr';
-        $baseinfocw2->surname = 'Illonko';
-        $baseinfocw2->cathedra_id = 2;
-        $baseinfocw2->save();
-
-        $baseinfosa = new Baseinfo();
-        $baseinfosa->id = 31;
-        $baseinfosa->name = 'Nika';
-        $baseinfosa->surname = 'Ch';
-        $baseinfosa->cathedra_id = 2;
-        $baseinfosa->save();
-
-        $userst1 = new User();
-        $userst1->id = 1;
-        $userst1->email = 'veronikachuhalova@i.ua';
-        $userst1->password = Hash::make('123456');
-        $userst1->baseinfo_id = 1;
-        $userst1->assignRole('student');
-        $userst1->save();
-
-        $userst2 = new User();
-        $userst2->id = 2;
-        $userst2->email = 'mbudy@i.ua';
-        $userst2->password = Hash::make('123456');
-        $userst2->baseinfo_id = 2;
-        $userst2->assignRole('student');
-        $userst2->save();
-
-        $usert1 = new User();
-        $usert1->id = 11;
-        $usert1->email = 'franchuk@i.ua';
-        $usert1->password = Hash::make('123456');
-        $usert1->baseinfo_id = 11;
-        $usert1->assignRole('teacher');
-        $usert1->save();
-
-        $usert2 = new User();
-        $usert2->id = 12;
-        $usert2->email = 'vovk@i.ua';
-        $usert2->password = Hash::make('123456');
-        $usert2->baseinfo_id = 12;
-        $usert2->assignRole('teacher');
-        $usert2->save();
-
-        $usercw1 = new User();
-        $usercw1->id = 21;
-        $usercw1->email = 'stecenko@i.ua';
-        $usercw1->password = Hash::make('123456');
-        $usercw1->baseinfo_id = 21;
-        $usercw1->assignRole('cathedraworker');
-        $usercw1->save();
-
-        $usercw2 = new User();
-        $usercw2->id = 22;
-        $usercw2->email = 'illonko@i.ua';
-        $usercw2->password = Hash::make('123456');
-        $usercw2->baseinfo_id = 22;
-        $usercw2->assignRole('cathedraworker');
-        $usercw2->save();
-
-        $usersa = new User();
-        $usersa->id = 31;
-        $usersa->email = 'ch@i.ua';
-        $usersa->password = Hash::make('123456');
-        $usersa->baseinfo_id = 31;
-        $usersa->assignRole('superadmin');
-        $usersa->save();
 
         $student1 = new Student();
         $student1->id = 1;
         $student1->year = 1;
         $student1->baseinfo_id_for_student = 1;
-        $student1->studnumber = 'KV12312123';
-        $student1->entry_date='2014-09-01';
-        $student1->specialty='Software ingeneering';
+        $student1->studnumber = 'IK122211';
+        $student1->entry_date='2019-09-01';
+        $student1->specialty='Програмно - інформаційні системи';
         $student1->degree = 'bachelor';
         $student1->group = 1;
         $student1->save();
+
+        $userst1 = new User();
+        $userst1->id = 1;
+        $userst1->email = 'igorkondro@gmail.com';
+        $userst1->password = Hash::make('123456');
+        $userst1->baseinfo_id = 1;
+        $userst1->assignRole('student');
+        $userst1->save();
+        
+        $baseinfost2 = new Baseinfo();
+        $baseinfost2->id = 2;
+        $baseinfost2->name = 'Руслан';
+        $baseinfost2->surname = 'Ганюк';
+        $baseinfost2->cathedra_id = 1;
+        $baseinfost2->save();
 
         $student2 = new Student();
         $student2->id = 2;
         $student2->year = 2;
         $student2->baseinfo_id_for_student = 2;
-        $student2->studnumber = 'KV23423234';
-        $student2->entry_date='2017-09-01';
-        $student2->specialty='Software ingeneering';
-        $student2->degree = 'master';
+        $student2->studnumber = 'RG223222';
+        $student2->entry_date='2018-09-01';
+        $student2->specialty='Програмно - інформаційні системи';
+        $student2->degree = 'bachelor';
         $student2->group = 2;
         $student2->save();
+
+        $baseinfost3 = new Baseinfo();
+        $baseinfost3->id = 3;
+        $baseinfost3->name = 'Олег';
+        $baseinfost3->surname = 'Стельмащук';
+        $baseinfost3->cathedra_id = 1;
+        $baseinfost3->save();
 
         $student3 = new Student();
         $student3->id = 3;
         $student3->year = 3;
         $student3->baseinfo_id_for_student = 3;
-        $student3->studnumber = 'KV34534345';
-        $student3->entry_date='2010-09-01';
-        $student3->real_grad_date='2016-06-01';
-        $student3->specialty='Software ingeneering';
+        $student3->studnumber = 'OS553333';
+        $student3->entry_date='2017-09-01';
+        $student3->specialty='Програмно - інформаційні системи';
         $student3->degree = 'bachelor';
         $student3->group = 3;
         $student3->save();
 
+        $baseinfost4 = new Baseinfo();
+        $baseinfost4->id = 4;
+        $baseinfost4->name = 'Василь';
+        $baseinfost4->surname = 'Кресяк';
+        $baseinfost4->cathedra_id = 1;
+        $baseinfost4->save();
+
         $student4 = new Student();
         $student4->id = 4;
-        $student4->year = 2;
+        $student4->year = 4;
         $student4->baseinfo_id_for_student = 4;
-        $student4->studnumber = 'KV45645456';
-        $student4->entry_date='2015-09-01';
-        $student4->real_grad_date='2019-06-01';
-        $student4->specialty='Software ingeneering';
-        $student4->degree = 'master';
+        $student4->studnumber = 'VK447644';
+        $student4->entry_date='2016-09-01';
+        $student4->specialty='Програмно - інформаційні системи';
+        $student4->degree = 'bachelor';
         $student4->group = 4;
         $student4->save();
 
-        $teacher1 = new Teacher();
-        $teacher1->id = 11;
-        $teacher1->workbooknumber = 'AA111123';
-        $teacher1->baseinfo_id_for_teacher = 11;
-        $teacher1->science_degree = 'кандидат наук';
-        $teacher1->scientific_rank= 'професор';
-        $teacher1->position= 'викладач';
-        $teacher1->start_date= '2011-01-01';
-        $teacher1->save();
+        $baseinfost5 = new Baseinfo();
+        $baseinfost5->id = 5;
+        $baseinfost5->name = 'Руслана';
+        $baseinfost5->surname = 'Яремчук';
+        $baseinfost5->cathedra_id = 1;
+        $baseinfost5->save();
 
-        $teacher2 = new Teacher();
-        $teacher2->id = 12;
-        $teacher2->workbooknumber = 'AA234234';
-        $teacher2->baseinfo_id_for_teacher =  12;
-        $teacher2->science_degree = 'кандидат наук';
-        $teacher2->scientific_rank= 'професор';
-        $teacher2->position= 'викладач';
-        $teacher2->start_date= '2019-01-01';
-        $teacher2->end_of_work_date='2019-04-01';
-        $teacher2->save();
+        $student5 = new Student();
+        $student5->id = 5;
+        $student5->year = 1;
+        $student5->baseinfo_id_for_student = 5;
+        $student5->studnumber = 'RY565555';
+        $student5->entry_date='2015-09-01';
+        $student5->specialty='Програмно - інформаційні системи';
+        $student5->degree = 'master';
+        $student5->group = 1;
+        $student5->save();
 
-        $teacher3 = new Teacher();
-        $teacher3->id = 13;
-        $teacher3->workbooknumber = 'AA345345';
-        $teacher3->baseinfo_id_for_teacher =  13;
-        $teacher3->science_degree = 'доктор наук';
-        $teacher3->scientific_rank= 'доцент';
-        $teacher3->position= 'викладач';
-        $teacher3->start_date= '2001-01-01';
-        $teacher3->save();
+        $baseinfost6 = new Baseinfo();
+        $baseinfost6->id = 6;
+        $baseinfost6->name = 'Наталія';
+        $baseinfost6->surname = 'Жолудєва';
+        $baseinfost6->cathedra_id = 1;
+        $baseinfost6->save();
 
-        $teacher4 = new Teacher();
-        $teacher4->id = 14;
-        $teacher4->workbooknumber = 'AA456456';
-        $teacher4->baseinfo_id_for_teacher =  14;
-        $teacher4->science_degree = 'доктор наук';
-        $teacher4->scientific_rank= 'доцент';
-        $teacher4->position= 'викладач';
-        $teacher4->start_date= '2017-01-01';
-        $teacher4->end_of_work_date='2019-01-01';
-        $teacher4->save();
+        $student6 = new Student();
+        $student6->id = 6;
+        $student6->year = 2;
+        $student6->baseinfo_id_for_student = 6;
+        $student6->studnumber = 'NJ693666';
+        $student6->entry_date='2014-09-01';
+        $student6->specialty='Програмно - інформаційні системи';
+        $student6->degree = 'master';
+        $student6->group = 2;
+        $student6->save();
+
+        $baseinfost7 = new Baseinfo();
+        $baseinfost7->id = 7;
+        $baseinfost7->name = 'Тетяна';
+        $baseinfost7->surname = 'Ризванюк';
+        $baseinfost7->cathedra_id = 1;
+        $baseinfost7->save();
+
+        $student7 = new Student();
+        $student7->id = 7;
+        $student7->year = 2;
+        $student7->baseinfo_id_for_student = 7;
+        $student7->studnumber = 'TR709777';
+        $student7->entry_date='2014-09-01';
+        $student7->real_grad_date = '2016-09-01';
+        $student7->specialty='Програмно - інформаційні системи';
+        $student7->degree = 'master';
+        $student7->group = 2;
+        $student7->save();
+
+        $baseinfost8 = new Baseinfo();
+        $baseinfost8->id = 8;
+        $baseinfost8->name = 'Ярослав';
+        $baseinfost8->surname = 'Карпин';
+        $baseinfost8->cathedra_id = 1;
+        $baseinfost8->save();
+
+        $student8 = new Student();
+        $student8->id = 8;
+        $student8->year = 2;
+        $student8->baseinfo_id_for_student = 8;
+        $student8->studnumber = 'YK886288';
+        $student8->entry_date='2014-09-01';
+        $student8->real_grad_date = '2018-09-01';
+        $student8->specialty='Програмно - інформаційні системи';
+        $student8->degree = 'bachelor';
+        $student8->group = 3;
+        $student8->save();
+
+        $baseinfost9 = new Baseinfo();
+        $baseinfost9->id = 9;
+        $baseinfost9->name = 'Ярослав';
+        $baseinfost9->surname = 'Карпин';
+        $baseinfost9->cathedra_id = 1;
+        $baseinfost9->save();
+
+        $student9 = new Student();
+        $student9->id = 9;
+        $student9->year = 3;
+        $student9->baseinfo_id_for_student = 9;
+        $student9->studnumber = 'YK987999';
+        $student9->entry_date='2014-09-01';
+        $student9->specialty='Теорія інформаційних систем';
+        $student9->degree = 'bachelor';
+        $student9->group = 3;
+        $student9->save();
         
-        $sciencework1 = new Sciencework();
-        $sciencework1 -> id = 1;
-        $sciencework1 -> topic = 'Розробка інформаційної системи';
-        $sciencework1 -> type = 'bachaelor coursework';
-        $sciencework1 -> presenting_date = '2019-06-01';
-        $sciencework1 -> status = 'active';
-        $sciencework1 -> student_id = 1;
-        $sciencework1 -> teacher_id = 11;
-        $sciencework1 -> cathedra_id = 1;
-        $sciencework1 -> application = false;
-        $sciencework1 -> save();
+        $baseinfost10 = new Baseinfo();
+        $baseinfost10->id = 10;
+        $baseinfost10->name = 'Елеонора';
+        $baseinfost10->surname = 'Матюшко';
+        $baseinfost10->cathedra_id = 1;
+        $baseinfost10->save();
 
-        $sciencework2 = new Sciencework();
-        $sciencework2 -> id = 2;
-        $sciencework2 -> topic = 'Розробка алгоритму';
-        $sciencework2 -> type = 'bachaelor dyploma';
-        $sciencework2 -> presenting_date = '2019-06-01';
-        $sciencework2 -> status = 'active';
-        $sciencework2 -> student_id = 2;
-        $sciencework2 -> teacher_id = 11;
-        $sciencework2 -> cathedra_id = 1;
-        $sciencework2 -> application = false;
-        $sciencework2 -> save();
+        $student10 = new Student();
+        $student10->id = 10;
+        $student10->year = 4;
+        $student10->baseinfo_id_for_student = 10;
+        $student10->studnumber = 'YK090000';
+        $student10->entry_date='2019-010-01';
+        $student10->specialty='Теорія інформаційних систем';
+        $student10->degree = 'bachelor';
+        $student10->group = 4;
+        $student10->save();
 
-        $sciencework3 = new Sciencework();
-        $sciencework3 -> id = 3;
-        $sciencework3 -> topic = 'Розробка боту';
-        $sciencework3 -> type = 'major coursework';
-        $sciencework3 -> presenting_date = '2019-06-01';
-        $sciencework3 -> status = 'active';
-        $sciencework3 -> student_id = 3;
-        $sciencework3 -> teacher_id = 12;
-        $sciencework3 -> cathedra_id = 2;
-        $sciencework3 -> application = false;
-        $sciencework3 -> save();
+        $baseinfost11 = new Baseinfo();
+        $baseinfost11->id = 11;
+        $baseinfost11->name = 'Володимир';
+        $baseinfost11->surname = 'Коваль';
+        $baseinfost11->cathedra_id = 1;
+        $baseinfost11->save();
 
-        $sciencework4 = new Sciencework();
-        $sciencework4 -> id = 4;
-        $sciencework4 -> topic = 'Розробка роботу';
-        $sciencework4 -> type = 'major coursework';
-        $sciencework4 -> presenting_date = '2023-06-01';
-        $sciencework4 -> status = 'active';
-        $sciencework4 -> student_id = 4;
-        $sciencework4 -> teacher_id = 12;
-        $sciencework4 -> cathedra_id = 2;
-        $sciencework4 -> application = false;
-        $sciencework4 -> save();
+        $student11 = new Student();
+        $student11->id = 11;
+        $student11->year = 2;
+        $student11->baseinfo_id_for_student = 11;
+        $student11->studnumber = 'YK004300';
+        $student11->entry_date='2017-011-01';
+        $student11->specialty='Теорія інформаційних систем';
+        $student11->degree = 'master';
+        $student11->group = 2;
+        $student11->save();
+
+        $baseinfost12 = new Baseinfo();
+        $baseinfost12->id = 12;
+        $baseinfost12->name = 'Ірина';
+        $baseinfost12->surname = 'Герега';
+        $baseinfost12->cathedra_id = 1;
+        $baseinfost12->save();
+
+        $student12 = new Student();
+        $student12->id = 12;
+        $student12->year = 1;
+        $student12->baseinfo_id_for_student = 12;
+        $student12->studnumber = 'IG001200';
+        $student12->entry_date='2020-012-01';
+        $student12->specialty='Теорія інформаційних систем';
+        $student12->degree = 'master';
+        $student12->group = 2;
+        $student12->save();
+
+        $baseinfost13 = new Baseinfo();
+        $baseinfost13->id = 13;
+        $baseinfost13->name = 'Сергій';
+        $baseinfost13->surname = 'Михальчук';
+        $baseinfost13->cathedra_id = 1;
+        $baseinfost13->save();
+
+        $student13 = new Student();
+        $student13->id = 13;
+        $student13->year = 1;
+        $student13->baseinfo_id_for_student = 13;
+        $student13->studnumber = 'SM044200';
+        $student13->entry_date='2020-03-01';
+        $student13->specialty='Теорія інформаційних систем';
+        $student13->degree = 'master';
+        $student13->group = 5;
+        $student13->save();
+
+        $baseinfost14 = new Baseinfo();
+        $baseinfost14->id = 14;
+        $baseinfost14->name = 'Любомир';
+        $baseinfost14->surname = 'Лоневський';
+        $baseinfost14->cathedra_id = 1;
+        $baseinfost14->save();
+
+        $student14 = new Student();
+        $student14->id = 14;
+        $student14->year = 3;
+        $student14->baseinfo_id_for_student = 14;
+        $student14->studnumber = 'LL008870';
+        $student14->entry_date='2017-04-01';
+        $student14->specialty='Теорія інформаційних систем';
+        $student14->degree = 'bachelor';
+        $student14->group = 2;
+        $student14->save();
+
+        $baseinfost15 = new Baseinfo();
+        $baseinfost15->id = 15;
+        $baseinfost15->name = 'Андрій';
+        $baseinfost15->surname = 'Магдяк';
+        $baseinfost15->cathedra_id = 1;
+        $baseinfost15->save();
+
+        $student15 = new Student();
+        $student15->id = 15;
+        $student15->year = 4;
+        $student15->baseinfo_id_for_student = 15;
+        $student15->studnumber = 'AM852700';
+        $student15->entry_date='2015-05-01';
+        $student15->specialty='Теорія інформаційних систем';
+        $student15->degree = 'bachelor';
+        $student15->group = 1;
+        $student15->save();
+
+        $baseinfost16 = new Baseinfo();
+        $baseinfost16->id = 16;
+        $baseinfost16->name = 'Анжеліка';
+        $baseinfost16->surname = 'Любченко';
+        $baseinfost16->cathedra_id = 1;
+        $baseinfost16->save();
+
+        $student16 = new Student();
+        $student16->id = 16;
+        $student16->year = 3;
+        $student16->baseinfo_id_for_student = 16;
+        $student16->studnumber = 'AL009870';
+        $student16->entry_date='2016-06-01';
+        $student16->specialty='Теорія інформаційних систем';
+        $student16->degree = 'bachelor';
+        $student16->group = 2;
+        $student16->save();
+
+        $baseinfot1 = new Baseinfo();
+        $baseinfot1->id = 21;
+        $baseinfot1->name = 'Володимир';
+        $baseinfot1->surname = 'Скиба';
+        $baseinfot1->cathedra_id = 1;
+        $baseinfot1->save();
+
+        $usert1 = new User();
+        $usert1->id = 3;
+        $usert1->email = 'skiba@i.ua';
+        $usert1->password = Hash::make('123456');
+        $usert1->baseinfo_id = 21;
+        $usert1->assignRole('teacher');
+        $usert1->save();
+
+        $baseinfot2 = new Baseinfo();
+        $baseinfot2->id = 22;
+        $baseinfot2->name = 'Орест';
+        $baseinfot2->surname = 'Вітик';
+        $baseinfot2->cathedra_id = 1;
+        $baseinfot2->save();
+
+        $baseinfot3 = new Baseinfo();
+        $baseinfot3->id = 23;
+        $baseinfot3->name = 'Любов';
+        $baseinfot3->surname = 'Шахрайчук';
+        $baseinfot3->cathedra_id = 1;
+        $baseinfot3->save();
+
+        $baseinfot4 = new Baseinfo();
+        $baseinfot4->id = 24;
+        $baseinfot4->name = 'Вадим';
+        $baseinfot4->surname = 'Хижняк';
+        $baseinfot4->cathedra_id = 1;
+        $baseinfot4->save();
+
+        $baseinfot5 = new Baseinfo();
+        $baseinfot5->id = 25;
+        $baseinfot5->name = 'Августин';
+        $baseinfot5->surname = 'Хитрий';
+        $baseinfot5->cathedra_id = 1;
+        $baseinfot5->save();
+
+        $baseinfot6 = new Baseinfo();
+        $baseinfot6->id = 26;
+        $baseinfot6->name = 'Адам';
+        $baseinfot6->surname = 'Холод';
+        $baseinfot6->cathedra_id = 1;
+        $baseinfot6->save();
+
+        $baseinfot7 = new Baseinfo();
+        $baseinfot7->id = 27;
+        $baseinfot7->name = 'Альберт';
+        $baseinfot7->surname = 'Романов';
+        $baseinfot7->cathedra_id = 1;
+        $baseinfot7->save();
+
+        $baseinfot8 = new Baseinfo();
+        $baseinfot8->id = 28;
+        $baseinfot8->name = 'Антон';
+        $baseinfot8->surname = 'Рудик';
+        $baseinfot8->cathedra_id = 1;
+        $baseinfot8->save();
+
+        $baseinfot9 = new Baseinfo();
+        $baseinfot9->id = 29;
+        $baseinfot9->name = 'Артем';
+        $baseinfot9->surname = 'Рудь';
+        $baseinfot9->cathedra_id = 1;
+        $baseinfot9->save();
+        
+        $baseinfocw1 = new Baseinfo();
+        $baseinfocw1->id = 31;
+        $baseinfocw1->name = 'Боголюб';
+        $baseinfocw1->surname = 'Попіль';
+        $baseinfocw1->cathedra_id = 1;
+        $baseinfocw1->save();
+
+        $usercw1 = new User();
+        $usercw1->id = 5;
+        $usercw1->email = 'popil@i.ua';
+        $usercw1->password = Hash::make('123456');
+        $usercw1->baseinfo_id = 31;
+        $usercw1->assignRole('cathedraworker');
+        $usercw1->save();
+
+        $baseinfocw2 = new Baseinfo();
+        $baseinfocw2->id = 32;
+        $baseinfocw2->name = 'Борис';
+        $baseinfocw2->surname = 'Кузьменко';
+        $baseinfocw2->cathedra_id = 1;
+        $baseinfocw2->save();
+
+        $baseinfost21 = new Baseinfo();
+        $baseinfost21->id = 201;
+        $baseinfost21->name = 'Єгор';
+        $baseinfost21->surname = 'Кондро';
+        $baseinfost21->cathedra_id = 2;
+        $baseinfost21->save();
+
+        $userst2 = new User();
+        $userst2->id = 2;
+        $userst2->email = 'egorkondro@gmail.com';
+        $userst2->password = Hash::make('123456');
+        $userst2->baseinfo_id = 201;
+        $userst2->assignRole('student');
+        $userst2->save();
+        
+        $baseinfost22 = new Baseinfo();
+        $baseinfost22->id = 202;
+        $baseinfost22->name = 'Оксана';
+        $baseinfost22->surname = 'Наганюк';
+        $baseinfost22->cathedra_id = 2;
+        $baseinfost22->save();
+        
+        $baseinfost23 = new Baseinfo();
+        $baseinfost23->id = 203;
+        $baseinfost23->name = 'Тимофій';
+        $baseinfost23->surname = 'Пастельмащук';
+        $baseinfost23->cathedra_id = 2;
+        $baseinfost23->save();
+        
+        $baseinfost24 = new Baseinfo();
+        $baseinfost24->id = 204;
+        $baseinfost24->name = 'Василь';
+        $baseinfost24->surname = 'Хресяк';
+        $baseinfost24->cathedra_id = 2;
+        $baseinfost24->save();
+        
+        $baseinfost25 = new Baseinfo();
+        $baseinfost25->id = 205;
+        $baseinfost25->name = 'Оксанаа';
+        $baseinfost25->surname = 'Кармецицюк';
+        $baseinfost25->cathedra_id = 2;
+        $baseinfost25->save();
+        
+        $baseinfost26 = new Baseinfo();
+        $baseinfost26->id = 206;
+        $baseinfost26->name = 'Роксолана';
+        $baseinfost26->surname = 'Хохлушєва';
+        $baseinfost26->cathedra_id = 2;
+        $baseinfost26->save();
+        
+        $baseinfost27 = new Baseinfo();
+        $baseinfost27->id = 207;
+        $baseinfost27->name = 'Роксолана';
+        $baseinfost27->surname = 'Коливанюк';
+        $baseinfost27->cathedra_id = 2;
+        $baseinfost27->save();
+        
+        $baseinfost28 = new Baseinfo();
+        $baseinfost28->id = 208;
+        $baseinfost28->name = 'Світлана';
+        $baseinfost28->surname = 'Сарпиненко';
+        $baseinfost28->cathedra_id = 2;
+        $baseinfost28->save();
+        
+        $baseinfost29 = new Baseinfo();
+        $baseinfost29->id = 209;
+        $baseinfost29->name = 'Оксана';
+        $baseinfost29->surname = 'Сарпин';
+        $baseinfost29->cathedra_id = 2;
+        $baseinfost29->save();
+        
+        $baseinfost210 = new Baseinfo();
+        $baseinfost210->id = 2010;
+        $baseinfost210->name = 'Елеонора';
+        $baseinfost210->surname = 'Сатюшко';
+        $baseinfost210->cathedra_id = 2;
+        $baseinfost210->save();
+        
+        $baseinfost211 = new Baseinfo();
+        $baseinfost211->id = 2011;
+        $baseinfost211->name = 'Володимир';
+        $baseinfost211->surname = 'Коваленко';
+        $baseinfost211->cathedra_id = 2;
+        $baseinfost211->save();
+        
+        $baseinfost212 = new Baseinfo();
+        $baseinfost212->id = 2012;
+        $baseinfost212->name = 'Ірина';
+        $baseinfost212->surname = 'Герега';
+        $baseinfost212->cathedra_id = 2;
+        $baseinfost212->save();
+        
+        $baseinfost213 = new Baseinfo();
+        $baseinfost213->id = 2013;
+        $baseinfost213->name = 'Сергій';
+        $baseinfost213->surname = 'Михацицюк';
+        $baseinfost213->cathedra_id = 2;
+        $baseinfost213->save();
+        
+        $baseinfost214 = new Baseinfo();
+        $baseinfost214->id = 2014;
+        $baseinfost214->name = 'Залюбомир';
+        $baseinfost214->surname = 'Лоневський';
+        $baseinfost214->cathedra_id = 2;
+        $baseinfost214->save();
+        
+        $baseinfost215 = new Baseinfo();
+        $baseinfost215->id = 2015;
+        $baseinfost215->name = 'Андрій';
+        $baseinfost215->surname = 'Марак';
+        $baseinfost215->cathedra_id = 2;
+        $baseinfost215->save();
+        
+        $baseinfost216 = new Baseinfo();
+        $baseinfost216->id = 2016;
+        $baseinfost216->name = 'Анжеліка';
+        $baseinfost216->surname = 'Залюбченко';
+        $baseinfost216->cathedra_id = 2;
+        $baseinfost216->save();
+        
+        $baseinfot21 = new Baseinfo();
+        $baseinfot21->id = 2021;
+        $baseinfot21->name = 'Володимир';
+        $baseinfot21->surname = 'Риба';
+        $baseinfot21->cathedra_id = 2;
+        $baseinfot21->save();
+
+        $usert2 = new User();
+        $usert2->id = 4;
+        $usert2->email = 'riba@i.ua';
+        $usert2->password = Hash::make('123456');
+        $usert2->baseinfo_id = 2021;
+        $usert2->assignRole('teacher');
+        $usert2->save();
+        
+        $baseinfot22 = new Baseinfo();
+        $baseinfot22->id = 2022;
+        $baseinfot22->name = 'Орест';
+        $baseinfot22->surname = 'Квітик';
+        $baseinfot22->cathedra_id = 2;
+        $baseinfot22->save();
+        
+        $baseinfot23 = new Baseinfo();
+        $baseinfot23->id = 2023;
+        $baseinfot23->name = 'Залюбов';
+        $baseinfot23->surname = 'Мосійчук';
+        $baseinfot23->cathedra_id = 2;
+        $baseinfot23->save();
+        
+        $baseinfot24 = new Baseinfo();
+        $baseinfot24->id = 2024;
+        $baseinfot24->name = 'Вадим';
+        $baseinfot24->surname = 'Хижак';
+        $baseinfot24->cathedra_id = 2;
+        $baseinfot24->save();
+        
+        $baseinfot25 = new Baseinfo();
+        $baseinfot25->id = 2025;
+        $baseinfot25->name = 'Орест';
+        $baseinfot25->surname = 'Ситий';
+        $baseinfot25->cathedra_id = 2;
+        $baseinfot25->save();
+        
+        $baseinfot26 = new Baseinfo();
+        $baseinfot26->id = 2026;
+        $baseinfot26->name = 'Адам';
+        $baseinfot26->surname = 'Голод';
+        $baseinfot26->cathedra_id = 2;
+        $baseinfot26->save();
+        
+        $baseinfot27 = new Baseinfo();
+        $baseinfot27->id = 2027;
+        $baseinfot27->name = 'Альберт';
+        $baseinfot27->surname = 'Оксаманов';
+        $baseinfot27->cathedra_id = 2;
+        $baseinfot27->save();
+        
+        $baseinfot28 = new Baseinfo();
+        $baseinfot28->id = 2028;
+        $baseinfot28->name = 'Антон';
+        $baseinfot28->surname = 'Рудик';
+        $baseinfot28->cathedra_id = 2;
+        $baseinfot28->save();
+        
+        $baseinfot29 = new Baseinfo();
+        $baseinfot29->id = 2029;
+        $baseinfot29->name = 'Артем';
+        $baseinfot29->surname = 'Рудь';
+        $baseinfot29->cathedra_id = 2;
+        $baseinfot29->save();
+
+        $baseinfocw21 = new Baseinfo();
+        $baseinfocw21->id = 2031;
+        $baseinfocw21->name = 'Вадим';
+        $baseinfocw21->surname = 'Артемійчук';
+        $baseinfocw21->cathedra_id = 2;
+        $baseinfocw21->save();
+
+        $usercw2 = new User();
+        $usercw2->id = 6;
+        $usercw2->email = 'artemiychuk@i.ua';
+        $usercw2->password = Hash::make('123456');
+        $usercw2->baseinfo_id = 2031;
+        $usercw2->assignRole('cathedraworker');
+        $usercw2->save();
+        
+        $baseinfocw22 = new Baseinfo();
+        $baseinfocw22->id = 2032;
+        $baseinfocw22->name = 'Ангеліна';
+        $baseinfocw22->surname = 'Шульменко';
+        $baseinfocw22->cathedra_id = 2;
+        $baseinfocw22->save();
+
+        $baseinfosa = new Baseinfo();
+        $baseinfosa->id = 41;
+        $baseinfosa->name = 'Вероніка';
+        $baseinfosa->surname = 'Чухалова';
+        $baseinfosa->cathedra_id = 2;
+        $baseinfosa->save();
+
+        $usersa = new User();
+        $usersa->id = 7;
+        $usersa->email = 'admin@i.ua';
+        $usersa->password = Hash::make('123456');
+        $usersa->baseinfo_id = 31;
+        $usersa->assignRole('superadmin');
+        $usersa->save();
+
+//         $student = new Student();
+//         $student->id = ;
+//         $student->year = ;
+//         $student->baseinfo_id_for_student = ;
+//         $student->studnumber = '';
+//         $student->entry_date='';
+//         $student->specialty='';
+//         $student->degree = '';
+//         $student->group = ;
+//         $student->save();
+
+//         $student2 = new Student();
+//         $student2->id = 2;
+//         $student2->year = 2;
+//         $student2->baseinfo_id_for_student = 2;
+//         $student2->studnumber = 'KV23423234';
+//         $student2->entry_date='2017-09-01';
+//         $student2->specialty='Software ingeneering';
+//         $student2->degree = 'master';
+//         $student2->group = 2;
+//         $student2->save();
+
+//         $student3 = new Student();
+//         $student3->id = 3;
+//         $student3->year = 3;
+//         $student3->baseinfo_id_for_student = 3;
+//         $student3->studnumber = 'KV34534345';
+//         $student3->entry_date='2010-09-01';
+//         $student3->real_grad_date='2016-06-01';
+//         $student3->specialty='Software ingeneering';
+//         $student3->degree = 'bachelor';
+//         $student3->group = 3;
+//         $student3->save();
+
+//         $student4 = new Student();
+//         $student4->id = 4;
+//         $student4->year = 2;
+//         $student4->baseinfo_id_for_student = 4;
+//         $student4->studnumber = 'KV45645456';
+//         $student4->entry_date='2015-09-01';
+//         $student4->real_grad_date='2019-06-01';
+//         $student4->specialty='Software ingeneering';
+//         $student4->degree = 'master';
+//         $student4->group = 4;
+//         $student4->save();
+
+//         $teacher1 = new Teacher();
+//         $teacher1->id = 11;
+//         $teacher1->workbooknumber = 'AA111123';
+//         $teacher1->baseinfo_id_for_teacher = 11;
+//         $teacher1->science_degree = 'кандидат наук';
+//         $teacher1->scientific_rank= 'професор';
+//         $teacher1->position= 'викладач';
+//         $teacher1->start_date= '2011-01-01';
+//         $teacher1->save();
+
+//         $teacher2 = new Teacher();
+//         $teacher2->id = 12;
+//         $teacher2->workbooknumber = 'AA234234';
+//         $teacher2->baseinfo_id_for_teacher =  12;
+//         $teacher2->science_degree = 'кандидат наук';
+//         $teacher2->scientific_rank= 'професор';
+//         $teacher2->position= 'викладач';
+//         $teacher2->start_date= '2019-01-01';
+//         $teacher2->end_of_work_date='2019-04-01';
+//         $teacher2->save();
+
+//         $teacher3 = new Teacher();
+//         $teacher3->id = 13;
+//         $teacher3->workbooknumber = 'AA345345';
+//         $teacher3->baseinfo_id_for_teacher =  13;
+//         $teacher3->science_degree = 'доктор наук';
+//         $teacher3->scientific_rank= 'доцент';
+//         $teacher3->position= 'викладач';
+//         $teacher3->start_date= '2001-01-01';
+//         $teacher3->save();
+
+//         $teacher4 = new Teacher();
+//         $teacher4->id = 14;
+//         $teacher4->workbooknumber = 'AA456456';
+//         $teacher4->baseinfo_id_for_teacher =  14;
+//         $teacher4->science_degree = 'доктор наук';
+//         $teacher4->scientific_rank= 'доцент';
+//         $teacher4->position= 'викладач';
+//         $teacher4->start_date= '2017-01-01';
+//         $teacher4->end_of_work_date='2019-01-01';
+//         $teacher4->save();
+        
+//         $sciencework1 = new Sciencework();
+//         $sciencework1 -> id = 1;
+//         $sciencework1 -> topic = 'Розробка інформаційної системи';
+//         $sciencework1 -> type = 'bachaelor coursework';
+//         $sciencework1 -> presenting_date = '2019-06-01';
+//         $sciencework1 -> status = 'active';
+//         $sciencework1 -> student_id = 1;
+//         $sciencework1 -> teacher_id = 11;
+//         $sciencework1 -> cathedra_id = 1;
+//         $sciencework1 -> application = false;
+//         $sciencework1 -> save();
+
+//         $sciencework2 = new Sciencework();
+//         $sciencework2 -> id = 2;
+//         $sciencework2 -> topic = 'Розробка алгоритму';
+//         $sciencework2 -> type = 'bachaelor dyploma';
+//         $sciencework2 -> presenting_date = '2019-06-01';
+//         $sciencework2 -> status = 'active';
+//         $sciencework2 -> student_id = 2;
+//         $sciencework2 -> teacher_id = 11;
+//         $sciencework2 -> cathedra_id = 1;
+//         $sciencework2 -> application = false;
+//         $sciencework2 -> save();
+
+//         $sciencework3 = new Sciencework();
+//         $sciencework3 -> id = 3;
+//         $sciencework3 -> topic = 'Розробка боту';
+//         $sciencework3 -> type = 'major coursework';
+//         $sciencework3 -> presenting_date = '2019-06-01';
+//         $sciencework3 -> status = 'active';
+//         $sciencework3 -> student_id = 3;
+//         $sciencework3 -> teacher_id = 12;
+//         $sciencework3 -> cathedra_id = 2;
+//         $sciencework3 -> application = false;
+//         $sciencework3 -> save();
+
+//         $sciencework4 = new Sciencework();
+//         $sciencework4 -> id = 4;
+//         $sciencework4 -> topic = 'Розробка роботу';
+//         $sciencework4 -> type = 'major coursework';
+//         $sciencework4 -> presenting_date = '2023-06-01';
+//         $sciencework4 -> status = 'active';
+//         $sciencework4 -> student_id = 4;
+//         $sciencework4 -> teacher_id = 12;
+//         $sciencework4 -> cathedra_id = 2;
+//         $sciencework4 -> application = false;
+//         $sciencework4 -> save();
     }
 }
