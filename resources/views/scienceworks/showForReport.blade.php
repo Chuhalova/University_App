@@ -107,12 +107,12 @@
                                     <form id='report-form' action="{{url('/cathedraworker/report/') }}" method='GET' >
                                     {{method_field('GET')}}
                                     @csrf
-                                    <input  placeholder="Пошук викладача за прізвищем" id="teacher" name="teacher" class="typeahead form-control" type="text">
-                                    <div style="position:absolute;left:0;top:80px" class="col-md-12" id="teacher_list"></div>
-                                    <select class="form-control" name="group" id="group">
-                                        <option id='checked-option'>Вибрати групу</option>
+                                    <select class="form-control" name="group" id="group">	
+                                        <option>Обрати групу</option>	
                                     </select>
+                                    <input  placeholder="Пошук викладача за прізвищем" id="teacher" name="teacher" class="typeahead form-control" type="text">
                                     <input id="teacher_id" name="teacher_id" class="typeahead form-control" type="text" hidden>
+                                    <div class="report-teachers-block"  id="teacher_list"></div>
                                     <input id="group_year" name="group_year" class="typeahead form-control" type="text" hidden>
                                     <input id="group_group" name="group_group" class="typeahead form-control" type="text" hidden>
                                     <input id="group_specialty" name="group_specialty" class="typeahead form-control" type="text" hidden>

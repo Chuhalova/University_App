@@ -1,3 +1,8 @@
+
+.report-teachers-block{
+    padding: 0px !important;
+    margin: 0px !important;
+}
 .app-buttons{
     width: 150px !important;
 }
@@ -11,6 +16,8 @@
 }
 #report-form{
     margin: 20px !important;
+    align-content: center;
+    text-align: center;
 }
 #report-form button{
     margin: auto;
@@ -135,7 +142,7 @@
             font-size: 5pt !important;
             font-weight: bold;
         }
-        #who, #comment{
+    #who, #comment{
             width: 80px !important;
         }
     #container-teachers-table{
@@ -167,17 +174,19 @@
         left: 38.5%!important;
         width: 180px !important;
     }
-    #report-form select,  #report-form input{
-        width:150px !important;
-        margin: 10px auto;
-        font-size: 7pt !important;
-        height: 25px !important;
-        padding: 0 2px !important;
-    }
+
     #report-form input::-webkit-input-placeholder, #checked-option{
         font-size: 7pt !important;
 
       } */
+    #report-form select,  #report-form input, #report-form #teacher_list{
+        width:150px !important;
+        margin: 10px auto !important;
+        font-size: 7pt !important;
+        height: 25px !important;
+        padding: 0 2px !important;
+    }
+
     #app-nav-block{
         margin-bottom: 20px;
         font-size: 5pt !important;

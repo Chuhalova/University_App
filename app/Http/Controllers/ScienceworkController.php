@@ -58,11 +58,11 @@ class ScienceworkController extends Controller
             if (count($data) > 0) {
                 $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
                 foreach ($data as $row) {
-                    $output .= '<li id=' . $row->id . ' class="student_li list-group-item">' . $row->name . ' ' . $row->surname . ' ' . $row->degree . ' ' . $row->specialty . ' ' . $row->group . '</li>';
+                    $output .= '<li id=' . $row->id . ' class="student_li list-group-item">' . $row->name . ' ' . $row->surname . ', ' . $row->degree . ', ' . $row->specialty . ', ' . $row->group . '</li>';
                 }
                 $output .= '</ul>';
             } else {
-                $output .= '<li class="student_li list-group-item">' . 'No results' . '</li>';
+                $output .= '<li class="student_li list-group-item">' . 'Нема результатів' . '</li>';
             }
             return $output;
         }
@@ -87,11 +87,11 @@ class ScienceworkController extends Controller
             if (count($data) > 0) {
                 $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
                 foreach ($data as $row) {
-                    $output .= '<li id=' . $row->id . ' class="teacher_li list-group-item">' . $row->name . ' ' . $row->surname . ' ' . $row->science_degree . ' ' . $row->scientific_rank . '</li>';
+                    $output .= '<li id=' . $row->id . ' class="teacher_li list-group-item">' . $row->name . ' ' . $row->surname . ', ' . $row->science_degree . ', ' . $row->scientific_rank . '</li>';
                 }
                 $output .= '</ul>';
             } else {
-                $output .= '<li class="teacher_li list-group-item">' . 'No results' . '</li>';
+                $output .= '<li class="teacher_li list-group-item">' . 'Нема результатів' . '</li>';
             }
             return $output;
         }
@@ -139,11 +139,11 @@ class ScienceworkController extends Controller
             if (count($data) > 0) {
                 $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
                 foreach ($data as $row) {
-                    $output .= '<li id=' . $row->teacher_id . ' class="teacher_li list-group-item">' . $row->name . ' ' . $row->surname . ' ' . $row->science_degree . ' ' . $row->scientific_rank . '</li>';
+                    $output .= '<li id=' . $row->teacher_id . ' class="teacher_li list-group-item">' . $row->name . ' ' . $row->surname . ', ' . $row->science_degree . ', ' . $row->scientific_rank . '</li>';
                 }
                 $output .= '</ul>';
             } else {
-                $output .= '<li class="teacher_li list-group-item">' . 'No results' . '</li>';
+                $output .= '<li class="teacher_li list-group-item">' . 'Нема результатів' . '</li>';
             }
             return $output;
         }
