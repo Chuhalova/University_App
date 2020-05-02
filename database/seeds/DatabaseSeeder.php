@@ -50,11 +50,12 @@ class DatabaseSeeder extends Seeder
         $student1->studnumber = 'IK122211';
         $student1->entry_date = '2019-09-01';
         $student1->real_grad_date = '2023-09-19';
-        $student1->specialty = 'Software - Information Systems';
+        $student1->specialty = 'Програмно - інформаційні системи';
+        $student1->specialty_abbr = 'ПІС';
         $student1->degree = 'bachelor';
         $student1->group = 1;
         $student1->save();
-        // Програмно - інформаційні системи
+
 
 
         $userst1 = new User();
@@ -78,7 +79,8 @@ class DatabaseSeeder extends Seeder
         $student2->baseinfo_id_for_student = 2;
         $student2->studnumber = 'RG223222';
         $student2->entry_date = '2018-09-01';
-        $student2->specialty = 'Software - Information Systems';
+        $student2->specialty = 'Програмно - інформаційні системи';
+        $student2->specialty_abbr = 'ПІС';
         $student2->degree = 'bachelor';
         $student2->group = 2;
         $student2->save();
@@ -96,7 +98,8 @@ class DatabaseSeeder extends Seeder
         $student3->baseinfo_id_for_student = 3;
         $student3->studnumber = 'OS553333';
         $student3->entry_date = '2017-09-01';
-        $student3->specialty = 'Software - Information Systems';
+        $student3->specialty = 'Програмно - інформаційні системи';
+        $student3->specialty_abbr = 'ПІС';
         $student3->degree = 'bachelor';
         $student3->group = 3;
         $student3->save();
@@ -116,7 +119,8 @@ class DatabaseSeeder extends Seeder
         $student4->baseinfo_id_for_student = 4;
         $student4->studnumber = 'VK447644';
         $student4->entry_date = '2016-09-01';
-        $student4->specialty = 'Software - Information Systems';
+        $student4->specialty = 'Програмно - інформаційні системи';
+        $student4->specialty_abbr = 'ПІС';
         $student4->degree = 'bachelor';
         $student4->group = 4;
         $student4->save();
@@ -136,7 +140,8 @@ class DatabaseSeeder extends Seeder
         $student5->baseinfo_id_for_student = 5;
         $student5->studnumber = 'RY565555';
         $student5->entry_date = '2015-09-01';
-        $student5->specialty = 'Software - Information Systems';
+        $student5->specialty = 'Програмно - інформаційні системи';
+        $student5->specialty_abbr = 'ПІС';
         $student5->degree = 'master';
         $student5->group = 1;
         $student5->save();
@@ -156,7 +161,8 @@ class DatabaseSeeder extends Seeder
         $student6->baseinfo_id_for_student = 6;
         $student6->studnumber = 'NJ693666';
         $student6->entry_date = '2014-09-01';
-        $student6->specialty = 'Software - Information Systems';
+        $student6->specialty = 'Програмно - інформаційні системи';
+        $student6->specialty_abbr = 'ПІС';
         $student6->degree = 'master';
         $student6->group = 2;
         $student6->save();
@@ -177,7 +183,8 @@ class DatabaseSeeder extends Seeder
         $student7->studnumber = 'TR709777';
         $student7->entry_date = '2014-09-01';
         $student7->real_grad_date = '2016-09-01';
-        $student7->specialty = 'Software - Information Systems';
+        $student7->specialty = 'Програмно - інформаційні системи';
+        $student7->specialty_abbr = 'ПІС';
         $student7->degree = 'master';
         $student7->group = 2;
         $student7->save();
@@ -196,7 +203,8 @@ class DatabaseSeeder extends Seeder
         $student8->studnumber = 'YK886288';
         $student8->entry_date = '2014-09-01';
         $student8->real_grad_date = '2018-09-01';
-        $student8->specialty = 'Software - Information Systems';
+        $student8->specialty = 'Програмно - інформаційні системи';
+        $student8->specialty_abbr = 'ПІС';
         $student8->degree = 'bachelor';
         $student8->group = 3;
         $student8->save();
@@ -215,11 +223,12 @@ class DatabaseSeeder extends Seeder
         $student9->studnumber = 'YK987999';
         $student9->entry_date = '2014-09-01';
         $student9->real_grad_date = '2022-09-01';
-        $student9->specialty = 'Information Systems Theory';
+        $student9->specialty = 'Теорія інформаційних систем';
+        $student9->specialty_abbr = 'ТІС';
         $student9->degree = 'bachelor';
         $student9->group = 3;
         $student9->save();
-        // Теорія інформаційних систем
+
 
         $baseinfost10 = new Baseinfo();
         $baseinfost10->id = 10;
@@ -234,7 +243,8 @@ class DatabaseSeeder extends Seeder
         $student10->baseinfo_id_for_student = 10;
         $student10->studnumber = 'YK090000';
         $student10->entry_date = '2019-010-01';
-        $student10->specialty = 'Information Systems Theory';
+        $student10->specialty = 'Теорія інформаційних систем';
+        $student10->specialty_abbr = 'ТІС';
         $student10->degree = 'bachelor';
         $student10->group = 4;
         $student10->save();
@@ -253,7 +263,8 @@ class DatabaseSeeder extends Seeder
         $student11->baseinfo_id_for_student = 11;
         $student11->studnumber = 'YK004300';
         $student11->entry_date = '2017-011-01';
-        $student11->specialty = 'Information Systems Theory';
+        $student11->specialty = 'Теорія інформаційних систем';
+        $student11->specialty_abbr = 'ТІС';
         $student11->degree = 'master';
         $student11->group = 2;
         $student11->save();
@@ -271,7 +282,8 @@ class DatabaseSeeder extends Seeder
         $student12->baseinfo_id_for_student = 12;
         $student12->studnumber = 'IG001200';
         $student12->entry_date = '2020-012-01';
-        $student12->specialty = 'Information Systems Theory';
+        $student12->specialty = 'Теорія інформаційних систем';
+        $student12->specialty_abbr = 'ТІС';
         $student12->degree = 'master';
         $student12->group = 2;
         $student12->save();
@@ -289,7 +301,8 @@ class DatabaseSeeder extends Seeder
         $student13->baseinfo_id_for_student = 13;
         $student13->studnumber = 'SM044200';
         $student13->entry_date = '2020-03-01';
-        $student13->specialty = 'Information Systems Theory';
+        $student13->specialty = 'Теорія інформаційних систем';
+        $student13->specialty_abbr = 'ТІС';
         $student13->degree = 'master';
         $student13->group = 5;
         $student13->save();
@@ -307,7 +320,8 @@ class DatabaseSeeder extends Seeder
         $student14->baseinfo_id_for_student = 14;
         $student14->studnumber = 'LL008870';
         $student14->entry_date = '2017-04-01';
-        $student14->specialty = 'Information Systems Theory';
+        $student14->specialty = 'Теорія інформаційних систем';
+        $student14->specialty_abbr = 'ТІС';
         $student14->degree = 'bachelor';
         $student14->group = 2;
         $student14->save();
@@ -325,7 +339,8 @@ class DatabaseSeeder extends Seeder
         $student15->baseinfo_id_for_student = 15;
         $student15->studnumber = 'AM852700';
         $student15->entry_date = '2015-05-01';
-        $student15->specialty = 'Information Systems Theory';
+        $student15->specialty = 'Теорія інформаційних систем';
+        $student15->specialty_abbr = 'ТІС';
         $student15->degree = 'bachelor';
         $student15->group = 1;
         $student15->save();
@@ -343,7 +358,8 @@ class DatabaseSeeder extends Seeder
         $student16->baseinfo_id_for_student = 16;
         $student16->studnumber = 'AL009870';
         $student16->entry_date = '2016-06-01';
-        $student16->specialty = 'Information Systems Theory';
+        $student16->specialty = 'Теорія інформаційних систем';
+        $student16->specialty_abbr = 'ТІС';
         $student16->degree = 'bachelor';
         $student16->group = 2;
         $student16->save();
@@ -629,6 +645,7 @@ class DatabaseSeeder extends Seeder
         $student21->studnumber = 'AL202270';
         $student21->entry_date = '2017-06-01';
         $student21->specialty = 'Компютерні науки';
+        $student21->specialty_abbr = 'КН';
         $student21->degree = 'bachelor';
         $student21->group = 2;
         $student21->save();
@@ -657,6 +674,7 @@ class DatabaseSeeder extends Seeder
         $student22->studnumber = 'ON202270';
         $student22->entry_date = '2018-06-01';
         $student22->specialty = 'Компютерні науки';
+        $student22->specialty_abbr = 'КН';
         $student22->degree = 'bachelor';
         $student22->group = 3;
         $student22->save();
@@ -676,6 +694,7 @@ class DatabaseSeeder extends Seeder
         $student23->studnumber = 'TP202834';
         $student23->entry_date = '2019-06-01';
         $student23->specialty = 'Аналітика даних';
+        $student23->specialty_abbr = 'АД';
         $student23->degree = 'bachelor';
         $student23->group = 4;
         $student23->save();
@@ -696,6 +715,7 @@ class DatabaseSeeder extends Seeder
         $student24->studnumber = 'VH202834';
         $student24->entry_date = '2019-06-01';
         $student24->specialty = 'Аналітика даних';
+        $student24->specialty_abbr = 'АД';
         $student24->degree = 'bachelor';
         $student24->group = 4;
         $student24->save();
@@ -714,6 +734,7 @@ class DatabaseSeeder extends Seeder
         $student25->studnumber = 'OK202333';
         $student25->entry_date = '2019-06-01';
         $student25->specialty = 'Аналітика даних';
+        $student25->specialty_abbr = 'АД';
         $student25->degree = 'bachelor';
         $student25->group = 2;
         $student25->save();
@@ -733,6 +754,7 @@ class DatabaseSeeder extends Seeder
         $student26->entry_date = '2015-06-01';
         $student26->real_grad_date = '2019-06-01';
         $student26->specialty = 'Аналітика даних';
+        $student26->specialty_abbr = 'АД';
         $student26->degree = 'bachelor';
         $student26->group = 4;
         $student26->save();
@@ -751,6 +773,7 @@ class DatabaseSeeder extends Seeder
         $student27->studnumber = 'RK129833';
         $student27->entry_date = '2018-06-01';
         $student27->specialty = 'Аналітика даних';
+        $student27->specialty_abbr = 'АД';
         $student27->degree = 'bachelor';
         $student27->group = 6;
         $student27->save();
@@ -770,6 +793,7 @@ class DatabaseSeeder extends Seeder
         $student28->studnumber = 'SS181133';
         $student28->entry_date = '2018-06-01';
         $student28->specialty = 'Аналітика даних';
+        $student28->specialty_abbr = 'АД';
         $student28->degree = 'master';
         $student28->group = 6;
         $student28->save();
@@ -791,6 +815,7 @@ class DatabaseSeeder extends Seeder
         $student29->studnumber = 'OS199133';
         $student29->entry_date = '2018-06-01';
         $student29->specialty = 'Аналітика даних';
+        $student29->specialty_abbr = 'АД';
         $student29->degree = 'master';
         $student29->group = 2;
         $student29->save();
@@ -811,6 +836,7 @@ class DatabaseSeeder extends Seeder
         $student210->entry_date = '2015-06-01';
         $student210->real_grad_date = '2017-06-01';
         $student210->specialty = 'Аналітика даних';
+        $student210->specialty_abbr = 'АД';
         $student210->degree = 'master';
         $student210->group = 2;
         $student210->save();
@@ -830,6 +856,7 @@ class DatabaseSeeder extends Seeder
         $student211->entry_date = '2015-06-01';
         $student211->real_grad_date = '2017-06-01';
         $student211->specialty = 'Технології штучного інтелекту';
+        $student211->specialty_abbr = 'ТШІ';
         $student211->degree = 'master';
         $student211->group = 4;
         $student211->save();
@@ -848,6 +875,7 @@ class DatabaseSeeder extends Seeder
         $student212->studnumber = 'IG760598';
         $student212->entry_date = '2016-06-01';
         $student212->specialty = 'Технології штучного інтелекту';
+        $student212->specialty_abbr = 'ТШІ';
         $student212->degree = 'master';
         $student212->group = 4;
         $student212->save();
@@ -866,6 +894,7 @@ class DatabaseSeeder extends Seeder
         $student213->studnumber = 'SM000598';
         $student213->entry_date = '2016-06-01';
         $student213->specialty = 'Технології штучного інтелекту';
+        $student213->specialty_abbr = 'ТШІ';
         $student213->degree = 'bachelor';
         $student213->group = 4;
         $student213->save();
@@ -885,6 +914,7 @@ class DatabaseSeeder extends Seeder
         $student214->studnumber = 'ZL009508';
         $student214->entry_date = '2017-06-01';
         $student214->specialty = 'Технології штучного інтелекту';
+        $student214->specialty_abbr = 'ТШІ';
         $student214->degree = 'bachelor';
         $student214->group = 2;
         $student214->save();
@@ -903,6 +933,7 @@ class DatabaseSeeder extends Seeder
         $student215->studnumber = 'AM833598';
         $student215->entry_date = '2018-06-01';
         $student215->specialty = 'Технології штучного інтелекту';
+        $student215->specialty_abbr = 'ТШІ';
         $student215->degree = 'bachelor';
         $student215->group = 4;
         $student215->save();
@@ -921,6 +952,7 @@ class DatabaseSeeder extends Seeder
         $student216->studnumber = 'AZ000598';
         $student216->entry_date = '2019-06-01';
         $student216->specialty = 'Технології штучного інтелекту';
+        $student216->specialty_abbr = 'ТШІ';
         $student216->degree = 'bachelor';
         $student216->group = 6;
         $student216->save();

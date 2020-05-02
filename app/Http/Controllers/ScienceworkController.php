@@ -102,7 +102,7 @@ class ScienceworkController extends Controller
        
         $ct =  Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
          $data = DB::table("students")
-            ->select('students.*')
+            ->select('students.specialty_abbr','students.specialty', 'students.year', 'students.group' )
             ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
             ->leftJoin('users', 'students.baseinfo_id_for_student', '=', 'users.baseinfo_id')
             ->where('baseinfos.cathedra_id', '=', $ct)
@@ -114,7 +114,7 @@ class ScienceworkController extends Controller
         $collection = new Collection([]);
         foreach ($data as $d) {
             $collection->push([
-                'name' => implode('', array_diff_assoc(str_split(ucwords($d->specialty)), str_split(strtolower($d->specialty)))) . '' . $d->year . '-' . $d->group,
+                'name' => $d->specialty_abbr. '' . $d->year . '-' . $d->group,
                 'group' => $d->group,
                 'year' => $d->year,
                 'specialty' => $d->specialty

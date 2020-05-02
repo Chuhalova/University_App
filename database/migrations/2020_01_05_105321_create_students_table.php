@@ -23,6 +23,7 @@ class CreateStudentsTable extends Migration
             $table->date('real_grad_date')->nullable();
             $table->enum('degree',['bachelor', 'master'])->default('master');
             $table->string('specialty');
+            $table->string('specialty_abbr');
             $table->integer('group')->unsigned()->default(1);
             $table->timestamps();
         });

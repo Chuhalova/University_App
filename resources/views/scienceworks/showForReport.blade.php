@@ -167,7 +167,7 @@
                                     @endif
                         </td>
                         <td>{{$sw->name .' '. $sw->surname .', '. $sw->scrank .', '. $sw->degree}}</td>
-                        <td>{{$sw->sname .' '. $sw->ssurname .', '.implode('',array_diff_assoc(str_split(ucwords($sw->specialty)),str_split(strtolower($sw->specialty)))).''.$sw->year.'-'.$sw->group}}</td>
+                        <td>{{$sw->sname .' '. $sw->ssurname .', '.$sw->specialty_abbr. '' . $sw->year . '-' . $sw->group}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -204,11 +204,15 @@
                     })
                 });
                 $(document).ready(function() {
-                    $.get("/autocompleteGroup", function(data, status){           
+                    $.get("/autocompleteGroup", function(data, status){ 
+                        var usedNames = [];
                         data.forEach(function(item) {
                             var items = new Array();
                             var items = [item.year, item.group, item.specialty]; 
+                            if(!usedNames.includes(item.name)){
                                 $('#group').append(`<option value="`+items+`">` + item.name +`</option>`);
+                                usedNames.push(item.name);
+                            }
                             console.log(items);
                         });
                     });
