@@ -50,11 +50,11 @@ class DatabaseSeeder extends Seeder
         $student1->studnumber = 'IK122211';
         $student1->entry_date = '2019-09-01';
         $student1->real_grad_date = '2023-09-19';
-        $student1->specialty = 'Програмно - інформаційні системи';
+        $student1->specialty = 'Software - Information Systems';
         $student1->degree = 'bachelor';
         $student1->group = 1;
         $student1->save();
-
+        // Програмно - інформаційні системи
 
 
         $userst1 = new User();
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
         $student2->baseinfo_id_for_student = 2;
         $student2->studnumber = 'RG223222';
         $student2->entry_date = '2018-09-01';
-        $student2->specialty = 'Програмно - інформаційні системи';
+        $student2->specialty = 'Software - Information Systems';
         $student2->degree = 'bachelor';
         $student2->group = 2;
         $student2->save();
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
         $student3->baseinfo_id_for_student = 3;
         $student3->studnumber = 'OS553333';
         $student3->entry_date = '2017-09-01';
-        $student3->specialty = 'Програмно - інформаційні системи';
+        $student3->specialty = 'Software - Information Systems';
         $student3->degree = 'bachelor';
         $student3->group = 3;
         $student3->save();
@@ -116,7 +116,7 @@ class DatabaseSeeder extends Seeder
         $student4->baseinfo_id_for_student = 4;
         $student4->studnumber = 'VK447644';
         $student4->entry_date = '2016-09-01';
-        $student4->specialty = 'Програмно - інформаційні системи';
+        $student4->specialty = 'Software - Information Systems';
         $student4->degree = 'bachelor';
         $student4->group = 4;
         $student4->save();
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
         $student5->baseinfo_id_for_student = 5;
         $student5->studnumber = 'RY565555';
         $student5->entry_date = '2015-09-01';
-        $student5->specialty = 'Програмно - інформаційні системи';
+        $student5->specialty = 'Software - Information Systems';
         $student5->degree = 'master';
         $student5->group = 1;
         $student5->save();
@@ -156,7 +156,7 @@ class DatabaseSeeder extends Seeder
         $student6->baseinfo_id_for_student = 6;
         $student6->studnumber = 'NJ693666';
         $student6->entry_date = '2014-09-01';
-        $student6->specialty = 'Програмно - інформаційні системи';
+        $student6->specialty = 'Software - Information Systems';
         $student6->degree = 'master';
         $student6->group = 2;
         $student6->save();
@@ -177,7 +177,7 @@ class DatabaseSeeder extends Seeder
         $student7->studnumber = 'TR709777';
         $student7->entry_date = '2014-09-01';
         $student7->real_grad_date = '2016-09-01';
-        $student7->specialty = 'Програмно - інформаційні системи';
+        $student7->specialty = 'Software - Information Systems';
         $student7->degree = 'master';
         $student7->group = 2;
         $student7->save();
@@ -196,7 +196,7 @@ class DatabaseSeeder extends Seeder
         $student8->studnumber = 'YK886288';
         $student8->entry_date = '2014-09-01';
         $student8->real_grad_date = '2018-09-01';
-        $student8->specialty = 'Програмно - інформаційні системи';
+        $student8->specialty = 'Software - Information Systems';
         $student8->degree = 'bachelor';
         $student8->group = 3;
         $student8->save();
@@ -215,11 +215,11 @@ class DatabaseSeeder extends Seeder
         $student9->studnumber = 'YK987999';
         $student9->entry_date = '2014-09-01';
         $student9->real_grad_date = '2022-09-01';
-        $student9->specialty = 'Теорія інформаційних систем';
+        $student9->specialty = 'Information Systems Theory';
         $student9->degree = 'bachelor';
         $student9->group = 3;
         $student9->save();
-
+        // Теорія інформаційних систем
 
         $baseinfost10 = new Baseinfo();
         $baseinfost10->id = 10;
@@ -234,7 +234,7 @@ class DatabaseSeeder extends Seeder
         $student10->baseinfo_id_for_student = 10;
         $student10->studnumber = 'YK090000';
         $student10->entry_date = '2019-010-01';
-        $student10->specialty = 'Теорія інформаційних систем';
+        $student10->specialty = 'Information Systems Theory';
         $student10->degree = 'bachelor';
         $student10->group = 4;
         $student10->save();
@@ -253,7 +253,7 @@ class DatabaseSeeder extends Seeder
         $student11->baseinfo_id_for_student = 11;
         $student11->studnumber = 'YK004300';
         $student11->entry_date = '2017-011-01';
-        $student11->specialty = 'Теорія інформаційних систем';
+        $student11->specialty = 'Information Systems Theory';
         $student11->degree = 'master';
         $student11->group = 2;
         $student11->save();
@@ -271,7 +271,7 @@ class DatabaseSeeder extends Seeder
         $student12->baseinfo_id_for_student = 12;
         $student12->studnumber = 'IG001200';
         $student12->entry_date = '2020-012-01';
-        $student12->specialty = 'Теорія інформаційних систем';
+        $student12->specialty = 'Information Systems Theory';
         $student12->degree = 'master';
         $student12->group = 2;
         $student12->save();
@@ -289,7 +289,7 @@ class DatabaseSeeder extends Seeder
         $student13->baseinfo_id_for_student = 13;
         $student13->studnumber = 'SM044200';
         $student13->entry_date = '2020-03-01';
-        $student13->specialty = 'Теорія інформаційних систем';
+        $student13->specialty = 'Information Systems Theory';
         $student13->degree = 'master';
         $student13->group = 5;
         $student13->save();
@@ -307,7 +307,7 @@ class DatabaseSeeder extends Seeder
         $student14->baseinfo_id_for_student = 14;
         $student14->studnumber = 'LL008870';
         $student14->entry_date = '2017-04-01';
-        $student14->specialty = 'Теорія інформаційних систем';
+        $student14->specialty = 'Information Systems Theory';
         $student14->degree = 'bachelor';
         $student14->group = 2;
         $student14->save();
@@ -325,7 +325,7 @@ class DatabaseSeeder extends Seeder
         $student15->baseinfo_id_for_student = 15;
         $student15->studnumber = 'AM852700';
         $student15->entry_date = '2015-05-01';
-        $student15->specialty = 'Теорія інформаційних систем';
+        $student15->specialty = 'Information Systems Theory';
         $student15->degree = 'bachelor';
         $student15->group = 1;
         $student15->save();
@@ -343,7 +343,7 @@ class DatabaseSeeder extends Seeder
         $student16->baseinfo_id_for_student = 16;
         $student16->studnumber = 'AL009870';
         $student16->entry_date = '2016-06-01';
-        $student16->specialty = 'Теорія інформаційних систем';
+        $student16->specialty = 'Information Systems Theory';
         $student16->degree = 'bachelor';
         $student16->group = 2;
         $student16->save();
@@ -1195,7 +1195,7 @@ class DatabaseSeeder extends Seeder
         $sciencework32->status = 'created_by_teacher';
         $sciencework32->teacher_id = 1;
         $sciencework32->cathedra_id = 1;
-        $sciencework30->save();
+        $sciencework32->save();
 
         $sciencework33 = new Sciencework();
         $sciencework33->id = 33;
@@ -1204,7 +1204,7 @@ class DatabaseSeeder extends Seeder
         $sciencework33->status = 'created_by_teacher';
         $sciencework33->teacher_id = 1;
         $sciencework33->cathedra_id = 1;
-        $sciencework30->save();
+        $sciencework33->save();
 
         $sciencework40 = new Sciencework();
         $sciencework40->id = 40;
@@ -1231,7 +1231,7 @@ class DatabaseSeeder extends Seeder
         $sciencework42->status = 'created_by_teacher';
         $sciencework42->teacher_id = 21;
         $sciencework42->cathedra_id = 2;
-        $sciencework30->save();
+        $sciencework42->save();
 
         $sciencework44 = new Sciencework();
         $sciencework44->id = 44;
@@ -1240,7 +1240,7 @@ class DatabaseSeeder extends Seeder
         $sciencework44->status = 'created_by_teacher';
         $sciencework44->teacher_id = 21;
         $sciencework44->cathedra_id = 2;
-        $sciencework30->save();
+        $sciencework44->save();
 
         $baseinfocw21 = new Baseinfo();
         $baseinfocw21->id = 2031;

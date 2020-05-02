@@ -14,13 +14,12 @@
                     @endif
                     <div class="contact-form">
                         <h2 class="title text-center">Відредагувати роботу</h2>
-                        <div class="status alert alert-success" style="display: none"></div>
                         <form style='display:inline-block' action="{{url('/student/update/'.$sw->id) }}" method='POST'>
                             {{method_field('PATCH')}}
                             @csrf
                             <div class="form-group col-md-12">
                                 <label for="topic">{{ __('Назва') }}</label>
-                                <input class="form-control" id="topic" type="text" name="topic" value="{{ $sw->topic }}" required autocomplete="topic" autofocus>
+                                <input style="width:100%" class="form-control" id="topic" type="text" name="topic" value="{{ $sw->topic }}" required autocomplete="topic" autofocus>
                             </div>
                             @if($sw->status=='created_by_teacher')
                             <div class="form-group col-md-12">
@@ -59,8 +58,9 @@
                                     <option value='major dyploma'>дипломна робота / магістр</option>
                                     @endif
                                 </select>
-                                @endif
+                                
                             </div>
+                            @endif
                             <div class="form-group col-md-12">
                                 <label for="presenting_date">{{ __('Дата захисту') }}</label>
                                 <input class="form-control" type="date" id="presenting_date" name="presenting_date" value="{{ $sw->presenting_date }}" min="1990-01-01" max="2040-12-31">

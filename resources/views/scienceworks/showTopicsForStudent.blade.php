@@ -102,6 +102,7 @@
                 </div>
             </div>
         </nav>
+        @if($sws!=null && count($sws)!=0)
         <div class="col-md-6 col-md-offset-3 col-sm-12 col-sm-offset-3 table-wrapper">
             <table class="fl-table ">
                 <thead>
@@ -112,6 +113,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                   
                     @foreach($sws as $sw)
                     <tr>
                         <td scope="row">{{$sw->topic}}</td>
@@ -135,13 +137,21 @@
                         </td>
                     </tr>
                     @endforeach
+                   
                 </tbody>
             </table>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin: auto;">
             {!! $sws->links()!!}
         </div>
+        @else
+        <div style="padding:0px !important;" class="col-sm-12">    			   			
+					<h2 class="title text-center" style='margin-top:30vh'>Наразі вільних тем немає</h2>    			    				    				
+					
+                </div>
+        @endif
     </div>
+    
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

@@ -120,30 +120,50 @@ class ScienceworksController extends Controller
     
     public function showTopicsForStudent(){
         $ct = Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
-        $st_degree = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->degree;
-        if($st_degree=="bachelor"){
-            $sws =  DB::table('scienceworks')
-            ->select('scienceworks.*')
-            ->where('scienceworks.cathedra_id','=',$ct)
-            ->where('scienceworks.status','=','created_by_teacher')
-            ->where(function ($query) {
-                $query->where('scienceworks.type', '=', 'bachaelor coursework')
-                      ->orWhere('scienceworks.type', '=', 'bachaelor dyploma')
-                      ;
-            })
-            ->paginate(6);
+        $st = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first();
+         $st_degree = $st->degree;
+         $st_y = $st->year;
+          if($st_degree=="bachelor"){
+            if($st_y==3){
+                $sws =  DB::table('scienceworks')
+                ->select('scienceworks.*')
+                ->where('scienceworks.cathedra_id','=',$ct)
+                ->where('scienceworks.status','=','created_by_teacher')
+                ->where('scienceworks.type', '=', 'bachaelor coursework')
+                ->paginate(6);
+            }
+            elseif($st_y==4){
+                $sws =  DB::table('scienceworks')
+                ->select('scienceworks.*')
+                ->where('scienceworks.cathedra_id','=',$ct)
+                ->where('scienceworks.status','=','created_by_teacher')
+                ->where('scienceworks.type', '=', 'bachaelor dyploma')
+                ->paginate(6);
+            }  
+            else{
+                $sws = null;
+            }   
         }
         elseif($st_degree=='master'){
-            $sws =  DB::table('scienceworks')
-            ->select('scienceworks.*')
-            ->where('scienceworks.cathedra_id','=',$ct)
-            ->where('scienceworks.status','=','created_by_teacher')
-            ->where(function ($query) {
-                $query->where('scienceworks.type', '=', 'major coursework')
-                      ->orWhere('scienceworks.type', '=', 'major dyploma')
-                      ;
-            })
-            ->paginate(6);
+            if($st_y==1){
+                $sws =  DB::table('scienceworks')
+                ->select('scienceworks.*')
+                ->where('scienceworks.cathedra_id','=',$ct)
+                ->where('scienceworks.status','=','created_by_teacher')
+                ->where('scienceworks.type', '=', 'major coursework')
+                ->paginate(6);
+            }
+            elseif($st_y==2){
+                $sws =  DB::table('scienceworks')
+                ->select('scienceworks.*')
+                ->where('scienceworks.cathedra_id','=',$ct)
+                ->where('scienceworks.status','=','created_by_teacher')
+                ->where('scienceworks.type', '=', 'major dyploma')
+                ->paginate(6);
+            }
+        }
+        else{
+            $sws = null;
         }
         return View::make('scienceworks.showTopicsForStudent', [
             'sws' => $sws,

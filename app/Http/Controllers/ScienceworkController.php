@@ -73,7 +73,7 @@ class ScienceworkController extends Controller
         $ct =  Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
         if ($request->ajax()) {
             $data = DB::table('teachers')
-                ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "teachers.science_degree", "teachers.scientific_rank")
+                ->select("baseinfos.id","teachers.id", "baseinfos.name", "baseinfos.surname", "teachers.science_degree", "teachers.scientific_rank")
                 ->leftJoin('baseinfos', 'teachers.baseinfo_id_for_teacher', '=', 'baseinfos.id')
                 ->leftJoin('users', 'teachers.baseinfo_id_for_teacher', '=', 'users.baseinfo_id')
                 ->where('baseinfos.cathedra_id', '=', $ct)
@@ -99,8 +99,9 @@ class ScienceworkController extends Controller
 
     public function autocompleteGroup(Request $request)
     {
+       
         $ct =  Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
-        $data = DB::table("students")
+         $data = DB::table("students")
             ->select('students.*')
             ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
             ->leftJoin('users', 'students.baseinfo_id_for_student', '=', 'users.baseinfo_id')
@@ -332,9 +333,17 @@ class ScienceworkController extends Controller
                 return Redirect::to($unsucview)
                     ->withErrors($validator);
             } else {
-                $student_year = Student::whereId($sw->student_id)->first()->year;
-                $student_degree = Student::whereId($sw->student_id)->first()->degree;
-                $st_real_grad_date = Student::whereId($sw->student_id)->first()->real_grad_date;
+                if($sw->status=='created_by_teacher'){
+                    $user_id = auth()->user()->baseinfo_id;
+                    $stud = Student::whereBaseinfo_id_for_student($user_id)->first()->id;
+                    $sw->student_id = $stud;
+                }
+                else{
+                    $stud=$sw->student_id;
+                }
+                $student_year = Student::whereId($stud)->first()->year;
+                $student_degree = Student::whereId($stud)->first()->degree;
+                $st_real_grad_date = Student::whereId($stud)->first()->real_grad_date;
                 $tc_end_date = Teacher::whereId($sw->teacher_id)->first()->end_of_work_date;
                 if (($st_real_grad_date != null && $st_real_grad_date <= Carbon::now('Europe/Kiev')) && ($tc_end_date != null && $tc_end_date <= Carbon::now('Europe/Kiev'))) {
                     $error->add('token', 'Викладач та студент вже недоступні');
@@ -349,9 +358,8 @@ class ScienceworkController extends Controller
                     return Redirect::to($unsucview)
                         ->withErrors($error);
                 } else {
-                    if ($request->type != $sw->type) {
-                        if (($request->type == 'bachaelor coursework' && $student_degree == 'bachelor' && $student_year == 3) || ($request->type == 'bachaelor dyploma' && $student_degree == 'bachelor' && $student_year == 4) || ($request->type == 'major coursework' && $student_year == 1 && $student_degree == 'master') || ($request->type == 'major dyploma' && $student_year == 2 && $student_degree == 'master')) {
-                            if ($this->commonCheckWork($sw->student_id, $request->type)) {
+                        if (($request->type == 'bachaelor coursework' && $student_degree == 'bachelor' && $student_year == 3) || ($request->type == 'bachaelor dyploma' && $student_degree == 'bachelor' && $student_year == 4) || ($request->type == 'major coursework' && $student_year == 1 && $student_degree == 'master') || ($request->type == 'major dyploma' && $student_year == 2 && $student_degree == 'master')) {                            
+                            if ($this->commonCheckWork($stud, $request->type)) {
                                 $error->add('token', 'Заявка на даний тип роботи для цього студента вже створена.');
                                 return Redirect::to($unsucview)
                                     ->withErrors($error);
@@ -364,10 +372,6 @@ class ScienceworkController extends Controller
                             return Redirect::to($unsucview)
                                 ->withErrors($error);
                         }
-                    } else {
-                        $this->commonUpdate($sw, $status, $request);
-                        return Redirect::to($sucview);
-                    }
                 }
             }
         }

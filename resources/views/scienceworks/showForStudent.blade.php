@@ -100,6 +100,7 @@
                 </div>
             </div>
         </nav>
+        @if($sws!=null && count($sws)!=0)
         <div id='works-table' class="table-wrapper">
             <table class="fl-table">
                 <thead>
@@ -168,9 +169,16 @@
                 </tbody>
             </table>
         </div>
+        
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin: auto;">
             {!! $sws->links()!!}
         </div>
+        @else
+        <div style="padding:0px !important;" class="col-sm-12">    			   			
+					<h2 class="title text-center" style='margin-top:30vh'>Наразі у вас немає робіт</h2>    			    				    				
+					
+                </div>
+        @endif
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
