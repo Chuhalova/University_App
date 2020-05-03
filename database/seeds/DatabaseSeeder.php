@@ -1307,7 +1307,7 @@ class DatabaseSeeder extends Seeder
         $usersa->id = 7;
         $usersa->email = 'admin@i.ua';
         $usersa->password = Hash::make('123456');
-        $usersa->baseinfo_id = 31;
+        $usersa->baseinfo_id = 41;
         $usersa->assignRole('superadmin');
         $usersa->save();
     }

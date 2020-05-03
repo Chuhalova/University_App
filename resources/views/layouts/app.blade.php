@@ -70,7 +70,10 @@
                             <a class="nav-link" href="{{ route('application-report') }}">{{ __('Звіт по заявам') }}</a>
                             <a class="nav-link" href="{{ route('works-report') }}">{{ __('Звіт по створеним роботам') }}</a>
                             @endrole
-                        @endguest
+                            @role('superadmin')
+                            <a class="nav-link" href="{{ route('register-cathedraworker') }}">{{ __('Зареєструвати працівника кафедри') }}</a>
+                            @endrole
+                            @endguest
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
