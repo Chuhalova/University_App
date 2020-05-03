@@ -1,4 +1,4 @@
-#app-nav-block, #report-block, #edit-sw-teacher, #edit-topic-cont, #post-topic-cont, #topics-cont, #form-cont, #works-table, #show-topics-cont, #login-form-cont, #teachers-table{
+#edit-cathedraworker-cont, #app-nav-block, #report-block, #edit-sw-teacher, #edit-topic-cont, #post-topic-cont, #topics-cont, #form-cont, #works-table, #show-topics-cont, #login-form-cont, #teachers-table{
     margin-top: 100px;
 }
 #register-cathedraworker, #register-sw-as-student,  #register-as-student-form-cont, #register-as-teacher-form-cont{
@@ -161,7 +161,10 @@
     padding: 0;
     overflow: scroll;
 }
+
 @media(max-width: 1250px){
+
+
     #topics-cont .fl-table td,#topics-cont .fl-table th, #teachers-table .fl-table td,#teachers-table .fl-table th {
         width:100px;
         font-size: 5pt !important;
@@ -193,8 +196,15 @@
             width:80px !important;
         }
 }
-
+@media(max-width: 1000px){
+    .topnav a {
+        font-size: 10px;
+    }
+}
 @media (max-width: 767px) {
+    .topnav a {
+        font-size: 14px;
+    }
     #button-show-topics{
         width:80px;
     }
@@ -216,7 +226,7 @@
       text-align: left;
     }
 
-   #report-block,#app-nav-block, #edit-sw-teacher, #edit-topic-cont,#post-topic-cont,#topics-cont,  #form-cont, #works-table, #register-as-student-form-cont, #register-as-teacher-form-cont, #teachers-table{
+   #edit-cathedraworker-cont, #report-block,#app-nav-block, #edit-sw-teacher, #edit-topic-cont,#post-topic-cont,#topics-cont,  #form-cont, #works-table, #register-as-student-form-cont, #register-as-teacher-form-cont, #teachers-table{
         margin-top: 50px;
     }
 

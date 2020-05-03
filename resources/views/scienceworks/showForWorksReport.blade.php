@@ -68,7 +68,7 @@
     <i class="fa fa-bars"></i>
   </a>
 </div>
-        <div class="row">
+        <div class="row" style="margin:0px !important">
             <div id='app-nav-block' class="checkout-options col-md-3 col-md-offset-0 col-sm-12 col-sm-offset-0">
                 <ul class="nav">
                     <form action="{{url('/cathedraworker/works-report/') }}" method='GET'>
