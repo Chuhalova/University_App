@@ -66,7 +66,7 @@
   </a>
 </div>
         <main class="py-4">
-            <div class="container">
+            <div id='register-cathedraworker' class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="shopper-info">
@@ -113,7 +113,7 @@
                                             <div style="position:absolute;left:0;" class="col-md-12" id="student_list"></div>
                                         </div>
                                         <div style="align-content: center !important;text-align:center !important;" class="form-group col-md-12">
-                                            <button style="margin:auto" type="submit" class="btn btn-primary">
+                                            <button style="margin:auto" type="submit" class="big-btn-in-form btn btn-primary">
                                                 {{ __('Надіслати') }}
                                             </button>
                                         </div>

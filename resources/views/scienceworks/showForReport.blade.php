@@ -81,7 +81,7 @@
                                     <input id="group_year" name="group_year" class="typeahead form-control" type="text" hidden>
                                     <input id="group_group" name="group_group" class="typeahead form-control" type="text" hidden>
                                     <input id="group_specialty" name="group_specialty" class="typeahead form-control" type="text" hidden>
-                                    <button  type="submit" class="btn btn-primary" >
+                                    <button  type="submit" class="big-btn-in-form btn btn-primary" >
                                     {{ __('Звіт') }}
                                 </button>  
                                 </form>

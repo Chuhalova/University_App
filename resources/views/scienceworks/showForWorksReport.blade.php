@@ -107,7 +107,7 @@
                         </li>
                         @endif
                         <li>
-                            <button type="submit" class="app-buttons btn btn-primary">
+                            <button type="submit" class="big-btn-in-form app-buttons btn btn-primary">
                                 {{ __('Звіт') }}
                             </button>
                         </li>
@@ -116,7 +116,7 @@
                         {{method_field('GET')}}
                         @csrf
                         <li>
-                            <button type="submit" class="app-buttons btn btn-primary">
+                            <button type="submit" class="big-btn-in-form app-buttons btn btn-primary">
                                 {{ __('Розіслати листи') }}
                             </button>
                         </li>

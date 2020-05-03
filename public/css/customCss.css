@@ -1,7 +1,7 @@
-#edit-sw-teacher, #edit-topic-cont, #post-topic-cont, #topics-cont, #form-cont, #works-table, #show-topics-cont, #login-form-cont, #teachers-table{
+#app-nav-block, #report-block, #edit-sw-teacher, #edit-topic-cont, #post-topic-cont, #topics-cont, #form-cont, #works-table, #show-topics-cont, #login-form-cont, #teachers-table{
     margin-top: 100px;
 }
-#register-sw-as-student,  #register-as-student-form-cont, #register-as-teacher-form-cont{
+#register-cathedraworker, #register-sw-as-student,  #register-as-student-form-cont, #register-as-teacher-form-cont{
     margin-top: 50px;
 }
 #button-show-topics{
@@ -216,7 +216,7 @@
       text-align: left;
     }
 
-    #edit-sw-teacher, #edit-topic-cont,#post-topic-cont,#topics-cont,  #form-cont, #works-table, #register-as-student-form-cont, #register-as-teacher-form-cont, #teachers-table{
+   #report-block,#app-nav-block, #edit-sw-teacher, #edit-topic-cont,#post-topic-cont,#topics-cont,  #form-cont, #works-table, #register-as-student-form-cont, #register-as-teacher-form-cont, #teachers-table{
         margin-top: 50px;
     }
 
@@ -248,9 +248,7 @@
     #app-nav-block label{
         font-size: 10pt !important;
     }
-    #app-nav-block button{
-        width:80px !important;
-    }
+ 
     #td-with-scroll{
         height: 60px;
         max-height: 60px;
