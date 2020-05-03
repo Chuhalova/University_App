@@ -26,82 +26,47 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        <li class="custom-menu-li nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Залогінитись') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="custom-menu-li nav-item">
-                            <a class="nav-link" href="{{ route('register-as-student') }}">{{ __('Зареєструватись як студент') }}</a>
-                        </li>
-                        <li class="custom-menu-li nav-item">
-                            <a class="nav-link" href="{{ route('register-as-teacher') }}">{{ __('Зареєструватись як викладач') }}</a>
-                        </li>
-                        @endif
-                        @else <li class="custom-menu-li nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+    <div class="topnav" id="myTopnav">
+    <a class="nav-link" href="{{ route('home') }}">{{ __('Додому') }}</a>
+    @guest
+    <a class="nav-link" href="{{ route('login') }}">{{ __('Залогінитись') }}</a>
+        @if (Route::has('register'))
+        <a class="nav-link" href="{{ route('register-as-student') }}">{{ __('Зареєструватись як студент') }}</a>
+        <a class="nav-link" href="{{ route('register-as-teacher') }}">{{ __('Зареєструватись як викладач') }}</a>
+        @endif
+    @else
+    <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Вийти') }}
-                            </a>
-                        </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                        @role('student')
-                        <li class="custom-menu-li nav-item">
-                            <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Власні роботи') }}</a>
-                        </li>
-                        <li class="custom-menu-li nav-item">
-                            <a class="nav-link" href="{{ route('show-topics-for-student') }}">{{ __('Вільні теми') }}</a>
-                        </li>
-                        <li class="custom-menu-li nav-item">
-                            <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Створити роботу') }}</a>
-                        </li>
-                        @endrole
-                        @role('teacher')
-                        <li class='custom-menu-li nav-link'>
+                                        {{ __('Вийти') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    @role('student')
+                                    <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Власні роботи') }}</a>
+                                    <a class="nav-link" href="{{ route('show-topics-for-student') }}">{{ __('Вільні теми') }}</a>
+                                    <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Створити роботу') }}</a>
+                                    @endrole
+                            @role('teacher')
                             <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Створити тему') }}</a>
-                        </li>
-                        <li class='custom-menu-li nav-link'>
                             <a class="nav-link" href="{{ route('get-topics-as-teacher') }}">{{ __('Створені теми') }}</a>
-                        </li>
-                        <li class='custom-menu-li nav-link'>
                             <a class="nav-link" href="{{ route('show-for-teacher') }}">{{ __('Роботи') }}</a>
-                        </li>
-                        @endrole
-                        @role('cathedraworker')
-                        <li class='custom-menu-li nav-link'>
+                            @endrole
+                            @role('cathedraworker')
                             <a class="nav-link" href="{{ route('show-for-cathedraworker') }}">{{ __('Всі роботи') }}</a>
-                        </li>
-                        <li class='custom-menu-li nav-link'>
                             <a class="nav-link" href="{{ route('register-sciencework-as-cathedraworker') }}">{{ __('Створити роботу') }}</a>
-                        </li>
-                        <li class='custom-menu-li nav-link'>
                             <a class="nav-link" href="{{ route('report') }}">{{ __('Загальний звіт') }}</a>
-                        </li>
-                        <li class='custom-menu-li nav-link'>
                             <a class="nav-link" href="{{ route('application-report') }}">{{ __('Звіт по заявам') }}</a>
-                        </li>
-                        <li class='custom-menu-li nav-link'>
                             <a class="nav-link" href="{{ route('works-report') }}">{{ __('Звіт по створеним роботам') }}</a>
-                        </li>
-                        @endrole
+                            @endrole
                         @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
         <main class="py-4">
-            <div class="container">
+            <div id='register-sw-as-student' class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="shopper-info">
@@ -141,7 +106,7 @@
                                             <input class="form-control" required='required' id="teacher_id" name="teacher_id" class="typeahead form-control" type="text" hidden>
                                             <div style="position:absolute;left:0;" class="col-md-12" id="teacher_list"></div>
                                         </div>
-                                        <button style="margin:auto" type="submit" class="btn btn-primary">
+                                        <button style="margin:auto" type="submit" class="btn-in-form btn btn-primary">
                                             {{ __('Надіслати') }}
                                         </button>
                                     </form>
@@ -158,6 +123,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript">
+    function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
     $(document).ready(function() {
         $('#teacher').on('keyup', function() {
             var query = $(this).val();

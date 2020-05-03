@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div  id='register-as-student-form-cont' class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="shopper-info">
@@ -44,7 +44,7 @@
                                 <input class="form-control" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                             <div style="align-content: center !important;text-align:center !important;" class="form-group col-md-12">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit"  class="big-btn-in-form btn btn-primary">
                                     {{ __('Зареєструватись') }}
                                 </button>
                             </div>

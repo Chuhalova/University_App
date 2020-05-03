@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div id='edit-topic-cont'  class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="shopper-info">
@@ -15,7 +15,7 @@
                     <div class="contact-form">
                         <h2 class="title text-center">Відредагувати тему</h2>
                         <div class="status alert alert-success" style="display: none"></div>
-                        <form style='display:inline-block' action="{{url('/teacher/updateTopic/'.$sw->id) }}" method='POST'>
+                        <form action="{{url('/teacher/updateTopic/'.$sw->id) }}" method='POST'>
                             {{method_field('PATCH')}}
                             @csrf
                             <div class="form-group col-md-12">
@@ -54,7 +54,7 @@
                                 </select>
                             </div>
                             <div style="align-content: center !important;text-align:center !important;" class="form-group col-md-12">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="big-btn-in-form btn btn-primary">
                                     {{ __('Відредагувати') }}
                                 </button>
                             </div>

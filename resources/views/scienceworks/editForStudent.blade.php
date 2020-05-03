@@ -14,7 +14,7 @@
                     @endif
                     <div class="contact-form">
                         <h2 class="title text-center">Відредагувати роботу</h2>
-                        <form style='display:inline-block' action="{{url('/student/update/'.$sw->id) }}" method='POST'>
+                        <form  action="{{url('/student/update/'.$sw->id) }}" method='POST'>
                             {{method_field('PATCH')}}
                             @csrf
                             <div class="form-group col-md-12">
@@ -66,7 +66,7 @@
                                 <input class="form-control" type="date" id="presenting_date" name="presenting_date" value="{{ $sw->presenting_date }}" min="1990-01-01" max="2040-12-31">
                             </div>
                             <div style="align-content: center !important;text-align:center !important;" class="form-group col-md-12">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="big-btn-in-form btn btn-primary">
                                     {{ __('Відредагувати') }}
                                 </button>
                             </div>

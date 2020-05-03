@@ -358,6 +358,7 @@ class ScienceworkController extends Controller
                     return Redirect::to($unsucview)
                         ->withErrors($error);
                 } else {
+                    if ($request->type != $sw->type || $sw->status=='created_by_teacher') {
                         if (($request->type == 'bachaelor coursework' && $student_degree == 'bachelor' && $student_year == 3) || ($request->type == 'bachaelor dyploma' && $student_degree == 'bachelor' && $student_year == 4) || ($request->type == 'major coursework' && $student_year == 1 && $student_degree == 'master') || ($request->type == 'major dyploma' && $student_year == 2 && $student_degree == 'master')) {                            
                             if ($this->commonCheckWork($stud, $request->type)) {
                                 $error->add('token', 'Заявка на даний тип роботи для цього студента вже створена.');
@@ -371,7 +372,12 @@ class ScienceworkController extends Controller
                             $error->add('token', 'Студент даного курсу, даної програми не може створити данний тип роботи.');
                             return Redirect::to($unsucview)
                                 ->withErrors($error);
-                        }
+                        }	 
+                    } else {
+                        $this->commonUpdate($sw, $status, $request);	
+                        return Redirect::to($sucview);
+                        	
+                    }
                 }
             }
         }
