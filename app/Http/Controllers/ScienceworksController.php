@@ -216,8 +216,27 @@ class ScienceworksController extends Controller
         }
         else if($request->sciencework == 'without'){
             $checked = true;
-            $sts = DB::table('students')
-            ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "students.degree", "students.year", "students.specialty", "students.group")
+             $stsM = DB::table('scienceworks')
+            ->select('scienceworks.student_id')
+            ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id')
+            ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
+            ->where('scienceworks.cathedra_id', '=', $cathedra_id)
+            ->where(function ($query) {
+                $query->whereNull('students.real_grad_date')
+                    ->orWhere('students.real_grad_date', '>=', Carbon::now('Europe/Kiev'));
+            })
+            ->where(function ($query) {
+                $query->where('students.degree', '=', 'master')
+                    ->orWhere(function ($query) {
+                        $query->where('students.year', '=', '3')
+                            ->orWhere('students.year', '=', '4');
+                    });
+            })
+            ->get();
+
+            $data= json_decode( json_encode($stsM), true);
+             $sts = DB::table('students')
+            ->select("students.id as stid", "baseinfos.id", "baseinfos.name", "baseinfos.surname","students.degree", "students.year", "students.specialty", "students.group")
             ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
             ->where('baseinfos.cathedra_id', '=', $cathedra_id)
             ->where(function ($query) {
@@ -231,28 +250,8 @@ class ScienceworksController extends Controller
                             ->orWhere('students.year', '=', '4');
                     });
             })
-
-                        ->whereNotIn('students.id', function($query){
-                            $query->select('student_id')->from('scienceworks');
-                        })
+            ->whereNotIn('students.id',$data)
             ->get();
-
-            //  $a = DB::table('scienceworks')
-            // ->select('student_id')
-            // ->get()
-            // ->unique('student_id')
-            // ->pluck('student_id')
-            // ->toArray();
-
-            //  DB::table('students')
-            // ->select('id')
-            // ->get();
-
-            // return DB::table('students')
-            // ->select('id')
-            // ->whereNotIn('students.id',$a)
-            // ->get();
-            
             $sws = null;
         }
         return View::make('scienceworks.showForWorksReport', [

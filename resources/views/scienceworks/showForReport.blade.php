@@ -161,9 +161,9 @@
                         </td>
                         <td>
                         @if($sw->application==0)
-                                    Наявна
+                        Відсутня
                                     @else
-                                    Відсутня
+                                    Наявна
                                     @endif
                         </td>
                         <td>{{$sw->name .' '. $sw->surname .', '. $sw->scrank .', '. $sw->degree}}</td>

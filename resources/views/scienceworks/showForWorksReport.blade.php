@@ -113,7 +113,7 @@
                         <li>
                             <label><input type="radio" name="sciencework" id="all" value='all' checked>
                                 <font style="vertical-align: inherit;">
-                                    <font style="vertical-align: inherit;"> Всі студенти</font>
+                                    <font style="vertical-align: inherit;"> Студенти з роботами</font>
                                 </font>
                             </label>
                         </li>
@@ -128,7 +128,7 @@
                         <li>
                             <label><input type="radio" name="sciencework" id="all" value='all'>
                                 <font style="vertical-align: inherit;">
-                                    <font style="vertical-align: inherit;"> Всі студенти</font>
+                                    <font style="vertical-align: inherit;"> Студенти з роботами</font>
                                 </font>
                             </label>
                         </li>
