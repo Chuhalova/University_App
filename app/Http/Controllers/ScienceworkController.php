@@ -37,7 +37,7 @@ class ScienceworkController extends Controller
         $ct =  Baseinfo::whereId(auth()->user()->baseinfo_id)->first()->cathedra_id;
         if ($request->ajax()) {
             $data = DB::table('students')
-                ->select("baseinfos.id", "baseinfos.name", "baseinfos.surname", "students.degree", "students.specialty", "students.group")
+                ->select("students.id", "baseinfos.name", "baseinfos.surname", "students.degree", "students.specialty", "students.group")
                 ->leftJoin('baseinfos', 'students.baseinfo_id_for_student', '=', 'baseinfos.id')
                 ->leftJoin('users', 'students.baseinfo_id_for_student', '=', 'users.baseinfo_id')
                 ->where('baseinfos.cathedra_id', '=', $ct)

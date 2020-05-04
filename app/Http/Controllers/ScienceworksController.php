@@ -48,6 +48,10 @@ class ScienceworksController extends Controller
             $query->where('scienceworks.status', '=', 'active')
                   ->orWhere('scienceworks.status', '=', 'approved_by_teacher');
         })
+        ->where(function ($query) {
+            $query->whereNull('scienceworks.presenting_date')
+                ->orWhere('scienceworks.presenting_date', '>=', Carbon::now('Europe/Kiev'));
+        })
         ->paginate(6);
     }
 

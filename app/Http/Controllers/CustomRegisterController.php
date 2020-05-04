@@ -76,7 +76,7 @@ class CustomRegisterController extends Controller
     }
 }
 
-public function addTeacher(Request $request)
+public function addTeacher(Request $request, MessageBag $error)
 {
     $rules = array(
         'workbooknumber' =>  ['required', 'exists:teachers,workbooknumber'],
@@ -116,7 +116,8 @@ public function addTeacher(Request $request)
     return redirect('home');
     }
     else{
-        return "not coll";
+        $error->add('token', 'Обліковий запис для даного викладача, виявленого за номером трудової книжки, вже створений.');
+        return redirect('login')->withErrors($error);
     }
 }
 }

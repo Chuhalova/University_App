@@ -140,7 +140,7 @@
         </div>
         @else
         <div style="padding:0px !important;" class="col-sm-12">    			   			
-					<h2 class="title text-center" style='margin-top:30vh'>Наразі у вас немає робіт</h2>    			    				    									
+					<h2 class="title text-center" style='margin-top:30vh'>Наразі у вас немає доступних робіт</h2>    			    				    									
                 </div>
         @endif
     </div>
