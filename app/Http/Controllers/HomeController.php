@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Baseinfo;
+use View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user_id = auth()->user()->baseinfo_id;
+        $person = Baseinfo::whereId($user_id)->first();
+        return View::make('home', [
+            'person' => $person,
+        ]);
     }
 }

@@ -1,3 +1,26 @@
+#homapage-image img, #welcome-image img{
+    width: 300px;
+    height: 300px;
+}
+#homapage-image{
+    text-align: center;
+    height: 50vh;
+    line-height: 50vh;
+}
+#welcome-image{
+    text-align: center;
+
+    height: 80vh;
+    line-height: 80vh;
+}
+#alert-for-logined-users{
+    padding: 0px !important;
+    margin-top: 50px;
+}
+#alert-for-logined-users li h4{
+margin: 10px 0 !important;
+text-align: center;
+}
 #edit-cathedraworker-cont, #app-nav-block, #report-block, #edit-sw-teacher, #edit-topic-cont, #post-topic-cont, #topics-cont, #form-cont, #works-table, #show-topics-cont, #login-form-cont, #teachers-table{
     margin-top: 100px;
 }
@@ -202,6 +225,9 @@
     }
 }
 @media (max-width: 767px) {
+    #alert-for-logined-users li h4{
+        font-size: smaller;
+    }
     .topnav a {
         font-size: 14px;
     }
