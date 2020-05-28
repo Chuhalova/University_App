@@ -82,6 +82,7 @@ class ScienceworkController extends Controller
                         ->orWhere('teachers.end_of_work_date', '>=', Carbon::now('Europe/Kiev'));
                 })
                 ->where("baseinfos.surname", "like", "{$request->teacher}%")
+                ->groupBy('teachers.id')
                 ->get();
             $output = '';
             if (count($data) > 0) {
@@ -114,7 +115,7 @@ class ScienceworkController extends Controller
         $collection = new Collection([]);
         foreach ($data as $d) {
             $collection->push([
-                'name' => $d->specialty_abbr. '' . $d->year . '-' . $d->group,
+                'name' => $d->specialty_abbr. '-' . $d->year . '' . $d->group,
                 'group' => $d->group,
                 'year' => $d->year,
                 'specialty' => $d->specialty

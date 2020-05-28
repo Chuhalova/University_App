@@ -132,7 +132,7 @@
                                     @endif
                         </td>
                         <td>{{$sw->name .' '. $sw->surname .', '. $sw->scrank .', '. $sw->degree}}</td>
-                        <td>{{$sw->sname .' '. $sw->ssurname .', '.$sw->specialty_abbr. '' . $sw->year . '-' . $sw->group}}</td>
+                        <td>{{$sw->sname .' '. $sw->ssurname .', '.$sw->specialty_abbr. '-' . $sw->year . '' . $sw->group}}</td>
                         </tr>
                     @endforeach
                     </tbody>

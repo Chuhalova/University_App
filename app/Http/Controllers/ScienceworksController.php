@@ -271,7 +271,7 @@ class ScienceworksController extends Controller
         if($request->application == null || $request->application == 'all'){
             $checked = false;
             $sws = DB::table('scienceworks')
-            ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+            ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty","students.specialty_abbr as specialty_abbr" , "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
             ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
             ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
             ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')
@@ -283,7 +283,7 @@ class ScienceworksController extends Controller
         else if($request->application == 'without'){
             $checked = true;
             $sws = DB::table('scienceworks')
-            ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty", "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
+            ->select("scienceworks.*", "bit.name as name", "bit.surname as surname", "bis.name as sname", "bis.surname as ssurname","students.year as year","students.group as group","students.specialty as specialty","students.specialty_abbr as specialty_abbr" , "teachers.science_degree as degree", "teachers.scientific_rank as scrank")
             ->leftJoin('students', 'scienceworks.student_id', '=', 'students.id') 
             ->leftJoin('baseinfos as bis', 'students.baseinfo_id_for_student', '=', 'bis.id')
             ->leftJoin('teachers', 'scienceworks.teacher_id', '=', 'teachers.id')

@@ -25,31 +25,31 @@
                             <div class="form-group col-md-12">
                                 <label for="type">{{ __("Тип") }}</label>
                                 <select class="form-control" class='type' id="type" name="type">
-                                    @if($sw->type=='bachaelor coursework')
-                                    <option selected="selected" value='bachaelor coursework'>bachaelor coursework</option>
-                                    <option value='bachaelor dyploma'>bachaelor dyploma</option>
-                                    <option value='major coursework'>major coursework</option>
-                                    <option value='major dyploma'>major dyploma</option>
+                                @if($sw->type=='bachaelor coursework')
+                                    <option selected="selected" value='bachaelor coursework'>курсова робота / бакалавр</option>
+                                    <option value='bachaelor dyploma'>дипломна робота / бакалавр</option>
+                                    <option value='major coursework'>курсова робота / магістр</option>
+                                    <option value='major dyploma'>дипломна робота / магістр</option>
                                     @elseif($sw->type=='bachaelor dyploma')
-                                    <option value='bachaelor coursework'>bachaelor coursework</option>
-                                    <option selected="selected" value='bachaelor dyploma'>bachaelor dyploma</option>
-                                    <option value='major coursework'>major coursework</option>
-                                    <option value='major dyploma'>major dyploma</option>
+                                    <option value='bachaelor coursework'>курсова робота / бакалавр</option>
+                                    <option selected="selected" value='bachaelor dyploma'>дипломна робота / бакалавр</option>
+                                    <option value='major coursework'>курсова робота / магістр</option>
+                                    <option value='major dyploma'>дипломна робота / магістр</option>
                                     @elseif($sw->type=='major coursework')
-                                    <option value='bachaelor coursework'>bachaelor coursework</option>
-                                    <option value='bachaelor dyploma'>bachaelor dyploma</option>
-                                    <option selected="selected" value='major coursework'>major coursework</option>
-                                    <option value='major dyploma'>major dyploma</option>
+                                    <option value='bachaelor coursework'>курсова робота / бакалавр</option>
+                                    <option value='bachaelor dyploma'>дипломна робота / бакалавр</option>
+                                    <option selected="selected" value='major coursework'>курсова робота / магістр</option>
+                                    <option value='major dyploma'>дипломна робота / магістр</option>
                                     @elseif($sw->type=='major dyploma')
-                                    <option value='bachaelor coursework'>bachaelor coursework</option>
-                                    <option value='bachaelor dyploma'>bachaelor dyploma</option>
-                                    <option value='major coursework'>major coursework</option>
-                                    <option selected="selected" value='major dyploma'>major dyploma</option>
+                                    <option value='bachaelor coursework'>курсова робота / бакалавр</option>
+                                    <option value='bachaelor dyploma'>дипломна робота / бакалавр</option>
+                                    <option value='major coursework'>курсова робота / магістр</option>
+                                    <option selected="selected" value='major dyploma'>дипломна робота / магістр</option>
                                     @else
-                                    <option value='bachaelor coursework'>bachaelor coursework</option>
-                                    <option value='bachaelor dyploma'>bachaelor dyploma</option>
-                                    <option value='major coursework'>major coursework</option>
-                                    <option value='major dyploma'>major dyploma</option>
+                                    <option value='bachaelor coursework'>курсова робота / бакалавр</option>
+                                    <option value='bachaelor dyploma'>дипломна робота / бакалавр</option>
+                                    <option value='major coursework'>курсова робота / магістр</option>
+                                    <option value='major dyploma'>дипломна робота / магістр</option>
                                     @endif
                                 </select>
                             </div>
