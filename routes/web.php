@@ -103,5 +103,8 @@ Route::group(['middleware' => ['role:cathedraworker']], function () {
         Route::get('/app-send-letters','MailController@appSendLetters')->name('app-send-letters');
         Route::get('/works-report', "ScienceworksController@worksReport")->name('works-report');
         Route::get('/works-send-letters','MailController@worksSendLetters')->name('works-send-letters');
+        Route::get('/generate-docx', 'HomeController@generateDocx');
+        Route::get('/year-report', 'HomeController@returnYearReportView');
+
     });
 }); 
