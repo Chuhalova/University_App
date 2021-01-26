@@ -8,8 +8,8 @@ use App\Teacher;
 use App\Baseinfo;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use \PDF;
+
 class ScienceworksController extends Controller
 {
     public function getScienceworks($status){
@@ -476,4 +476,18 @@ class ScienceworksController extends Controller
     {
         //
     }
+
+
+    public function fun_pdf(){
+        // $pdf = PDF::loadView('html_template_for_first_page'); //load view page
+        // return $pdf->download('test.pdf'); // download pdf file
+        $view = view('html_template_for_first_page');
+        $html = mb_convert_encoding($view, 'HTML-ENTITIES', 'UTF-8');
+        $html_decode = html_entity_decode($html);
+        $pdf = PDF::loadHTML($html_decode);
+    
+        // Store pdf file in the server
+        return $pdf->download('element_list.pdf');
+    }
+  
 }

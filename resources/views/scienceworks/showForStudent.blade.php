@@ -122,6 +122,14 @@
                                 <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Видалити</button>
                             </form>
                         </td>
+                        @elseif($sw->status == 'active')
+                        <td>
+                            <form style='display:inline-block' action="{{ url('/student/pdf') }}" method="GET">
+                                {{method_field('GET')}}
+                                @csrf
+                                <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Сформувати<br>титульну сторінку</button>
+                            </form>
+                        </td>
                         @else
                         <td>
                             <form hidden style='display:inline-block'>

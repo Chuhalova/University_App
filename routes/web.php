@@ -53,6 +53,9 @@ Route::group(['middleware' => ['role:student']], function () {
     Route::patch('/student/update/{id}', 'ScienceworkController@updateScienceworkAsStudent')->name('update-sciencework-as-student');
     //перевірено
     Route::delete('/student/delete/{id}', 'ScienceworkController@deleteScienceworkAsStudent')->name('delete-sciencework-as-student');
+
+    Route::get('student/pdf', 'ScienceworksController@fun_pdf');
+
 });
 
 Route::group(['middleware' => ['role:teacher']], function () {
