@@ -124,7 +124,7 @@
                         </td>
                         @elseif($sw->status == 'active')
                         <td>
-                            <form style='display:inline-block' action="{{ url('/student/pdf') }}" method="GET">
+                            <form style='display:inline-block' action="{{ url('/student/get-first-page') }}" method="GET">
                                 {{method_field('GET')}}
                                 @csrf
                                 <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Сформувати<br>титульну сторінку</button>

@@ -54,7 +54,7 @@ Route::group(['middleware' => ['role:student']], function () {
     //перевірено
     Route::delete('/student/delete/{id}', 'ScienceworkController@deleteScienceworkAsStudent')->name('delete-sciencework-as-student');
 
-    Route::get('student/pdf', 'ScienceworksController@fun_pdf');
+    Route::get('student/get-first-page', 'ScienceworksController@getFirstPage');
 
 });
 

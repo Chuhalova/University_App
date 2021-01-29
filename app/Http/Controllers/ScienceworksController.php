@@ -1,14 +1,18 @@
 <?php
 
+
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\View;
 use App\Sciencework;
 use App\Student;
 use App\Teacher;
 use App\Baseinfo;
+use App\Cathedra;
 use Carbon\Carbon;
 use DB;
 use \PDF;
+use Illuminate\Support\Str;
 
 class ScienceworksController extends Controller
 {
@@ -478,16 +482,34 @@ class ScienceworksController extends Controller
     }
 
 
-    public function fun_pdf(){
-        // $pdf = PDF::loadView('html_template_for_first_page'); //load view page
-        // return $pdf->download('test.pdf'); // download pdf file
-        $view = view('html_template_for_first_page');
+    public function getFirstPage(){
+        // return View::make('scienceworks.showForReport', [
+        //     'sws' => $sws,
+        // ]); 
+        $auth_user = auth()->user();
+        $user = Baseinfo::whereId($auth_user->baseinfo_id)->first();
+        $user_name = Str::substr($user->name, 0, 1);
+        $student = Student::whereBaseinfo_id_for_student($auth_user->baseinfo_id)->first();
+        $sciencework = Sciencework::whereStudent_id($student->id)->first();
+        $cathedra = Str::lower(Cathedra::whereId($user->cathedra_id) -> first()->name);
+        $teacher = Teacher::whereId($sciencework->teacher_id)->first();
+        $teacher_info = Baseinfo::whereId($teacher->baseinfo_id_for_teacher)->first();
+        $teacher_name = Str::substr($teacher_info->name, 0, 1);
+        $view = view('html_template_for_first_page',[
+            'cathedra' => $cathedra,
+            'user' => $user,
+            'user_name' => $user_name,
+            'sciencework' => $sciencework,
+            'student' => $student,
+            'teacher' => $teacher,
+            'teacher_info' => $teacher_info,
+            'teacher_name' => $teacher_name,
+        ]);
         $html = mb_convert_encoding($view, 'HTML-ENTITIES', 'UTF-8');
         $html_decode = html_entity_decode($html);
         $pdf = PDF::loadHTML($html_decode);
-    
-        // Store pdf file in the server
-        return $pdf->download('element_list.pdf');
+        // return $view;
+        return $pdf->download('element_list.pdf'); 
     }
   
 }
