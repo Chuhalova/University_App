@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\View;
+use Illuminate\Support\MessageBag;
 use App\Sciencework;
 use App\Student;
 use App\Teacher;
@@ -11,9 +12,12 @@ use App\Baseinfo;
 use App\Cathedra;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Auth\Events\Validated;
 use \PDF;
-use Illuminate\Support\Str;
 
+
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
 class ScienceworksController extends Controller
 {
     public function getScienceworks($status){
@@ -122,6 +126,13 @@ class ScienceworksController extends Controller
         return View::make('scienceworks.showForStudent', [
             'sws' => $sws,
             'role' => $role,
+        ]);
+    }
+
+    public function showSourceTool(){
+        $formerrors;
+        return View::make('source_tool',[
+            'formerrors' => $formerrors,
         ]);
     }
     
@@ -510,6 +521,122 @@ class ScienceworksController extends Controller
         $html_decode = html_entity_decode($html);
         $pdf = PDF::loadHTML($html_decode);
         return $pdf->download('firstpage.pdf'); 
+    }
+//     public function addStudent(Request $request, MessageBag $error)
+//     {
+//         $rules = array(
+//             'studnumber' =>  ['required', 'exists:students,studnumber'],
+//             'email' => ['required', 'email','min:5','max:50'],
+//             'password'=> ['required','min:8','max:50'],
+//             'password_confirmation' => 'required|same:password'  
+//         );
+//         $customMessages = [
+//             'studnumber.required' => 'Номер студенського квитка повинен бути вказаний.',
+//             'studnumber.exists' => 'Номер студентського повинен відповідати раніше збереженому номеру студентського в базі.',
+//             'email.required' => 'Адреса електронної пошти повинна бути обовязково вказана.',
+//             'email.email' => 'Адреса електронної пошти повинна мати формат алреси електронної пошти, а не інакший.',
+//             'email.min' => 'Адреса електронної пошти повинна вміщувати не менш ніж 5 символів.',
+//             'email.max' => 'Адреса електронної пошти повинна вміщувати не більш ніж 50 символів.',
+//             'password.required' => 'Пароль повинен бути обовязково вказаний.',
+//             'password_confirmation.required' => 'Підтвердження паролю обовязкове.',
+//             'password.min' => 'Пароль повинен вміщувати більш ніж 8 символів.',
+//             'password.max' => 'Пароль повинен вміщувати менш ніж 50 символів.',
+//             'password_confirmation.same' => 'Паролі повинні співпадати.',
+//         ];
+//         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+//         if ($validator->fails()) {
+//             return Redirect::to('/register-as-student')
+//                 ->withErrors($validator);
+//         } else {
+//         $student = Student::whereStudnumber($request->studnumber)->first();
+//         $baseinfo = Baseinfo::whereId($student->baseinfo_id_for_student)->first();
+//         $checkUser = User::whereBaseinfo_id($student->baseinfo_id_for_student)->first();
+//         if($checkUser==null){
+//             $user = new User();
+//             $user->baseinfo_id = $baseinfo->id;
+//             $user->email = $request->email;
+//             $user->password = Hash::make($request->password);
+//             $user->save();
+//             $user->assignRole('student');
+//             Auth::login($user);
+//             return redirect('home');
+//         }
+//         else{
+//             $error->add('token', 'Обліковий запис для даного студенту, виявленого за номером студентського квитка, вже створений.');
+//             return redirect('login')->withErrors($error);
+//         }
+//     }
+// }
+
+
+
+    public function sourceTool(Request $request, MessageBag $error){
+        $webrules = array(
+            'web-source-name' => ['required', 'min:2','max:50'],
+            'web-source-authorname' => ['min:2', 'max:50'],
+            'web-source-fathername' => ['min:2', 'max:50'],
+            'web-source-surname' => ['min:2', 'max:50'],
+            // 'web-source-link' => ['required', 'url'],
+
+        );
+        $rules = array(
+            'source-surname' => ['min:2', 'max:50'],
+            'source-authorname' => ['min:2', 'max:50'],
+            'source-fathername' => ['min:2', 'max:50'],
+            'source-name' => ['required', 'min:2','max:50'],
+            'source-type' => ['required', 'min:2','max:50'],
+            'source-year' => ['date'],
+            'source-pages' => ['min:1','max:15'],
+        );
+        $webCustomMessages = [
+            'web-source-name.required' => 'Назва роботи повинна бути вказана',
+            'web-source-name.min' => 'Назва роботи повинна вміщувати не менш ніж 2 символи',
+            'web-source-name.max' => 'Назва роботи повинна вміщувати не більш ніж 50 символів',
+            'web-source-authorname.min' => "Ім'я автора повинно вміщувати не менш ніж 2 символи",
+            'web-source-authorname.max' => "Ім'я автора повинно вміщувати не більш ніж 50 символів",
+            'web-source-fathername.min' => 'По батькові автора повинно вміщувати не менш ніж 2 символи',
+            'web-source-fathername.max' => 'По батькові автора повинно вміщувати не більш ніж 50 символів',
+            'web-source-surname.min' => 'Прізвище автора повинно вміщувати не менш ніж 3 символи',
+            'web-source-surname.max' => 'Прізвище автора повинно вміщувати не більш ніж 50 символів',
+            // 'web-source-link.required' => 'Посилання на ресурс повинно бути вказане',
+            // 'web-source-link.url' => 'Посилання не ресурс повинно мати ознаки посилання',
+        ];
+        $customMessages = [
+            'source-surname.min' => 'Прізвище автора повинно вміщувати не менш ніж 2 символи',
+            'source-surname.max' => 'Прізвище автора повинно вміщувати не більш ніж 50 символів',
+            'source-authorname.min' => "Ім'я автора повинно вміщувати не менш ніж 2 символи",
+            'source-authorname.max' => "Ім'я автора повинно вміщувати не більш ніж 50 символів",
+            'source-fathername.min' => 'По батькові автора повинно вміщувати не менш ніж 2 символи',
+            'source-fathername.max' => 'По батькові автора повинно вміщувати не більш ніж 50 символів',
+            'source-name.required' => 'Назва роботи повинна бути вказана',
+            'source-name.min' => 'Назва роботи повинна вміщувати не менш ніж 2 символи',
+            'source-name.max' => 'Назва роботи повинна вміщувати не більш ніж 50 символів',
+            'source-type.required' => 'Тип роботи повинен бути вказаний',
+            'source-type.min' => 'Тип роботи повинен вміщувати не менш ніж 2 символи',
+            'source-type.max' => 'Тип роботи повинен вміщувати не більш ніж 50 символів',
+            'source-year.date' => "Поле 'рік' повинно бути заповнене коректно",
+            'source-pages.min' => "Поле 'сторінки' повинно мати не менш ніж 2 символи",
+            'source-pages.max' => "Поле 'сторінки' повинно мати не більш ніж 50 символів",
+        ];
+            if($request->select_source_type =='web-source'){
+                $webValidator = \Illuminate\Support\Facades\Validator::make($request->all(), $webrules, $webCustomMessages);
+                if ($webValidator->fails()) {
+                //     $formerrors = $webValidator->errors()->all();
+                //     return Redirect::to('/student/source-tool/')
+                //          ->with($formerrors);
+                // } else {
+                //     return "everything is good for web source";
+                // }
+            }
+            else{
+                $otherValidator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+                if ($otherValidator->fails()) {
+                //     return Redirect::to('/student/source-tool/')
+                //          ->withErrors($otherValidator);
+                // } else {
+                //     return "everything is good for other sources";
+                // }
+            }
     }
   
 }

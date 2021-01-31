@@ -1,0 +1,79 @@
+1. Бойко В. І. Схемотехніка електронних систем. Кн. 2. Цифрова схемотехніка : підручник / Бойко В. І. — К. : Вища шк., 2004. — 423 с.
+2. УэйкМ.ЯзыкСиРуководстводляначинающих/УэйкМ.,ПратаС.,МартинД. ; [пер. с англ.]. — М. : Мир, 1988.—512с.
+3. Комплекс «еФізика» [електронний ресурс] / Ю. П. Бендес — Режим доступу: http://efizika.org.ua/complex/
+
+surname authorname. fathername. name : type / surname authorname. fathername. : year. - pages.
+name [type] / authorname. fathername. surname - Режим доступу: link
+
+for web source:
+                        <div id='web-source-name-block' class="form-group col-md-12">
+                            <label for="web-source-name">Назва роботи</label>
+                            <input class="form-control @error('web-source-name') is-invalid @enderror" type="text" name="web-source-name" id="web-source-name" value="{{ old('web-source-name') }}" required autocomplete="web-source-name" autofocus>
+                        </div>
+                        <div id='web-source-authorname-block' class="form-group col-md-12">
+                            <label for="web-source-authorname">Назва роботи</label>
+                            <input class="form-control @error('web-source-authorname') is-invalid @enderror" type="text" name="web-source-authorname" id="web-source-authorname" value="{{ old('web-source-authorname') }}" required autocomplete="web-source-authorname" autofocus>
+                        </div>
+                        <div id='web-source-fathername-block' class="form-group col-md-12">
+                            <label for="web-source-fathername">Назва роботи</label>
+                            <input class="form-control @error('web-source-fathername') is-invalid @enderror" type="text" name="web-source-fathername" id="web-source-fathername" value="{{ old('web-source-fathername') }}" required autocomplete="web-source-fathername" autofocus>
+                        </div>
+                        <div id='web-source-link-block' class="form-group col-md-12">
+                            <label for="web-source-link">Назва роботи</label>
+                            <input class="form-control @error('web-source-link') is-invalid @enderror" type="text" name="web-source-link" id="web-source-link" value="{{ old('web-source-link') }}" required autocomplete="web-source-link" autofocus>
+                        </div>
+
+            $("#web-source-name-block").show();
+            $("#web-source-authorname-block").show();
+            $("#web-source-fathername-block").show();
+            $("#web-source-link-block").show();
+            $("#source-surname-block").hide();
+            $("#source-authorname-block").hide();
+            $("#source-fathername-block").hide();
+            $("#source-name-block").hide();
+            $("#source-type-block").hide();
+            $("#source-year-block").hide();
+            $("#source-pages-block").hide();
+
+
+for another sources:
+                        <div id='source-surname-block' class="form-group col-md-12">
+                            <label for="source-surname">Назва роботи</label>
+                            <input class="form-control @error('source-surname') is-invalid @enderror" type="text" name="source-surname" id="source-surname" value="{{ old('source-surname') }}" required autocomplete="source-surname" autofocus>
+                        </div>
+                        <div id='source-authorname-block' class="form-group col-md-12">
+                            <label for="source-authorname">Назва роботи</label>
+                            <input class="form-control @error('source-authorname') is-invalid @enderror" type="text" name="source-authorname" id="source-authorname" value="{{ old('source-authorname') }}" required autocomplete="source-authorname" autofocus>
+                        </div>
+                        <div id='source-fathername-block' class="form-group col-md-12">
+                            <label for="source-fathername">Назва роботи</label>
+                            <input class="form-control @error('source-fathername') is-invalid @enderror" type="text" name="source-fathername" id="source-fathername" value="{{ old('source-fathername') }}" required autocomplete="source-fathername" autofocus>
+                        </div>
+                        <div id='source-name-block' class="form-group col-md-12">
+                            <label for="source-name">Назва роботи</label>
+                            <input class="form-control @error('source-name') is-invalid @enderror" type="text" name="source-name" id="source-name" value="{{ old('source-name') }}" required autocomplete="source-name" autofocus>
+                        </div>
+                        <div id='source-type-block' class="form-group col-md-12">
+                            <label for="source-type">Назва роботи</label>
+                            <input class="form-control @error('source-type') is-invalid @enderror" type="text" name="source-type" id="source-type" value="{{ old('source-type') }}" required autocomplete="source-type" autofocus>
+                        </div>
+                        <div id='source-year-block' class="form-group col-md-12">
+                            <label for="source-year">Назва роботи</label>
+                            <input class="form-control @error('source-year') is-invalid @enderror" type="text" name="source-year" id="source-year" value="{{ old('source-year') }}" required autocomplete="source-year" autofocus>
+                        </div>
+                        <div id='source-pages-block' class="form-group col-md-12">
+                            <label for="source-pages">Назва роботи</label>
+                            <input class="form-control @error('source-pages') is-invalid @enderror" type="text" name="source-pages" id="source-pages" value="{{ old('source-pages') }}" required autocomplete="source-pages" autofocus>
+                        </div>
+
+            $("#source-surname-block").show();
+            $("#source-authorname-block").show();
+            $("#source-fathername-block").show();
+            $("#source-name-block").show();
+            $("#source-type-block").show();
+            $("#source-year-block").show();
+            $("#source-pages-block").show();
+            $("#web-source-name-block").hide();
+            $("#web-source-authorname-block").hide();
+            $("#web-source-fathername-block").hide();
+            $("#web-source-link-block").hide();
