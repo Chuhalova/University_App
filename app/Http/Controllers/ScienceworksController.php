@@ -130,10 +130,7 @@ class ScienceworksController extends Controller
     }
 
     public function showSourceTool(){
-        $formerrors;
-        return View::make('source_tool',[
-            'formerrors' => $formerrors,
-        ]);
+        return View::make('source_tool');
     }
     
     
@@ -621,12 +618,11 @@ class ScienceworksController extends Controller
             if($request->select_source_type =='web-source'){
                 $webValidator = \Illuminate\Support\Facades\Validator::make($request->all(), $webrules, $webCustomMessages);
                 if ($webValidator->fails()) {
-                //     $formerrors = $webValidator->errors()->all();
                 //     return Redirect::to('/student/source-tool/')
                 //          ->with($formerrors);
                 // } else {
                 //     return "everything is good for web source";
-                // }
+                }
             }
             else{
                 $otherValidator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
@@ -635,7 +631,7 @@ class ScienceworksController extends Controller
                 //          ->withErrors($otherValidator);
                 // } else {
                 //     return "everything is good for other sources";
-                // }
+                }
             }
     }
   
