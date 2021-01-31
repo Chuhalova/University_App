@@ -26,6 +26,17 @@
                                 <input id="name" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
                             </div>
                             <div class="form-group col-md-12">
+                                <label for="fathername">{{ __('По-батькові') }}</label>
+                                <input id="name" type="text" class="form-control @error('fathername') is-invalid @enderror" name="fathername" value="{{ old('fathername') }}" required autocomplete="fathername" autofocus>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="gender">{{ __('Стать') }}</label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="male">чоловіча</option>
+                                    <option value="female">жіноча</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label for="email">{{ __('Email-адреса') }}</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                             </div>

@@ -17,6 +17,8 @@ class CreateBaseinfosTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('surname');
+            $table->string('fathername');
+            $table->enum('gender',['male','female'])->default('male');
             $table->integer('cathedra_id')->unsigned();
             $table->foreign('cathedra_id')->references('id')->on('cathedras');
             $table->timestamps();

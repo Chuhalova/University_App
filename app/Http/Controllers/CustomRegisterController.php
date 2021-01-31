@@ -126,7 +126,8 @@ public function addCathedraworker(Request $request)
 {
     $rules = array(
         'name' =>  ['required', 'min:2','max:50'],
-        'surname' =>  ['required', 'min:5','max:50'],
+        'surname' =>  ['required', 'min:3','max:50'],
+        'fathername' =>  ['required', 'min:3','max:50'],
         'email' => ['required', 'email','min:5','max:50'],
         'password'=> ['required','min:8','max:50'],
         'password_confirmation' => 'required|same:password'
@@ -140,8 +141,11 @@ public function addCathedraworker(Request $request)
         'name.min' => "Ім'я повинно вміщувати не менш ніж 2 символи.",
         'name.max' => "Ім'я повинно вміщувати не більш ніж 50 символів.",
         'surname.required' => "Прізвище повинно бути обов'язково вказане.",
-        'surname.min' => "Прізвище повинно вміщувати не менш ніж 5 символів.",
+        'surname.min' => "Прізвище повинно вміщувати не менш ніж 3 символи.",
         'surname.max' => "Прізвище повинно вміщувати не більш ніж 50 символів.",
+        'fathername.required' => "По-батькові повинно бути обов'язково вказане.",
+        'fathername.min' => "По-батькові повинно вміщувати не менш ніж 3 символи.",
+        'fathername.max' => "По-батькові повинно вміщувати не більш ніж 50 символів.",
         'password.required' => "Пароль повинен бути обов'язково вказаний.",
         'password.min' => "Пароль повинен вміщувати не менш ніж 8 символів.",
         'password.max' => "Пароль повинен вміщувати не більш ніж 50 символів.",
@@ -157,6 +161,8 @@ public function addCathedraworker(Request $request)
     $baseinfo = new Baseinfo();
     $baseinfo->name = $request->name;
     $baseinfo->surname = $request->surname;
+    $baseinfo->fathername = $request->fathername;
+    $baseinfo->gender=$request->gender;
     $baseinfo->cathedra_id=$request->cathedra;
     $baseinfo->save();
     $user = new User();

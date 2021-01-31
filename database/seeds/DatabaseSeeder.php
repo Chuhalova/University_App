@@ -41,6 +41,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost1->name = 'Ігор';
         $baseinfost1->surname = 'Кондро';
         $baseinfost1->cathedra_id = 1;
+        $baseinfost1->fathername = 'Володимирович';
+        $baseinfost1->gender = 'male';
         $baseinfost1->save();
 
         $student1 = new Student();
@@ -71,6 +73,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost2->name = 'Руслан';
         $baseinfost2->surname = 'Ганюк';
         $baseinfost2->cathedra_id = 1;
+        $baseinfost2->fathername = 'Володимирович';
+        $baseinfost2->gender = 'male';
         $baseinfost2->save();
 
         $student2 = new Student();
@@ -90,6 +94,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost3->name = 'Олег';
         $baseinfost3->surname = 'Стельмащук';
         $baseinfost3->cathedra_id = 1;
+        $baseinfost3->fathername = 'Володимирович';
+        $baseinfost3->gender = 'male';
         $baseinfost3->save();
 
         $student3 = new Student();
@@ -111,6 +117,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost4->name = 'Василь';
         $baseinfost4->surname = 'Кресяк';
         $baseinfost4->cathedra_id = 1;
+        $baseinfost4->fathername = 'Володимирович';
+        $baseinfost4->gender = 'male';
         $baseinfost4->save();
 
         $student4 = new Student();
@@ -132,6 +140,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost5->name = 'Руслана';
         $baseinfost5->surname = 'Яремчук';
         $baseinfost5->cathedra_id = 1;
+        $baseinfost5->fathername = 'Володимирівна';
+        $baseinfost5->gender = 'female';
         $baseinfost5->save();
 
         $student5 = new Student();
@@ -152,6 +162,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost6->id = 6;
         $baseinfost6->name = 'Наталія';
         $baseinfost6->surname = 'Жолудєва';
+        $baseinfost6->fathername = 'Володимирівна';
+        $baseinfost6->gender = 'female';
         $baseinfost6->cathedra_id = 1;
         $baseinfost6->save();
 
@@ -173,6 +185,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost7->id = 7;
         $baseinfost7->name = 'Тетяна';
         $baseinfost7->surname = 'Ризванюк';
+        $baseinfost7->fathername = 'Володимирівна';
+        $baseinfost7->gender = 'female';
         $baseinfost7->cathedra_id = 1;
         $baseinfost7->save();
 
@@ -194,6 +208,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost8->name = 'Ярослав';
         $baseinfost8->surname = 'Карпин';
         $baseinfost8->cathedra_id = 1;
+        $baseinfost8->fathername = 'Володимирович';
+        $baseinfost8->gender = 'male';
         $baseinfost8->save();
 
         $student8 = new Student();
@@ -214,6 +230,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost9->name = 'Ярослав';
         $baseinfost9->surname = 'Карпин';
         $baseinfost9->cathedra_id = 1;
+        $baseinfost9->fathername = 'Володимирович';
+        $baseinfost9->gender = 'male';
         $baseinfost9->save();
 
         $student9 = new Student();
@@ -234,6 +252,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost10->id = 10;
         $baseinfost10->name = 'Елеонора';
         $baseinfost10->surname = 'Матюшко';
+        $baseinfost10->fathername = 'Володимирівна';
+        $baseinfost10->gender = 'female';
         $baseinfost10->cathedra_id = 1;
         $baseinfost10->save();
 
@@ -255,6 +275,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost11->name = 'Володимир';
         $baseinfost11->surname = 'Коваль';
         $baseinfost11->cathedra_id = 1;
+        $baseinfost11->fathername = 'Володимирович';
+        $baseinfost11->gender = 'male';
         $baseinfost11->save();
 
         $student11 = new Student();
@@ -273,6 +295,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost12->id = 12;
         $baseinfost12->name = 'Ірина';
         $baseinfost12->surname = 'Герега';
+        $baseinfost12->fathername = 'Володимирівна';
+        $baseinfost12->gender = 'female';
         $baseinfost12->cathedra_id = 1;
         $baseinfost12->save();
 
@@ -293,6 +317,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost13->name = 'Сергій';
         $baseinfost13->surname = 'Михальчук';
         $baseinfost13->cathedra_id = 1;
+        $baseinfost13->fathername = 'Володимирович';
+        $baseinfost13->gender = 'male';
         $baseinfost13->save();
 
         $student13 = new Student();
@@ -312,6 +338,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost14->name = 'Любомир';
         $baseinfost14->surname = 'Лоневський';
         $baseinfost14->cathedra_id = 1;
+        $baseinfost14->fathername = 'Володимирович';
+        $baseinfost14->gender = 'male';
         $baseinfost14->save();
 
         $student14 = new Student();
@@ -331,6 +359,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost15->name = 'Андрій';
         $baseinfost15->surname = 'Магдяк';
         $baseinfost15->cathedra_id = 1;
+        $baseinfost15->fathername = 'Володимирович';
+        $baseinfost15->gender = 'male';
         $baseinfost15->save();
 
         $student15 = new Student();
@@ -349,6 +379,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost16->id = 16;
         $baseinfost16->name = 'Анжеліка';
         $baseinfost16->surname = 'Любченко';
+        $baseinfost16->fathername = 'Володимирівна';
+        $baseinfost16->gender = 'female';
         $baseinfost16->cathedra_id = 1;
         $baseinfost16->save();
 
@@ -369,6 +401,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot1->name = 'Володимир';
         $baseinfot1->surname = 'Скиба';
         $baseinfot1->cathedra_id = 1;
+        $baseinfot1->fathername = 'Володимирович';
+        $baseinfot1->gender = 'male';
         $baseinfot1->save();
 
         $teacher1 = new Teacher();
@@ -407,6 +441,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot2->name = 'Орест';
         $baseinfot2->surname = 'Вітик';
         $baseinfot2->cathedra_id = 1;
+        $baseinfot2->fathername = 'Володимирович';
+        $baseinfot2->gender = 'male';
         $baseinfot2->save();
 
         $teacher2 = new Teacher();
@@ -435,6 +471,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot3->id = 23;
         $baseinfot3->name = 'Любов';
         $baseinfot3->surname = 'Шахрайчук';
+        $baseinfot3->fathername = 'Володимирівна';
+        $baseinfot3->gender = 'female';
         $baseinfot3->cathedra_id = 1;
         $baseinfot3->save();
 
@@ -465,6 +503,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot4->name = 'Вадим';
         $baseinfot4->surname = 'Хижняк';
         $baseinfot4->cathedra_id = 1;
+        $baseinfot4->fathername = 'Володимирович';
+        $baseinfot4->gender = 'male';
         $baseinfot4->save();
 
 
@@ -496,6 +536,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot5->name = 'Августин';
         $baseinfot5->surname = 'Хитрий';
         $baseinfot5->cathedra_id = 1;
+        $baseinfot5->fathername = 'Володимирович';
+        $baseinfot5->gender = 'male';
         $baseinfot5->save();
 
 
@@ -527,6 +569,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot6->name = 'Адам';
         $baseinfot6->surname = 'Холод';
         $baseinfot6->cathedra_id = 1;
+        $baseinfot6->fathername = 'Володимирович';
+        $baseinfot6->gender = 'male';
         $baseinfot6->save();
 
 
@@ -557,6 +601,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot7->name = 'Альберт';
         $baseinfot7->surname = 'Романов';
         $baseinfot7->cathedra_id = 1;
+        $baseinfot7->fathername = 'Володимирович';
+        $baseinfot7->gender = 'male';
         $baseinfot7->save();
 
 
@@ -576,6 +622,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot8->name = 'Антон';
         $baseinfot8->surname = 'Рудик';
         $baseinfot8->cathedra_id = 1;
+        $baseinfot8->fathername = 'Володимирович';
+        $baseinfot8->gender = 'male';
         $baseinfot8->save();
 
 
@@ -595,6 +643,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot9->name = 'Артем';
         $baseinfot9->surname = 'Рудь';
         $baseinfot9->cathedra_id = 1;
+        $baseinfot9->fathername = 'Володимирович';
+        $baseinfot9->gender = 'male';
         $baseinfot9->save();
 
 
@@ -614,6 +664,8 @@ class DatabaseSeeder extends Seeder
         $baseinfocw1->name = 'Боголюб';
         $baseinfocw1->surname = 'Попіль';
         $baseinfocw1->cathedra_id = 1;
+        $baseinfocw1->fathername = 'Володимирович';
+        $baseinfocw1->gender = 'male';
         $baseinfocw1->save();
 
         $usercw1 = new User();
@@ -629,6 +681,8 @@ class DatabaseSeeder extends Seeder
         $baseinfocw2->name = 'Борис';
         $baseinfocw2->surname = 'Кузьменко';
         $baseinfocw2->cathedra_id = 1;
+        $baseinfocw2->fathername = 'Володимирович';
+        $baseinfocw2->gender = 'male';
         $baseinfocw2->save();
 
         $baseinfost21 = new Baseinfo();
@@ -636,6 +690,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost21->name = 'Єгор';
         $baseinfost21->surname = 'Кондро';
         $baseinfost21->cathedra_id = 2;
+        $baseinfost21->fathername = 'Володимирович';
+        $baseinfost21->gender = 'male';
         $baseinfost21->save();
 
         $student21 = new Student();
@@ -664,6 +720,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost22->id = 202;
         $baseinfost22->name = 'Оксана';
         $baseinfost22->surname = 'Наганюк';
+        $baseinfost22->fathername = 'Володимирівна';
+        $baseinfost22->gender = 'female';
         $baseinfost22->cathedra_id = 2;
         $baseinfost22->save();
 
@@ -685,6 +743,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost23->name = 'Тимофій';
         $baseinfost23->surname = 'Пастельмащук';
         $baseinfost23->cathedra_id = 2;
+        $baseinfost23->fathername = 'Володимирович';
+        $baseinfost23->gender = 'male';
         $baseinfost23->save();
 
         $student23 = new Student();
@@ -706,6 +766,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost24->name = 'Василь';
         $baseinfost24->surname = 'Хресяк';
         $baseinfost24->cathedra_id = 2;
+        $baseinfost24->fathername = 'Володимирович';
+        $baseinfost24->gender = 'male';
         $baseinfost24->save();
 
         $student24 = new Student();
@@ -725,6 +787,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost25->name = 'Оксанаа';
         $baseinfost25->surname = 'Кармецицюк';
         $baseinfost25->cathedra_id = 2;
+        $baseinfost25->fathername = 'Володимирівна';
+        $baseinfost25->gender = 'female';
         $baseinfost25->save();
 
         $student25 = new Student();
@@ -744,6 +808,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost26->name = 'Роксолана';
         $baseinfost26->surname = 'Хохлушєва';
         $baseinfost26->cathedra_id = 2;
+        $baseinfost26->fathername = 'Володимирівна';
+        $baseinfost26->gender = 'female';
         $baseinfost26->save();
 
         $student26 = new Student();
@@ -763,6 +829,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost27->id = 207;
         $baseinfost27->name = 'Роксолана';
         $baseinfost27->surname = 'Коливанюк';
+        $baseinfost27->fathername = 'Володимирівна';
+        $baseinfost27->gender = 'female';
         $baseinfost27->cathedra_id = 2;
         $baseinfost27->save();
 
@@ -783,6 +851,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost28->id = 208;
         $baseinfost28->name = 'Світлана';
         $baseinfost28->surname = 'Сарпиненко';
+        $baseinfost28->fathername = 'Володимирівна';
+        $baseinfost28->gender = 'female';
         $baseinfost28->cathedra_id = 2;
         $baseinfost28->save();
 
@@ -805,6 +875,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost29->id = 209;
         $baseinfost29->name = 'Оксана';
         $baseinfost29->surname = 'Сарпин';
+        $baseinfost29->fathername = 'Володимирівна';
+        $baseinfost29->gender = 'female';
         $baseinfost29->cathedra_id = 2;
         $baseinfost29->save();
 
@@ -825,6 +897,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost210->id = 2010;
         $baseinfost210->name = 'Елеонора';
         $baseinfost210->surname = 'Сатюшко';
+        $baseinfost210->fathername = 'Володимирівна';
+        $baseinfost210->gender = 'female';
         $baseinfost210->cathedra_id = 2;
         $baseinfost210->save();
 
@@ -846,6 +920,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost211->name = 'Володимир';
         $baseinfost211->surname = 'Коваленко';
         $baseinfost211->cathedra_id = 2;
+        $baseinfost211->fathername = 'Володимирович';
+        $baseinfost211->gender = 'male';
         $baseinfost211->save();
 
         $student211 = new Student();
@@ -865,6 +941,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost212->id = 2012;
         $baseinfost212->name = 'Ірина';
         $baseinfost212->surname = 'Герега';
+        $baseinfost212->fathername = 'Володимирівна';
+        $baseinfost212->gender = 'female';
         $baseinfost212->cathedra_id = 2;
         $baseinfost212->save();
 
@@ -885,6 +963,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost213->name = 'Сергій';
         $baseinfost213->surname = 'Михацицюк';
         $baseinfost213->cathedra_id = 2;
+        $baseinfost213->fathername = 'Володимирович';
+        $baseinfost213->gender = 'male';
         $baseinfost213->save();
 
         $student213 = new Student();
@@ -905,6 +985,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost214->name = 'Залюбомир';
         $baseinfost214->surname = 'Лоневський';
         $baseinfost214->cathedra_id = 2;
+        $baseinfost214->fathername = 'Володимирович';
+        $baseinfost214->gender = 'male';
         $baseinfost214->save();
 
         $student214 = new Student();
@@ -924,6 +1006,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost215->name = 'Андрій';
         $baseinfost215->surname = 'Марак';
         $baseinfost215->cathedra_id = 2;
+        $baseinfost215->fathername = 'Володимирович';
+        $baseinfost215->gender = 'male';
         $baseinfost215->save();
 
         $student215 = new Student();
@@ -942,6 +1026,8 @@ class DatabaseSeeder extends Seeder
         $baseinfost216->id = 2016;
         $baseinfost216->name = 'Анжеліка';
         $baseinfost216->surname = 'Залюбченко';
+        $baseinfost216->fathername = 'Володимирівна';
+        $baseinfost216->gender = 'female';
         $baseinfost216->cathedra_id = 2;
         $baseinfost216->save();
 
@@ -962,6 +1048,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot21->name = 'Володимир';
         $baseinfot21->surname = 'Риба';
         $baseinfot21->cathedra_id = 2;
+        $baseinfot21->fathername = 'Володимирович';
+        $baseinfot21->gender = 'male';
         $baseinfot21->save();
 
         $teacher21 = new Teacher();
@@ -989,6 +1077,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot22->name = 'Орест';
         $baseinfot22->surname = 'Квітик';
         $baseinfot22->cathedra_id = 2;
+        $baseinfot22->fathername = 'Володимирович';
+        $baseinfot22->gender = 'male';
         $baseinfot22->save();
 
         $teacher22 = new Teacher();
@@ -1006,6 +1096,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot23->id = 2023;
         $baseinfot23->name = 'Залюбов';
         $baseinfot23->surname = 'Мосійчук';
+        $baseinfot23->fathername = 'Володимирівна';
+        $baseinfot23->gender = 'female';
         $baseinfot23->cathedra_id = 2;
         $baseinfot23->save();
 
@@ -1025,6 +1117,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot24->name = 'Вадим';
         $baseinfot24->surname = 'Хижак';
         $baseinfot24->cathedra_id = 2;
+        $baseinfot24->fathername = 'Володимирович';
+        $baseinfot24->gender = 'male';
         $baseinfot24->save();
 
         $teacher24 = new Teacher();
@@ -1042,6 +1136,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot25->name = 'Орест';
         $baseinfot25->surname = 'Ситий';
         $baseinfot25->cathedra_id = 2;
+        $baseinfot25->fathername = 'Володимирович';
+        $baseinfot25->gender = 'male';
         $baseinfot25->save();
 
         $teacher25 = new Teacher();
@@ -1059,6 +1155,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot26->id = 2026;
         $baseinfot26->name = 'Адам';
         $baseinfot26->surname = 'Голод';
+        $baseinfot26->fathername = 'Володимирович';
+        $baseinfot26->gender = 'male';
         $baseinfot26->cathedra_id = 2;
         $baseinfot26->save();
 
@@ -1078,6 +1176,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot27->name = 'Альберт';
         $baseinfot27->surname = 'Оксаманов';
         $baseinfot27->cathedra_id = 2;
+        $baseinfot27->fathername = 'Володимирович';
+        $baseinfot27->gender = 'male';
         $baseinfot27->save();
 
         $teacher27 = new Teacher();
@@ -1096,6 +1196,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot28->name = 'Антон';
         $baseinfot28->surname = 'Рудик';
         $baseinfot28->cathedra_id = 2;
+        $baseinfot28->fathername = 'Володимирович';
+        $baseinfot28->gender = 'male';
         $baseinfot28->save();
 
         $teacher28 = new Teacher();
@@ -1114,6 +1216,8 @@ class DatabaseSeeder extends Seeder
         $baseinfot29->name = 'Артем';
         $baseinfot29->surname = 'Рудь';
         $baseinfot29->cathedra_id = 2;
+        $baseinfot29->fathername = 'Володимирович';
+        $baseinfot29->gender = 'male';
         $baseinfot29->save();
 
         $teacher29 = new Teacher();
@@ -1278,6 +1382,8 @@ class DatabaseSeeder extends Seeder
         $baseinfocw21->id = 2031;
         $baseinfocw21->name = 'Вадим';
         $baseinfocw21->surname = 'Артемійчук';
+        $baseinfocw21->fathername = 'Володимирович';
+        $baseinfocw21->gender = 'male';
         $baseinfocw21->cathedra_id = 2;
         $baseinfocw21->save();
 
@@ -1293,6 +1399,8 @@ class DatabaseSeeder extends Seeder
         $baseinfocw22->id = 2032;
         $baseinfocw22->name = 'Ангеліна';
         $baseinfocw22->surname = 'Шульменко';
+        $baseinfocw22->fathername = 'Володимирівна';
+        $baseinfocw22->gender = 'female';
         $baseinfocw22->cathedra_id = 2;
         $baseinfocw22->save();
 
@@ -1300,6 +1408,8 @@ class DatabaseSeeder extends Seeder
         $baseinfosa->id = 41;
         $baseinfosa->name = 'Вероніка';
         $baseinfosa->surname = 'Чухалова';
+        $baseinfosa->fathername = 'Володимирівна';
+        $baseinfosa->gender = 'female';
         $baseinfosa->cathedra_id = 2;
         $baseinfosa->save();
 
