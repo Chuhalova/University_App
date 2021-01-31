@@ -15,53 +15,57 @@
 </HEAD>
 <BODY LANG="en" DIR="LTR">
 <P STYLE="text-align:center;">
-<FONT FACE="Times New Roman, serif"><FONT STYLE="font-size: 14pt">Міністерство освіти і науки України </FONT></FONT>
+<FONT FACE="Times New Roman, serif"><FONT STYLE="font-size: 14pt">Міністерство освіти і науки України</FONT></FONT>
 </P>
 <P STYLE="text-align:center;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">КИЇВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ</FONT></FONT>
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Київський національний університет імені Тараса Шевченка</FONT></FONT>
 </P>
 <P STYLE="text-align:center;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">ІМЕНІ ТАРАСА ШЕВЧЕНКА</FONT></FONT>
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Кафедра {{$cathedra}}</FONT></FONT>
 </P>
 <P STYLE="text-align:center;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Кафедра {{$cathedra}} </FONT></FONT>
-</P>
-<P STYLE="text-align:center;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt"> {{$sciencework->topic}} </FONT></FONT>
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt"> {{$sciencework->topic}}</FONT></FONT>
 </P>
 <br>
 <P STYLE="text-align:center;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Текстова частина до курсової роботи </FONT></FONT>
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Курсова робота</FONT></FONT>
 </P>
 <P STYLE="text-align:center;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">за спеціальністю „{{$student->specialty}}”. </FONT></FONT>
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Пояснювальна записка</FONT></FONT>
 </P>
 <br><br>
-<P STYLE="text-align: right;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Керівник
-курсової роботи </FONT></FONT>
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Виконавець</FONT></FONT>
 </P>
-<P STYLE="text-align: right;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">{{$teacher->science_degree}}, {{$teacher->scientific_rank}} {{$teacher_info->surname}} {{$teacher_name}}. </FONT></FONT>
+@if($user->gender=="female")
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">студентка групи {{$student->specialty_abbr}} - {{$student->year}}{{$student->group}}</FONT></FONT>
 </P>
-<P STYLE="text-align: right;">
-“<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">____”
-__________ {{now()->year}} р. </FONT></FONT>
+@else
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">студент групи {{$student->specialty_abbr}} - {{$student->year}}{{$student->group}}</FONT></FONT>
 </P>
-<br><br>
-<P STYLE="text-align: right;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Виконав
-студент {{$student->specialty_abbr}} - {{$student->year}}{{$student->group}}</FONT></FONT>
+@endif
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">________________________ {{$user_name}}. {{$user_fathername}}. {{$user->surname}}</FONT></FONT>
 </P>
-<P STYLE="text-align: right;">
-<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">{{$user->surname}} 
-{{$user_name}}.</FONT></FONT>
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">(підпис, дата)</FONT></FONT>
 </P>
-<P STYLE="text-align: right;">
-“<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">____”
-__________ {{now()->year}} р. </FONT></FONT>
+<br>
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Керівник</FONT></FONT>
 </P>
-<br><br><br><br><br><br>
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">{{$teacher->scientific_rank}}</FONT></FONT>
+</P>
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">________________________ {{$teacher->science_degree}} {{$teacher_name}}. {{$teacher_fathername}}. {{$teacher_info->surname}}</FONT></FONT>
+</P>
+<P STYLE="text-align:left;">
+<FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">(підпис, дата)</FONT></FONT>
+</P>
+<br><br><br>
 <P STYLE="text-align:center;">
 <FONT FACE="Times New Roman, serif"><FONT  STYLE="font-size: 14pt">Київ-{{now()->year}}</FONT></FONT>
 </P>
