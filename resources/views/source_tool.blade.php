@@ -74,31 +74,34 @@
                         <div class="status alert alert-success" style="display: none"></div>
                         
                         <form>
-                        <div class="form-group col-md-12">
+
+             <div class="form-group col-md-12">
+
                             <select class="form-control" name="select_source_type"  id="select_source_type">
+                                <option value="0">Оберіть тип джерела</option>
                                  <option value="web-source">Електронне джерело</option>
                                  <option value="other-sources">Друковані джерела</option>
                             </select>
                         </div>
-                        <div id='web-source-name-block' class="form-group col-md-12">
+                        <div style='display:none' id='web-source-name-block' class="form-group col-md-12">
                             <label for="web-source-name">Назва роботи</label>
                             <input class="form-control @error('web-source-name') is-invalid @enderror" type="text" name="web-source-name" id="web-source-name" value="{{ old('web-source-name') }}"  autocomplete="web-source-name" autofocus>
                         </div>
-                        <div id='web-source-authorname-block' class="form-group col-md-12">
+                        <div style='display:none' id='web-source-authorname-block' class="form-group col-md-12">
                             <label for="web-source-authorname">Ім'я автора</label>
                             <input class="form-control @error('web-source-authorname') is-invalid @enderror" type="text" name="web-source-authorname" id="web-source-authorname" value="{{ old('web-source-authorname') }}"  autocomplete="web-source-authorname" autofocus>
                         </div>
-                        <div id='web-source-fathername-block' class="form-group col-md-12">
+                        <div style='display:none' id='web-source-fathername-block' class="form-group col-md-12">
                             <label for="web-source-fathername">По батькові автора</label>
                             <input class="form-control @error('web-source-fathername') is-invalid @enderror" type="text" name="web-source-fathername" id="web-source-fathername" value="{{ old('web-source-fathername') }}"  autocomplete="web-source-fathername" autofocus>
                         </div>
-                        <div id='web-source-surname-block' class="form-group col-md-12">
+                        <div style='display:none' id='web-source-surname-block' class="form-group col-md-12">
                             <label for="web-source-surname">Прізвище автора</label>
                             <input class="form-control @error('web-source-surname') is-invalid @enderror" type="text" name="web-source-surname" id="web-source-surname" value="{{ old('web-source-surname') }}"  autocomplete="web-source-surname" autofocus>
                         </div>
-                        <div id='web-source-link-block' class="form-group col-md-12">
+                        <div style='display:none' id='web-source-link-block' class="form-group col-md-12">
                             <label for="web-source-link">Посилання на ресурс</label>
-                            <input class="form-control @error('web-source-link') is-invalid @enderror" type="text" name="web-source-link" id="web-source-link" value="{{ old('web-source-link') }}"  autocomplete="web-source-link" autofocus>
+                            <input class="form-control @error('web-source-link') is-invalid @enderror"  name="web-source-link" id="web-source-link" value="{{ old('web-source-link') }}"  autocomplete="web-source-link" autofocus>
                         </div>
                         <div style='display:none' id='source-surname-block' class="form-group col-md-12">
                             <label for="source-surname">Прізвище автора</label>
@@ -126,7 +129,7 @@
                         </div>
                         <div style='display:none' id='source-pages-block' class="form-group col-md-12">
                             <label for="source-pages">Сторінки</label>
-                            <input class="form-control @error('source-pages') is-invalid @enderror" type="text" name="source-pages" id="source-pages" value="{{ old('source-pages') }}"  autocomplete="source-pages" autofocus>
+                            <input class="form-control @error('source-pages') is-invalid @enderror"  name="source-pages" id="source-pages" value="{{ old('source-pages') }}"  autocomplete="source-pages" autofocus>
                         </div>
                         <li>
                             <button type="submit" class="big-btn-in-form app-buttons btn btn-primary">
@@ -137,15 +140,13 @@
                 </ul>
             </div>
             <div class="col-md-9 col-sm-12 col-sm-offset-0 col-md-offset-0" >
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
+            @if($errors->any())
+                    <ul class="alert alert-danger">
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                        <li>{{ $error }}</li>
                         @endforeach
                     </ul>
-                </div>
-            @endif
+                    @endif
             </div>
         </div>
     </div>
@@ -155,21 +156,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(document).on("change", "#select_source_type", function (e) {
-        if (this.value == 'web-source') {
-            document.getElementById("web-source-name-block").style.display = "block";
-            document.getElementById("web-source-authorname-block").style.display = "block";
-            document.getElementById("web-source-fathername-block").style.display = "block";
-            document.getElementById("web-source-surname-block").style.display = "block";
-            document.getElementById("web-source-link-block").style.display = "block";
-            document.getElementById("source-surname-block").style.display = "none";
-            document.getElementById("source-authorname-block").style.display = "none";
-            document.getElementById("source-fathername-block").style.display = "none";
-            document.getElementById("source-name-block").style.display = "none";
-            document.getElementById("source-type-block").style.display = "none";
-            document.getElementById("source-year-block").style.display = "none";
-            document.getElementById("source-pages-block").style.display = "none";
-            } 
-            else {
+        switch (this.value) {
+            case 'other-sources':
             document.getElementById("source-surname-block").style.display = "block";
             document.getElementById("source-authorname-block").style.display = "block";
             document.getElementById("source-fathername-block").style.display = "block";
@@ -182,7 +170,35 @@
             document.getElementById("web-source-fathername-block").style.display = "none";
             document.getElementById("web-source-surname-block").style.display = "none";
             document.getElementById("web-source-link-block").style.display = "none";
-            }
+        break;
+        case 'web-source':
+            document.getElementById("web-source-name-block").style.display = "block";
+            document.getElementById("web-source-authorname-block").style.display = "block";
+            document.getElementById("web-source-fathername-block").style.display = "block";
+            document.getElementById("web-source-surname-block").style.display = "block";
+            document.getElementById("web-source-link-block").style.display = "block";
+            document.getElementById("source-surname-block").style.display = "none";
+            document.getElementById("source-authorname-block").style.display = "none";
+            document.getElementById("source-fathername-block").style.display = "none";
+            document.getElementById("source-name-block").style.display = "none";
+            document.getElementById("source-type-block").style.display = "none";
+            document.getElementById("source-year-block").style.display = "none";
+            document.getElementById("source-pages-block").style.display = "none";
+        break;
+        default:
+            document.getElementById("source-surname-block").style.display = "none";
+            document.getElementById("source-authorname-block").style.display = "none";
+            document.getElementById("source-fathername-block").style.display = "none";
+            document.getElementById("source-name-block").style.display = "none";
+            document.getElementById("source-type-block").style.display = "none";
+            document.getElementById("source-year-block").style.display = "none";
+            document.getElementById("source-pages-block").style.display = "none";
+            document.getElementById("web-source-name-block").style.display = "none";
+            document.getElementById("web-source-authorname-block").style.display = "none";
+            document.getElementById("web-source-fathername-block").style.display = "none";
+            document.getElementById("web-source-surname-block").style.display = "none";
+            document.getElementById("web-source-link-block").style.display = "none";
+        }
   });
     
     // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
