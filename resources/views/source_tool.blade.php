@@ -83,53 +83,53 @@
                                  <option value="other-sources">Друковані джерела</option>
                             </select>
                         </div>
-                        <div style='display:none' id='web-source-name-block' class="form-group col-md-12">
-                            <label for="web-source-name">Назва роботи</label>
-                            <input class="form-control @error('web-source-name') is-invalid @enderror" type="text" name="web-source-name" id="web-source-name" value="{{ old('web-source-name') }}"  autocomplete="web-source-name" autofocus>
+                        <div style='display:none' id='web_source_name_block' class="form-group col-md-12">
+                            <label for="web_source_name">Назва роботи</label>
+                            <input class="form-control @error('web_source_name') is-invalid @enderror" type="text" name="web_source_name" id="web_source_name" value="{{ old('web_source_name') }}"  autocomplete="web_source_name" autofocus>
                         </div>
-                        <div style='display:none' id='web-source-authorname-block' class="form-group col-md-12">
-                            <label for="web-source-authorname">Ім'я автора</label>
-                            <input class="form-control @error('web-source-authorname') is-invalid @enderror" type="text" name="web-source-authorname" id="web-source-authorname" value="{{ old('web-source-authorname') }}"  autocomplete="web-source-authorname" autofocus>
+                        <div style='display:none' id='web_source_authorname_block' class="form-group col-md-12">
+                            <label for="web_source_authorname">Ім'я автора</label>
+                            <input class="form-control @error('web_source_authorname') is-invalid @enderror" type="text" name="web_source_authorname" id="web_source_authorname" value="{{ old('web_source_authorname') }}"  autocomplete="web_source_authorname" autofocus>
                         </div>
-                        <div style='display:none' id='web-source-fathername-block' class="form-group col-md-12">
-                            <label for="web-source-fathername">По батькові автора</label>
-                            <input class="form-control @error('web-source-fathername') is-invalid @enderror" type="text" name="web-source-fathername" id="web-source-fathername" value="{{ old('web-source-fathername') }}"  autocomplete="web-source-fathername" autofocus>
+                        <div style='display:none' id='web_source_fathername_block' class="form-group col-md-12">
+                            <label for="web_source_fathername">По батькові автора</label>
+                            <input class="form-control @error('web_source_fathername') is-invalid @enderror" type="text" name="web_source_fathername" id="web_source_fathername" value="{{ old('web_source_fathername') }}"  autocomplete="web_source_fathername" autofocus>
                         </div>
-                        <div style='display:none' id='web-source-surname-block' class="form-group col-md-12">
-                            <label for="web-source-surname">Прізвище автора</label>
-                            <input class="form-control @error('web-source-surname') is-invalid @enderror" type="text" name="web-source-surname" id="web-source-surname" value="{{ old('web-source-surname') }}"  autocomplete="web-source-surname" autofocus>
+                        <div style='display:none' id='web_source_surname_block' class="form-group col-md-12">
+                            <label for="web_source_surname">Прізвище автора</label>
+                            <input class="form-control @error('web_source_surname') is-invalid @enderror" type="text" name="web_source_surname" id="web_source_surname" value="{{ old('web_source_surname') }}"  autocomplete="web_source_surname" autofocus>
                         </div>
-                        <div style='display:none' id='web-source-link-block' class="form-group col-md-12">
-                            <label for="web-source-link">Посилання на ресурс</label>
-                            <input class="form-control @error('web-source-link') is-invalid @enderror"  name="web-source-link" id="web-source-link" value="{{ old('web-source-link') }}"  autocomplete="web-source-link" autofocus>
+                        <div style='display:none' id='web_source_link_block' class="form-group col-md-12">
+                            <label for="web_source_link">Посилання на ресурс</label>
+                            <input class="form-control @error('web_source_link') is-invalid @enderror"  name="web_source_link" id="web_source_link" value="{{ old('web_source_link') }}"  autocomplete="web_source_link" autofocus>
                         </div>
-                        <div style='display:none' id='source-surname-block' class="form-group col-md-12">
-                            <label for="source-surname">Прізвище автора</label>
-                            <input class="form-control @error('source-surname') is-invalid @enderror" type="text" name="source-surname" id="source-surname" value="{{ old('source-surname') }}"  autocomplete="source-surname" autofocus>
+                        <div style='display:none' id='source_surname_block' class="form-group col-md-12">
+                            <label for="source_surname">Прізвище автора</label>
+                            <input class="form-control @error('source_surname') is-invalid @enderror" type="text" name="source_surname" id="source_surname" value="{{ old('source_surname') }}"  autocomplete="source_surname" autofocus>
                         </div>
-                        <div style='display:none' id='source-authorname-block' class="form-group col-md-12">
-                            <label for="source-authorname">Ім'я автора</label>
-                            <input class="form-control @error('source-authorname') is-invalid @enderror" type="text" name="source-authorname" id="source-authorname" value="{{ old('source-authorname') }}"  autocomplete="source-authorname" autofocus>
+                        <div style='display:none' id='source_authorname_block' class="form-group col-md-12">
+                            <label for="source_authorname">Ім'я автора</label>
+                            <input class="form-control @error('source_authorname') is-invalid @enderror" type="text" name="source_authorname" id="source_authorname" value="{{ old('source_authorname') }}"  autocomplete="source_authorname" autofocus>
                         </div>
-                        <div style='display:none' id='source-fathername-block' class="form-group col-md-12">
-                            <label for="source-fathername">По батькові автора</label>
-                            <input class="form-control @error('source-fathername') is-invalid @enderror" type="text" name="source-fathername" id="source-fathername" value="{{ old('source-fathername') }}"  autocomplete="source-fathername" autofocus>
+                        <div style='display:none' id='source_fathername_block' class="form-group col-md-12">
+                            <label for="source_fathername">По батькові автора</label>
+                            <input class="form-control @error('source_fathername') is-invalid @enderror" type="text" name="source_fathername" id="source_fathername" value="{{ old('source_fathername') }}"  autocomplete="source_fathername" autofocus>
                         </div>
-                        <div style='display:none' id='source-name-block' class="form-group col-md-12">
-                            <label for="source-name">Назва роботи</label>
-                            <input class="form-control @error('source-name') is-invalid @enderror" type="text" name="source-name" id="source-name" value="{{ old('source-name') }}"  autocomplete="source-name" autofocus>
+                        <div style='display:none' id='source_name_block' class="form-group col-md-12">
+                            <label for="source_name">Назва роботи</label>
+                            <input class="form-control @error('source_name') is-invalid @enderror" type="text" name="source_name" id="source_name" value="{{ old('source_name') }}"  autocomplete="source_name" autofocus>
                         </div>
-                        <div style='display:none' id='source-type-block' class="form-group col-md-12">
-                            <label for="source-type">Тип роботи (підручник, книга...)</label>
-                            <input class="form-control @error('source-type') is-invalid @enderror" type="text" name="source-type" id="source-type" value="{{ old('source-type') }}"  autocomplete="source-type" autofocus>
+                        <div style='display:none' id='source_type_block' class="form-group col-md-12">
+                            <label for="source_type">Тип роботи (підручник, книга...)</label>
+                            <input class="form-control @error('source_type') is-invalid @enderror" type="text" name="source_type" id="source_type" value="{{ old('source_type') }}"  autocomplete="source_type" autofocus>
                         </div>
-                        <div style='display:none' id='source-year-block' class="form-group col-md-12">
-                            <label for="source-year">Рік видання</label>
-                            <input class="form-control @error('source-year') is-invalid @enderror" type="text" name="source-year" id="source-year" value="{{ old('source-year') }}"  autocomplete="source-year" autofocus>
+                        <div style='display:none' id='source_year_block' class="form-group col-md-12">
+                            <label for="source_year">Рік видання</label>
+                            <input class="form-control @error('source_year') is-invalid @enderror" type="text" name="source_year" id="source_year" value="{{ old('source_year') }}"  autocomplete="source_year" autofocus>
                         </div>
-                        <div style='display:none' id='source-pages-block' class="form-group col-md-12">
-                            <label for="source-pages">Сторінки</label>
-                            <input class="form-control @error('source-pages') is-invalid @enderror"  name="source-pages" id="source-pages" value="{{ old('source-pages') }}"  autocomplete="source-pages" autofocus>
+                        <div style='display:none' id='source_pages_block' class="form-group col-md-12">
+                            <label for="source_pages">Сторінки</label>
+                            <input class="form-control @error('source_pages') is-invalid @enderror"  name="source_pages" id="source_pages" value="{{ old('source_pages') }}"  autocomplete="source_pages" autofocus>
                         </div>
                         <li>
                             <button type="submit" class="big-btn-in-form app-buttons btn btn-primary">
@@ -158,46 +158,46 @@
     $(document).on("change", "#select_source_type", function (e) {
         switch (this.value) {
             case 'other-sources':
-            document.getElementById("source-surname-block").style.display = "block";
-            document.getElementById("source-authorname-block").style.display = "block";
-            document.getElementById("source-fathername-block").style.display = "block";
-            document.getElementById("source-name-block").style.display = "block";
-            document.getElementById("source-type-block").style.display = "block";
-            document.getElementById("source-year-block").style.display = "block";
-            document.getElementById("source-pages-block").style.display = "block";
-            document.getElementById("web-source-name-block").style.display = "none";
-            document.getElementById("web-source-authorname-block").style.display = "none";
-            document.getElementById("web-source-fathername-block").style.display = "none";
-            document.getElementById("web-source-surname-block").style.display = "none";
-            document.getElementById("web-source-link-block").style.display = "none";
+            document.getElementById("source_surname_block").style.display = "block";
+            document.getElementById("source_authorname_block").style.display = "block";
+            document.getElementById("source_fathername_block").style.display = "block";
+            document.getElementById("source_name_block").style.display = "block";
+            document.getElementById("source_type_block").style.display = "block";
+            document.getElementById("source_year_block").style.display = "block";
+            document.getElementById("source_pages_block").style.display = "block";
+            document.getElementById("web_source_name_block").style.display = "none";
+            document.getElementById("web_source_authorname_block").style.display = "none";
+            document.getElementById("web_source_fathername_block").style.display = "none";
+            document.getElementById("web_source_surname_block").style.display = "none";
+            document.getElementById("web_source_link_block").style.display = "none";
         break;
         case 'web-source':
-            document.getElementById("web-source-name-block").style.display = "block";
-            document.getElementById("web-source-authorname-block").style.display = "block";
-            document.getElementById("web-source-fathername-block").style.display = "block";
-            document.getElementById("web-source-surname-block").style.display = "block";
-            document.getElementById("web-source-link-block").style.display = "block";
-            document.getElementById("source-surname-block").style.display = "none";
-            document.getElementById("source-authorname-block").style.display = "none";
-            document.getElementById("source-fathername-block").style.display = "none";
-            document.getElementById("source-name-block").style.display = "none";
-            document.getElementById("source-type-block").style.display = "none";
-            document.getElementById("source-year-block").style.display = "none";
-            document.getElementById("source-pages-block").style.display = "none";
+            document.getElementById("web_source_name_block").style.display = "block";
+            document.getElementById("web_source_authorname_block").style.display = "block";
+            document.getElementById("web_source_fathername_block").style.display = "block";
+            document.getElementById("web_source_surname_block").style.display = "block";
+            document.getElementById("web_source_link_block").style.display = "block";
+            document.getElementById("source_surname_block").style.display = "none";
+            document.getElementById("source_authorname_block").style.display = "none";
+            document.getElementById("source_fathername_block").style.display = "none";
+            document.getElementById("source_name_block").style.display = "none";
+            document.getElementById("source_type_block").style.display = "none";
+            document.getElementById("source_year_block").style.display = "none";
+            document.getElementById("source_pages_block").style.display = "none";
         break;
         default:
-            document.getElementById("source-surname-block").style.display = "none";
-            document.getElementById("source-authorname-block").style.display = "none";
-            document.getElementById("source-fathername-block").style.display = "none";
-            document.getElementById("source-name-block").style.display = "none";
-            document.getElementById("source-type-block").style.display = "none";
-            document.getElementById("source-year-block").style.display = "none";
-            document.getElementById("source-pages-block").style.display = "none";
-            document.getElementById("web-source-name-block").style.display = "none";
-            document.getElementById("web-source-authorname-block").style.display = "none";
-            document.getElementById("web-source-fathername-block").style.display = "none";
-            document.getElementById("web-source-surname-block").style.display = "none";
-            document.getElementById("web-source-link-block").style.display = "none";
+            document.getElementById("source_surname_block").style.display = "none";
+            document.getElementById("source_authorname_block").style.display = "none";
+            document.getElementById("source_fathername_block").style.display = "none";
+            document.getElementById("source_name_block").style.display = "none";
+            document.getElementById("source_type_block").style.display = "none";
+            document.getElementById("source_year_block").style.display = "none";
+            document.getElementById("source_pages_block").style.display = "none";
+            document.getElementById("web_source_name_block").style.display = "none";
+            document.getElementById("web_source_authorname_block").style.display = "none";
+            document.getElementById("web_source_fathername_block").style.display = "none";
+            document.getElementById("web_source_surname_block").style.display = "none";
+            document.getElementById("web_source_link_block").style.display = "none";
         }
   });
     

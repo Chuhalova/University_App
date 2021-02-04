@@ -524,53 +524,93 @@ class ScienceworksController extends Controller
     public function sourceTool(Request $request, MessageBag $error){
         if($request->select_source_type =='web-source'){
              $rules = array(
-            'web-source-name' => ['required', 'min:2','max:50'],
-            'web-source-link' => ['required', 'url'],
+            'web_source_name' => ['required', 'min:2','max:50'],
+            'web_source_link' => ['required', 'url'],
                     );
                     $customMessages = [
-            'web-source-name.required' =>"Назва роботи повинна бути вказана",
-            'web-source-name.min' =>"Назва роботи повинна вміщувати не менш ніж 2 символи",
-            'web-source-name.max' =>"Назва роботи повинна вміщувати не більш ніж 50 символів",
-            'web-source-link.required' =>"Посилання на ресурс повинно бути вказане",
-            'web-source-link.url' =>"Посилання не ресурс повинно мати ознаки посилання",
+            'web_source_name.required' =>"Назва роботи повинна бути вказана",
+            'web_source_name.min' =>"Назва роботи повинна вміщувати не менш ніж 2 символи",
+            'web_source_name.max' =>"Назва роботи повинна вміщувати не більш ніж 50 символів",
+            'web_source_link.required' =>"Посилання на ресурс повинно бути вказане",
+            'web_source_link.url' =>"Посилання не ресурс повинно мати ознаки посилання",
         ];
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
         if ($validator->fails()) {
             return Redirect::to('/student/source-tool/')
                 ->withErrors($validator);
         } else {
- return "good";
+            $w_s_name = $request->web_source_name;
+            $w_s_surname = $request->web_source_surname;
+            $w_s_link = $request->web_source_link;
+            $authorname_f_l = Str::substr($request->web_source_authorname, 0, 1);
+            $fathername_f_l = Str::substr($request->web_source_fathername, 0, 1);
+            if($request->web_source_authorname!=null){
+                $authorname_f_l = $authorname_f_l . ".";
+            }
+            if($request->web_source_fathername!=null){
+                $fathername_f_l = $fathername_f_l . ".";
+            }
+            if($request->web_source_surname==null&&$request->web_source_authorname==null&&$request->web_source_fathername==null){
+                $output = "'" . $w_s_name . "' [електронний ресурс] - Режим доступу: " . $w_s_link; 
+            }
+            else{
+                $output = "'" . $w_s_name . "' [електронний ресурс] / " . $authorname_f_l . " " . $fathername_f_l . " " . $w_s_surname . " - Режим доступу: " . $w_s_link;
+            }
+            return $output;
             }
 
         }
         elseif($request->select_source_type =='other-sources'){
             $year=now()->year;
             $rules = array(
-                'source-name' => ['required', 'min:2','max:50'],
-                'source-type' => ['required', 'min:2','max:50'],
-                'source-year' => ['nullable', 'digits:4','integer','min:1900','max:'.$year],
-                'source-pages' => ['max:15'],
+                'source_name' => ['required', 'min:2','max:50'],
+                'source_type' => ['required', 'min:2','max:50'],
+                'source_year' => ['nullable', 'digits:4','integer','min:1900','max:'.$year],
+                'source_pages' => ['max:15'],
             );
             $customMessages = [
-                'source-name.required' =>"Назва роботи повинна бути вказана",
-                'source-name.min' =>"Назва роботи повинна вміщувати не менш ніж 2 символи",
-                'source-name.max' =>"Назва роботи повинна вміщувати не більш ніж 50 символів",
-                'source-type.required' =>"Тип роботи повинен бути вказаний",
-                'source-type.min' =>"Тип роботи повинен вміщувати не менш ніж 2 символи",
-                'source-type.max' =>"Тип роботи повинен вміщувати не більш ніж 50 символів",
-                'source-year.digits' => "Поле 'Рік видання' повинно бути заповнене коректно",
-                'source-year.integer' => "Поле 'Рік видання' повинно бути заповнене коректно",
-                'source-year.min' => "Рік видання повинен бути з 1900",
-                'source-year.max' => "Рік видання не може бути більше поточного",
-                'source-pages.max' => "Поле 'сторінки' повинно мати не більш ніж 15 символів",
+                'source_name.required' =>"Назва роботи повинна бути вказана",
+                'source_name.min' =>"Назва роботи повинна вміщувати не менш ніж 2 символи",
+                'source_name.max' =>"Назва роботи повинна вміщувати не більш ніж 50 символів",
+                'source_type.required' =>"Тип роботи повинен бути вказаний",
+                'source_type.min' =>"Тип роботи повинен вміщувати не менш ніж 2 символи",
+                'source_type.max' =>"Тип роботи повинен вміщувати не більш ніж 50 символів",
+                'source_year.digits' => "Поле 'Рік видання' повинно бути заповнене коректно",
+                'source_year.integer' => "Поле 'Рік видання' повинно бути заповнене коректно",
+                'source_year.min' => "Рік видання повинен бути з 1900",
+                'source_year.max' => "Рік видання не може бути більше поточного",
+                'source_pages.max' => "Поле 'сторінки' повинно мати не більш ніж 15 символів",
             ];
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
         if ($validator->fails()) {
             return Redirect::to('/student/source-tool/')
                 ->withErrors($validator);
         } else {
- return "good";
+            $s_surname = $request->source_surname;
+            $s_name = $request->source_name;
+            $s_year = $request->source_year;
+            $s_pages = $request->source_pages;
+            $s_type = $request->source_type;
+            $s_authorname_f_l = Str::substr($request->source_authorname, 0, 1);
+            $s_fathername_f_l = Str::substr($request->source_fathername, 0, 1);
+            if($request->source_authorname!=null){
+                $s_authorname_f_l = $s_authorname_f_l . ".";
             }
+            if($request->source_fathername!=null){
+                $s_fathername_f_l = $s_fathername_f_l . ".";
+            }
+            $output = $s_name . " : " . $s_type;
+            if($s_surname!=null||$s_authorname_f_l!=null&&$s_fathername_f_l!=null){
+                $output = $s_surname . " " . $s_authorname_f_l . " " . $s_fathername_f_l . " r" . $output . " / " . $s_surname . " " . $s_authorname_f_l . " " . $s_fathername_f_l;
+            }
+            if($s_year!=null){
+                $output = $output . " : " . $s_year . ".";
+            }
+            if($s_pages!=null){
+                $output = $output  . " - " . $s_pages . " с.";
+            }
+        return $output;
+    }
         }
         else{
 return "nothing selected";
