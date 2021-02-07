@@ -42,9 +42,9 @@ Route::group(['middleware' => ['role:student']], function () {
     //перевірено
     Route::get('/student/show', 'ScienceworksController@showForStudent')->name('show-for-student');
      //перевірено
-     Route::get('/student/source-tool', 'ScienceworksController@showSourceTool')->name('source-tool');
+    Route::get('/student/source-tool', 'ScienceworksController@showSourceTool')->name('source-tool');
      
-     Route::get('/student/formulate-source', 'ScienceworksController@sourceTool')->name('formulate-source');
+    Route::post('/student/formulate-source', 'ScienceworksController@sourceTool')->name('formulate-source');
     //перевірено
     Route::get('/student/show-topics', 'ScienceworksController@showTopicsForStudent')->name('show-topics-for-student');
     //перевірено

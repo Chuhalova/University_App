@@ -1,3 +1,6 @@
+#btn-diff{
+    outline: none !important;
+}
 #homapage-image img, #welcome-image img{
     width: 300px;
     height: 300px;
@@ -219,12 +222,42 @@ text-align: center;
             width:80px !important;
         }
 }
+@media(max-width: 1050px){
+    .btn-diff{
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+
+        width:76px !important;
+        font-size: 10pt !important;
+    }
+}
 @media(max-width: 1000px){
     .topnav a {
         font-size: 10px;
     }
+    .tab-cont-diff{
+        margin-right:10px !important;
+        margin-left:10px !important;
+
+    }
 }
 @media (max-width: 767px) {
+    #form-diff{
+        margin: 0px !important;
+    }
+    #button-diff{
+        display: table-cell; 
+        vertical-align: middle; 
+        text-align:center; 
+        overflow: hidden !important; 
+        padding:0 !important;
+    }
+    #button-diff button{
+        margin:0 !important;
+    }
+    .app_nav_block_diff{
+        padding:0 !important; 
+    }
     #alert-for-logined-users li h4{
         font-size: smaller;
     }
