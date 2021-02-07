@@ -189,6 +189,11 @@
             </div>
         </div>
     </div>
+
+<div class="alert" id="alert">
+  <span  class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  Скопійовано!
+</div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -254,18 +259,19 @@
             x.className = "topnav";
         }
     }
-//If you want to copyText from Element
-function copyTextFromElement(elementID) {
-  let element = document.getElementById(elementID); //select the element
-  let elementText = element.textContent; //get the text content from the element
-  copyText(elementText); //use the copyText function below
-}
+    //If you want to copyText from Element
+    function copyTextFromElement(elementID) {
+        let element = document.getElementById(elementID); //select the element
+        let elementText = element.textContent; //get the text content from the element
+        copyText(elementText); //use the copyText function below
+        document.getElementById("alert").style.display = "block";
+    }
 
-//If you only want to put some Text in the Clipboard just use this function
-// and pass the string to copied as the argument.
-function copyText(text) {
-  navigator.clipboard.writeText(text);
-}
+    //If you only want to put some Text in the Clipboard just use this function
+    // and pass the string to copied as the argument.
+    function copyText(text) {
+        navigator.clipboard.writeText(text);
+    }
 </script>
 <script type="text/javascript" src="{{asset('Eshopper/js/jquery.js')}}"></script>
 <script type="text/javascript" src="{{asset('Eshopper/js/bootstrap.min.js')}}"></script>

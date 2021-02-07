@@ -1,4 +1,31 @@
-#btn-diff{
+.alert {
+    display: none;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    width: 200px;
+    height:100px;
+    line-height: 80px;
+    text-align: center;
+    background:#1f6fb2;
+    opacity: 0.4;
+    position: absolute;
+    color: white;
+  }
+  
+  .closebtn {
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+  #btn-diff{
     outline: none !important;
 }
 #homapage-image img, #welcome-image img{

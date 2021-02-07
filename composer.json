@@ -21,7 +21,8 @@
         "php-http/guzzle6-adapter": "^2.0",
         "php-http/httplug-bundle": "^1.20",
         "phpoffice/phpword": "^0.17.0",
-        "spatie/laravel-permission": "^3.4"
+        "spatie/laravel-permission": "^3.4",
+        "uxweb/sweet-alert": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

@@ -464,7 +464,7 @@ class ScienceworksController extends Controller
         $pdf = PDF::loadHTML($html_decode);
         return $pdf->download('firstpage.pdf');
     }
-    
+
     public function sourceTool(Request $request)
     {
         if ($request->select_source_type == 'web-source') {
@@ -505,7 +505,7 @@ class ScienceworksController extends Controller
                 $formatted_source->formatted_source = $output;
                 $formatted_source->save();
                 $fws = Source::whereUser_id(auth()->user()->id)->orderBy('created_at', 'desc')->get()->slice(0, 5);
-                return Redirect::to('/student/source-tool/')->with('fws',$fws);
+                return Redirect::to('/student/source-tool/')->with('fws', $fws);
             }
         } elseif ($request->select_source_type == 'other-sources') {
             $year = now()->year;
@@ -561,7 +561,7 @@ class ScienceworksController extends Controller
                 $formatted_source->formatted_source = $output;
                 $formatted_source->save();
                 $fws = Source::whereUser_id(auth()->user()->id)->orderBy('created_at', 'desc')->get()->slice(0, 5);
-                return Redirect::to('/student/source-tool/')->with('fws',$fws);
+                return Redirect::to('/student/source-tool/')->with('fws', $fws);
             }
         } else {
             $fws = Source::whereUser_id(auth()->user()->id)->orderBy('created_at', 'desc')->get()->slice(0, 5);
