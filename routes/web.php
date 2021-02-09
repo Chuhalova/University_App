@@ -5,6 +5,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/profile/', 'UserController@showProfilePage')->name('profile');
+Route::put('/profile/avatar/','UserController@updateAvatar');
+Route::put('/profile/avatar-del/','UserController@delAvatar');
 //перевірено
 Auth::routes();
 

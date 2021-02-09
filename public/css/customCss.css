@@ -1,3 +1,65 @@
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.has_role_for_icon{
+	padding:20px;
+}
+.pre_icon_text{
+    line-height:25px;
+    margin-left: 5px;
+	float:right;
+}
+.user_icon, .admin_icon{
+	float: right;
+	width:50px;
+	height: 50px;
+	background-size: cover;
+	border-radius: 50%;
+	border:1px solid #FE980F;
+}
+.profile_avatar_displaying{
+    margin: 5px auto;
+}
+.profile_avatar_displaying>img{
+	border-radius: 50%;
+}
+#profile_avatar_container{
+    margin-top: 100px;
+}
+#profile_avatar_container>div{
+    text-align: center;
+}
+.card-title {
+    color: color(black);
+    margin-bottom: 1.125rem;
+    text-transform: capitalize;
+}
+.input_change_avatar{
+	padding: 0;
+	width:200px;
+	margin:20px auto;
+}
+.btn_change_avatar{
+	width:160px;
+	background: #0c0c0c;
+	padding: 0.7em 1.5em;
+	display: inline-block;
+	color: #FFF;
+	text-decoration: none;
+	margin: 0 auto;
+	outline: none;
+	border: none;
+	border-radius: 2px;
+}
+.admin_icon{
+	background-image: url("../../images/admin-icon.png");
+}
+.user_icon{
+	background-image: url("../../images/user-icon.png");
+}
 .alert {
     display: none;
     top: calc(50% - 100px);
@@ -141,24 +203,24 @@ text-align: center;
     padding: 0!important;
 }
 
-.fl-table {
+.fl-table, .prof-table {
     font-size: 12px;
     font-weight: normal;
     width: 100%;
     max-width: 100%;
     background-color:transparent;
 }
-.fl-table td, .fl-table th {
+.fl-table td, .fl-table th, .prof-table td, .prof-table th {
     text-align: center;
     padding: 8px;
 }
 
-.fl-table td {
+.fl-table td, .prof-table td {
     border-right: 1px solid #f8f8f8;
     font-size: 12px;
 }
 
-.fl-table thead th {
+.fl-table thead th, .prof-table thead th {
     color: #ffffff;
     background:#FE980F;
 }
@@ -172,12 +234,12 @@ text-align: center;
 
   } 
 
-.fl-table thead th:nth-child(odd) {
+.fl-table thead th:nth-child(odd), .prof-table thead th:nth-child(odd){
     color: #ffffff;
     background:#1f6fb2;
 }
 
-.fl-table tr:nth-child(even) {
+.fl-table tr:nth-child(even), .prof-table tr:nth-child(even) {
     background: #F8F8F8;
 }
 
@@ -233,7 +295,16 @@ text-align: center;
            width:100px;
            font-size: 5pt !important;
         }
+    #profile-table .fl-table td,#profile-table .fl-table th {
+            width:100px;
+            font-size: 5pt !important;
+         }
     #works-table button{
+            width:80px !important;
+            font-size: 5pt !important;
+            font-weight: bold;
+        }
+        #profile-table button{
             width:80px !important;
             font-size: 5pt !important;
             font-weight: bold;
@@ -312,7 +383,7 @@ text-align: center;
       text-align: left;
     }
 
-   #edit-cathedraworker-cont, #report-block,#app-nav-block, #edit-sw-teacher, #edit-topic-cont,#post-topic-cont,#topics-cont,  #form-cont, #works-table, #register-as-student-form-cont, #register-as-teacher-form-cont, #teachers-table{
+   #edit-cathedraworker-cont, #report-block,#app-nav-block, #edit-sw-teacher, #edit-topic-cont,#post-topic-cont,#topics-cont,  #form-cont, #works-table,#profile-table, #register-as-student-form-cont, #register-as-teacher-form-cont, #teachers-table{
         margin-top: 50px;
     }
 
@@ -382,11 +453,12 @@ text-align: center;
         width: 100%;
         
     }
+    
     #show-topics-cont{
         margin:  50px 0 !important;
         padding-left: 10px !important;
     }
-    .fl-table td, .fl-table th {
+    .fl-table td, .fl-table th, .prof-table td, .prof-table th {
         font-size: 5pt !important;
     }
     .table-wrapper{
@@ -429,26 +501,26 @@ text-align: center;
         font-size: 13px;
         text-overflow: ellipsis;
     }
-    .fl-table thead th {
+    .fl-table thead th{
         border-bottom: 1px solid #f7f7f9;
     }
-    .fl-table tbody tr {
+    .fl-table tbody tr{
         display: table-cell;
     }
-    .fl-table tbody tr:nth-child(odd) {
+    .fl-table tbody tr:nth-child(odd){
         background: none;
     }
-    .fl-table tr:nth-child(even) {
+    .fl-table tr:nth-child(even){
         background: transparent;
     }
-    .fl-table tr td:nth-child(odd) {
+    .fl-table tr td:nth-child(odd){
         background: #F8F8F8;
         border-right: 1px solid #E6E4E4;
     }
-    .fl-table tr td:nth-child(even) {
+    .fl-table tr td:nth-child(even){
         border-right: 1px solid #E6E4E4;
     }
-    .fl-table tbody td {
+    .fl-table tbody td{
         display: block;
         text-align: center;
     }

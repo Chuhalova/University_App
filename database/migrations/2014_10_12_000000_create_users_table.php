@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('baseinfo_id')->unsigned();
             $table->foreign('baseinfo_id')->references('id')->on('baseinfos');
+            $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
