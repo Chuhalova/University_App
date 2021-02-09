@@ -60,7 +60,7 @@
 .user_icon{
 	background-image: url("../../images/user-icon.png");
 }
-.alert {
+.alertsource {
     display: none;
     top: calc(50% - 100px);
     left: calc(50% - 100px);

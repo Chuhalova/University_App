@@ -76,7 +76,7 @@
                         <div class="contact-form">
 
                             @if($errors->any())
-                            <div class="form-group col-md-12">
+                            <div >
                                 <ul class="alert alert-danger">
                                     @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -191,7 +191,7 @@
         </div>
     </div>
 
-<div class="alert" id="alert">
+<div class="alertsource" id="alert">
   <span  class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   Скопійовано!
 </div>
