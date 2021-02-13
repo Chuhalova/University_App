@@ -596,7 +596,7 @@ class ScienceworksController extends Controller
                 ]);
             }
         }
-        return Redirect::to('home');
+        return Redirect::to('/student/show/')->with('message', 'Помилка!');
     }
 
     public function workUpload(Request $request)
@@ -605,7 +605,7 @@ class ScienceworksController extends Controller
         $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
         $sw = Sciencework::whereStudent_id($student_id)->first();
         if ($sw->status != 'active') {
-            return Redirect::to('home');
+            return Redirect::to('/student/show/')->with('message', 'Помилка!');
         } else {
             $rules = array(
                 'uploaded_work_file' => ['required', 'mimes:doc,docx,odt,pdf,rtf,tex,txt,wpd'],
@@ -630,7 +630,7 @@ class ScienceworksController extends Controller
                     $sw->uploaded_work_file = $path;
                     $sw->save();
                 }
-                return Redirect::to('/student/work-reviewing/');
+                return Redirect::to('/student/show/')->with('message', 'Роботу завантажено!');
             }
         }
     }
@@ -648,9 +648,9 @@ class ScienceworksController extends Controller
                 $sw->uploaded_work_file = null;
                 $sw->save();
             }
-            return Redirect::to('/student/work-reviewing/');
+            return Redirect::to('/student/show/')->with('message', 'Роботу видалено!');
         } else {
-            return Redirect::to('home');
+            return Redirect::to('/student/show/')->with('message', 'Помилка!');
         }
     }
 
@@ -667,7 +667,7 @@ class ScienceworksController extends Controller
             }
             return Redirect::to('/student/work-reviewing/');
         } else {
-            return Redirect::to('home');
+            return Redirect::to('/student/show/')->with('message', 'Помилка!');
         }
     }
 

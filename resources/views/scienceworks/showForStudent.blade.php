@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,48 +25,48 @@
     <link href="{{ asset('css/customCss.css') }}" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div id="app" style="position:relative">
-    <div class="topnav" id="myTopnav">
-    <a class="nav-link" href="{{ route('home') }}">{{ __('Додому') }}</a>
-    @guest
-    <a class="nav-link" href="{{ route('login') }}">{{ __('Залогінитись') }}</a>
-        @if (Route::has('register'))
-        <a class="nav-link" href="{{ route('register-as-student') }}">{{ __('Зареєструватись як студент') }}</a>
-        <a class="nav-link" href="{{ route('register-as-teacher') }}">{{ __('Зареєструватись як викладач') }}</a>
-        @endif
-    @else
-    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+        <div class="topnav" id="myTopnav">
+            <a class="nav-link" href="{{ route('home') }}">{{ __('Додому') }}</a>
+            @guest
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Залогінитись') }}</a>
+            @if (Route::has('register'))
+            <a class="nav-link" href="{{ route('register-as-student') }}">{{ __('Зареєструватись як студент') }}</a>
+            <a class="nav-link" href="{{ route('register-as-teacher') }}">{{ __('Зареєструватись як викладач') }}</a>
+            @endif
+            @else
+            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Вийти') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                    <a class="nav-link" href="{{ route('profile') }}">{{ __('Профіль') }}</a>
-                                    @role('student')
-                                    <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Власні роботи') }}</a>
-                                    <a class="nav-link" href="{{ route('show-topics-for-student') }}">{{ __('Вільні теми') }}</a>
-                                    <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Створити роботу') }}</a>
-                                    @endrole
-                            @role('teacher')
-                            <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Створити тему') }}</a>
-                            <a class="nav-link" href="{{ route('get-topics-as-teacher') }}">{{ __('Створені теми') }}</a>
-                            <a class="nav-link" href="{{ route('show-for-teacher') }}">{{ __('Роботи') }}</a>
-                            @endrole
-                            @role('cathedraworker')
-                            <a class="nav-link" href="{{ route('show-for-cathedraworker') }}">{{ __('Всі роботи') }}</a>
-                            <a class="nav-link" href="{{ route('register-sciencework-as-cathedraworker') }}">{{ __('Створити роботу') }}</a>
-                            <a class="nav-link" href="{{ route('report') }}">{{ __('Загальний звіт') }}</a>
-                            <a class="nav-link" href="{{ route('application-report') }}">{{ __('Звіт по заявам') }}</a>
-                            <a class="nav-link" href="{{ route('works-report') }}">{{ __('Звіт по створеним роботам') }}</a>
-                            @endrole
-                        @endguest
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+                {{ __('Вийти') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <a class="nav-link" href="{{ route('profile') }}">{{ __('Профіль') }}</a>
+            @role('student')
+            <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Власні роботи') }}</a>
+            <a class="nav-link" href="{{ route('show-topics-for-student') }}">{{ __('Вільні теми') }}</a>
+            <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Створити роботу') }}</a>
+            @endrole
+            @role('teacher')
+            <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Створити тему') }}</a>
+            <a class="nav-link" href="{{ route('get-topics-as-teacher') }}">{{ __('Створені теми') }}</a>
+            <a class="nav-link" href="{{ route('show-for-teacher') }}">{{ __('Роботи') }}</a>
+            @endrole
+            @role('cathedraworker')
+            <a class="nav-link" href="{{ route('show-for-cathedraworker') }}">{{ __('Всі роботи') }}</a>
+            <a class="nav-link" href="{{ route('register-sciencework-as-cathedraworker') }}">{{ __('Створити роботу') }}</a>
+            <a class="nav-link" href="{{ route('report') }}">{{ __('Загальний звіт') }}</a>
+            <a class="nav-link" href="{{ route('application-report') }}">{{ __('Звіт по заявам') }}</a>
+            <a class="nav-link" href="{{ route('works-report') }}">{{ __('Звіт по створеним роботам') }}</a>
+            @endrole
+            @endguest
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
         @if($sws!=null && count($sws)!=0)
         <div id='works-table' class="table-wrapper">
             <table class="fl-table">
@@ -76,6 +77,7 @@
                         <th scope="col">Дата захисту</th>
                         <th scope="col">Статус</th>
                         <th scope="col">Комментарій</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -106,7 +108,9 @@
                             активна
                             @endif
                         </td>
-                        <td id='td-with-scroll'><div class='scrollable'>{{$sw->comment}}</div></td>
+                        <td id='td-with-scroll'>
+                            <div class='scrollable'>{{$sw->comment}}</div>
+                        </td>
                         @if($sw->status == 'disapproved_for_student')
                         <td>
                             <form style='display:inline-block' action="{{url('/student/edit/'.$sw->id) }}" method='GET'>
@@ -131,6 +135,15 @@
                                 <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Сформувати<br>титульну сторінку</button>
                             </form>
                         </td>
+                        @if($sw->workfile_check_status=='unchecked')
+                        <td>
+                            <form style='display:inline-block' action="{{ url('/student/work-reviewing') }}" method="GET">
+                                {{method_field('GET')}}
+                                @csrf
+                                <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Завантажити<br>роботу на перевірку</button>
+                            </form>
+                        </td>
+                        @endif
                         @else
                         <td>
                             <form hidden style='display:inline-block'>
@@ -143,16 +156,25 @@
                 </tbody>
             </table>
         </div>
-        
+
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin: auto;">
             {!! $sws->links()!!}
         </div>
         @else
-        <div style="padding:0px !important;" class="col-sm-12">    			   			
-					<h2 class="title text-center" style='margin-top:30vh'>Наразі у вас немає доступних робіт</h2>    			    				    									
-                </div>
+        <div style="padding:0px !important;" class="col-sm-12">
+            <h2 class="title text-center" style='margin-top:30vh'>Наразі у вас немає доступних робіт</h2>
+        </div>
         @endif
     </div>
+    @if(session()->has('message'))
+        
+    <div class="alertsource alertWorkUpload" id="alert" style="display:block;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -165,16 +187,18 @@
             'padding-right': scrollWidth
         });
     }).resize();
+
     function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
 </script>
 <script type="text/javascript" src="{{asset('Eshopper/js/jquery.js')}}"></script>
 <script type="text/javascript" src="{{asset('Eshopper/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('Eshopper/js/jquery.js')}}"></script>
+
 </html>

@@ -78,14 +78,16 @@
     left: calc(50% - 100px);
     width: 200px;
     height:100px;
-    line-height: 80px;
+    line-height: 100px;
     text-align: center;
     background:#1f6fb2;
     opacity: 0.4;
     position: absolute;
     color: white;
   }
-  
+  .alertWorkUpload{
+    top: calc(50vh - 100px) !important;
+  }
   .closebtn {
     color: white;
     font-weight: bold;
