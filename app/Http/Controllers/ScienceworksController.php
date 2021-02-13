@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\View;
 use Illuminate\Support\MessageBag;
@@ -16,6 +17,7 @@ use Illuminate\Auth\Events\Validated;
 use \PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ScienceworksController extends Controller
 {
@@ -569,4 +571,104 @@ class ScienceworksController extends Controller
             ]);
         }
     }
+
+    public function getWorkReviewingPage()
+    {
+        //check if work's status is active
+        $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
+        $sw = Sciencework::whereStudent_id($student_id)->first();
+        if($sw!=null){
+            $uploaded_work_comment = $sw->uploaded_work_comment;
+            $file_exists = false;
+            $file_or_note_exists = false;
+            if ($sw->status == 'active') {
+                //check if file exists
+                if (Storage::exists($sw->uploaded_work_file)) {
+                    $file_exists = true;
+                }
+                if(Storage::exists($sw->uploaded_work_file)||$sw->uploaded_work_file){
+                    $file_or_note_exists = true;
+                }
+                return View::make('activework_reviewing')->with([
+                    'file_exists' => $file_exists,
+                    'file_or_note_exists' => $file_or_note_exists,
+                    'uploaded_work_comment' => $uploaded_work_comment,
+                ]);
+            }
+        }
+        return Redirect::to('home');
+    }
+
+    public function workUpload(Request $request)
+    {
+        //check if work's status is active
+        $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
+        $sw = Sciencework::whereStudent_id($student_id)->first();
+        if ($sw->status != 'active') {
+            return Redirect::to('home');
+        } else {
+            $rules = array(
+                'uploaded_work_file' => ['required', 'mimes:doc,docx,odt,pdf,rtf,tex,txt,wpd'],
+            );
+            $customMessages = [
+                'uploaded_work_file.required' => 'Завантажте файл.',
+                'uploaded_work_file.mimetypes' => "Файл повинен мати розширення, що відповідає текстовому файлу: doc,docx,odt,pdf,rtf,tex,txt,wpd.",
+            ];
+            $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+            if ($validator->fails()) {
+                return Redirect::to('/student/work-reviewing/')
+                    ->withErrors($validator);
+            } else {
+                if (($request->file('uploaded_work_file')) != '') {
+
+                    if ($sw->uploaded_work_file != '') {
+                        Storage::delete($sw->uploaded_work_file);
+                    }
+                    $filename = str_slug(Student::whereId($sw->student_id)->first()->studnumber . 'uploaded-work-file');
+                    $file =  $request->file('uploaded_work_file');
+                    $path = $request->file('uploaded_work_file')->storeAs('/public/textfiles', $filename . '.' . $file->getClientOriginalExtension());
+                    $sw->uploaded_work_file = $path;
+                    $sw->save();
+                }
+                return Redirect::to('/student/work-reviewing/');
+            }
+        }
+    }
+
+    public function workDel()
+    {
+        //check if work's status is active file exists
+        $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
+        $sw = Sciencework::whereStudent_id($student_id)->first();
+        if ($sw->status == 'active') {
+            if (Storage::exists($sw->uploaded_work_file)) {
+                Storage::delete($sw->uploaded_work_file);
+            }
+            if ($sw->uploaded_work_file != null) {
+                $sw->uploaded_work_file = null;
+                $sw->save();
+            }
+            return Redirect::to('/student/work-reviewing/');
+        } else {
+            return Redirect::to('home');
+        }
+    }
+
+    public function workDownload()
+    {
+        //check if work's status is active file exists
+        $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
+        $sw = Sciencework::whereStudent_id($student_id)->first();
+        if ($sw->status == 'active') {
+            $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
+            $sw = Sciencework::whereStudent_id($student_id)->first();
+            if (Storage::exists($sw->uploaded_work_file)) {
+                return Storage::download($sw->uploaded_work_file);
+            }
+            return Redirect::to('/student/work-reviewing/');
+        } else {
+            return Redirect::to('home');
+        }
+    }
+
 }

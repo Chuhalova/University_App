@@ -27,6 +27,8 @@ class CreateScienceworksTable extends Migration
             $table->foreign('cathedra_id')->references('id')->on('cathedras');
             $table->boolean('application')->default(false);
             $table->string('comment')->nullable();
+            $table->string('uploaded_work_file')->nullable();
+            $table->text('uploaded_work_comment')->nullable();
             $table->timestamps();
         });
     }

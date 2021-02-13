@@ -42,6 +42,12 @@ Route::group(['middleware' => ['role:student|cathedraworker']], function () {
 });
 
 Route::group(['middleware' => ['role:student']], function () {
+    Route::get('/student/work-reviewing', 'ScienceworksController@getWorkReviewingPage')->name('work-reviewing');
+    Route::get('/student/work-download', 'ScienceworksController@workDownload')->name('work-download');
+    Route::put('/student/work-upload/','ScienceworksController@workUpload')->name('work-upload');
+    Route::put('/student/work-del/','ScienceworksController@workDel')->name('work-del');
+
+
     //перевірено
     Route::get('/student/show', 'ScienceworksController@showForStudent')->name('show-for-student');
      //перевірено

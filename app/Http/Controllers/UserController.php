@@ -58,10 +58,7 @@ class UserController extends Controller
             return Redirect::to('profile')
                 ->withErrors($validator);
         } 
-        if ($validator->fails()) {
-            return Redirect::to('profile')
-                ->withErrors($validator);
-        } else {
+         else {
             if (($request->file('avatar')) != '') {
                 if (($user->avatar) != '') {
                     Storage::delete($user->avatar);
