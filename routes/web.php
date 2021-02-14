@@ -75,6 +75,7 @@ Route::group(['middleware' => ['role:teacher']], function () {
     Route::group(['prefix' => 'teacher'], function () {
         //перевірено
         Route::get('/propose', 'ScienceworkController@proposeTopic')->name('propose-topic-as-teacher');
+        Route::get('/review-work/{id}','ScienceworksController@getReviewWorkPageForTecaher')->name('review-work');
         //перевірено
         Route::post('/post', 'ScienceworkController@postTopic')->name('post-topic-as-teacher');
         //перевірено

@@ -599,6 +599,13 @@ class ScienceworksController extends Controller
         return Redirect::to('/student/show/')->with('message', 'Помилка!');
     }
 
+    public function getReviewWorkPageForTecaher($sw){
+        $sw_o = Sciencework::whereId($sw)->first();
+        return View::make('work_reviewing_for_teacher')->with([
+            'sw_o' => $sw_o,
+        ]);
+    }
+
     public function workUpload(Request $request)
     {
         //check if work's status is active
