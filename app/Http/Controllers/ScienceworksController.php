@@ -577,7 +577,7 @@ class ScienceworksController extends Controller
         //check if work's status is active
         $student_id = Student::whereBaseinfo_id_for_student(auth()->user()->baseinfo_id)->first()->id;
         $sw = Sciencework::whereStudent_id($student_id)->first();
-        if($sw!=null){
+        if ($sw != null) {
             $uploaded_work_comment = $sw->uploaded_work_comment;
             $file_exists = false;
             $file_or_note_exists = false;
@@ -586,10 +586,11 @@ class ScienceworksController extends Controller
                 if (Storage::exists($sw->uploaded_work_file)) {
                     $file_exists = true;
                 }
-                if(Storage::exists($sw->uploaded_work_file)||$sw->uploaded_work_file){
+                if (Storage::exists($sw->uploaded_work_file) || $sw->uploaded_work_file) {
                     $file_or_note_exists = true;
                 }
                 return View::make('activework_reviewing')->with([
+                    'sw' => $sw,
                     'file_exists' => $file_exists,
                     'file_or_note_exists' => $file_or_note_exists,
                     'uploaded_work_comment' => $uploaded_work_comment,
@@ -599,7 +600,8 @@ class ScienceworksController extends Controller
         return Redirect::to('/student/show/')->with('message', 'Помилка!');
     }
 
-    public function getReviewWorkPageForTecaher($sw){
+    public function getReviewWorkPageForTecaher($sw)
+    {
         $sw_o = Sciencework::whereId($sw)->first();
         return View::make('work_reviewing_for_teacher')->with([
             'sw_o' => $sw_o,
@@ -635,6 +637,7 @@ class ScienceworksController extends Controller
                     $file =  $request->file('uploaded_work_file');
                     $path = $request->file('uploaded_work_file')->storeAs('/public/textfiles', $filename . '.' . $file->getClientOriginalExtension());
                     $sw->uploaded_work_file = $path;
+                    $sw->workfile_check_status=='unchecked';
                     $sw->save();
                 }
                 return Redirect::to('/student/show/')->with('message', 'Роботу завантажено!');
@@ -678,4 +681,14 @@ class ScienceworksController extends Controller
         }
     }
 
+    public function workDownloadForTeacher($sw_o)
+    {
+        
+        $sw = Sciencework::whereId($sw_o)->first();
+        
+        if ($sw->uploaded_work_file != null && Storage::exists($sw->uploaded_work_file) && $sw->workfile_check_status == 'unchecked' && $sw->status == 'active') {
+            return Storage::download($sw->uploaded_work_file);
+        }
+        return Redirect::to('/teacher/show/')->with('message', 'Помилка!');
+    }
 }
