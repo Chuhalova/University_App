@@ -638,6 +638,7 @@ class ScienceworksController extends Controller
                     $path = $request->file('uploaded_work_file')->storeAs('/public/textfiles', $filename . '.' . $file->getClientOriginalExtension());
                     $sw->uploaded_work_file = $path;
                     $sw->workfile_check_status=='unchecked';
+                    $sw->uploaded_work_comment = null;
                     $sw->save();
                 }
                 return Redirect::to('/student/show/')->with('message', 'Роботу завантажено!');
@@ -655,6 +656,8 @@ class ScienceworksController extends Controller
                 Storage::delete($sw->uploaded_work_file);
             }
             if ($sw->uploaded_work_file != null) {
+                $sw->workfile_check_status='unchecked';
+                $sw->uploaded_work_comment = null;
                 $sw->uploaded_work_file = null;
                 $sw->save();
             }
@@ -688,6 +691,31 @@ class ScienceworksController extends Controller
         
         if ($sw->uploaded_work_file != null && Storage::exists($sw->uploaded_work_file) && $sw->workfile_check_status == 'unchecked' && $sw->status == 'active') {
             return Storage::download($sw->uploaded_work_file);
+        }
+        return Redirect::to('/teacher/show/')->with('message', 'Помилка!');
+    }
+
+    public function addUploadedWorkComment($sw_o, Request $request){
+        $sw = Sciencework::whereId($sw_o)->first();
+        if ($sw->workfile_check_status == 'unchecked' && $sw->status == 'active' && $sw->uploaded_work_comment==null) {
+            $rules = array(
+                'uploaded_work_comment' => ['required', 'min:2','max:5000'],
+            );
+            $customMessages = [
+                'uploaded_work_comment.required' => 'Заповніть поле коментара.',
+                'uploaded_work_comment.min' => "Коментар не повинен бути менш ніж 2 символи.",
+                'uploaded_work_comment.max' => "Коментар не повинен бути більш ніж 5000 символів.",
+            ];
+            $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
+            if ($validator->fails()) {
+                return Redirect::to('/teacher/review-work/'.$sw->id)
+                    ->withErrors($validator);
+            } else {
+            $sw->uploaded_work_comment = $request->uploaded_work_comment;
+            $sw->workfile_check_status = 'checked';
+            $sw->save();
+            return Redirect::to('/teacher/show/')->with('message', 'success!'); 
+            }
         }
         return Redirect::to('/teacher/show/')->with('message', 'Помилка!');
     }

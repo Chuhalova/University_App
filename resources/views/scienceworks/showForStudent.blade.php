@@ -135,15 +135,19 @@
                                 <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Сформувати<br>титульну сторінку</button>
                             </form>
                         </td>
-                        @if($sw->workfile_check_status=='unchecked')
+
                         <td>
                             <form style='display:inline-block' action="{{ url('/student/work-reviewing') }}" method="GET">
                                 {{method_field('GET')}}
                                 @csrf
+                                @if($sw->workfile_check_status=='unchecked')
                                 <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Завантажити<br>роботу на перевірку</button>
+                                @elseif($sw->workfile_check_status=='checked')
+                                <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Преглянути<br>перевірену роботуі</button>
+                                @endif
                             </form>
                         </td>
-                        @endif
+
                         @else
                         <td>
                             <form hidden style='display:inline-block'>
@@ -167,12 +171,12 @@
         @endif
     </div>
     @if(session()->has('message'))
-        
+
     <div class="alertsource alertWorkUpload" id="alert" style="display:block;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         {{ session()->get('message') }}
     </div>
-@endif
+    @endif
 
 
 </body>

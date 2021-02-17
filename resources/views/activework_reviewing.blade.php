@@ -9,14 +9,12 @@
     </ul>
 </div>
 @endif
-@if($sw->workfile_check_status=='unchecked' && $sw->uploaded_work_file==null)
 <form enctype='multipart/form-data' action="{{url('/student/work-upload/') }}" method="post">
     {{method_field('PUT')}}
     {{ csrf_field() }}
     <input type="file" class="input_change_avatar" name="uploaded_work_file" />
     <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Додати файл</button>
 </form>
-@endif
 @if($file_or_note_exists==true)
 <form style="margin-top:10px !important;" action="{{url('/student/work-del/') }}" method="post">
     {{method_field('PUT')}}

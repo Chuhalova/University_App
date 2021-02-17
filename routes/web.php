@@ -76,6 +76,7 @@ Route::group(['middleware' => ['role:teacher']], function () {
         Route::get('/propose', 'ScienceworkController@proposeTopic')->name('propose-topic-as-teacher');
         Route::get('/review-work/{id}', 'ScienceworksController@getReviewWorkPageForTecaher')->name('review-work');
         Route::get('/download-work/{id}', 'ScienceworksController@workDownloadForTeacher')->name('work-download-for-teacher');
+        Route::patch('/add-work-comment/{id}', 'ScienceworksController@addUploadedWorkComment')->name('add-work-comment');
 
         //перевірено
         Route::post('/post', 'ScienceworkController@postTopic')->name('post-topic-as-teacher');
