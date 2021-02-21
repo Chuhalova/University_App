@@ -167,7 +167,7 @@
                                 <form style='display:inline-block' action="{{ url('/teacher/review-work/'.$sw->id) }}" method="GET">
                                     {{method_field('GET')}}
                                     @csrf
-                                    <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Перейти<br>до перевірки роботи</button>
+                                    <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Перейти до <br> перевірки роботи</button>
                                 </form>
                             </td>
                             <td>

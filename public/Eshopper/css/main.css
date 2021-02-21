@@ -12,7 +12,16 @@
   min-width:200px;
   min-height:200px;
 }
-
+@media(max-width:1100px){
+  h2.newtitle {
+    font-size: 13px !important;
+  }
+}
+@media(max-width:800px){
+  h2.newtitle {
+    font-size: 10px !important;
+  }
+}
 @media (max-width: 600px) {
   #profiles_avatar{
     max-width:200px;
@@ -859,6 +868,14 @@ h2.title {
   position: relative;
 }
 
+h2.newtitle {
+  color: #FE980F;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .product-image-wrapper{
 	border:1px solid #F7F7F5;
 	overflow: hidden;
@@ -1686,7 +1703,7 @@ h2.title {
 }
 
 
-.bg h2.title {
+.bg h2.title h2.newtitle{
   margin-right:0;
   margin-left:0;
   margin-top: 0;
