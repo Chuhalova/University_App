@@ -621,7 +621,7 @@ class ScienceworksController extends Controller
             );
             $customMessages = [
                 'uploaded_work_file.required' => 'Завантажте файл.',
-                'uploaded_work_file.mimetypes' => "Файл повинен мати розширення, що відповідає текстовому файлу: doc,docx,odt,pdf,rtf,tex,txt,wpd.",
+                'uploaded_work_file.mimes' => "Файл повинен мати розширення, що відповідає текстовому файлу: doc,docx,odt,pdf,rtf,tex,txt,wpd.",
             ];
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
             if ($validator->fails()) {
@@ -637,7 +637,7 @@ class ScienceworksController extends Controller
                     $file =  $request->file('uploaded_work_file');
                     $path = $request->file('uploaded_work_file')->storeAs('/public/textfiles', $filename . '.' . $file->getClientOriginalExtension());
                     $sw->uploaded_work_file = $path;
-                    $sw->workfile_check_status=='unchecked';
+                    $sw->workfile_check_status='unchecked';
                     $sw->uploaded_work_comment = null;
                     $sw->save();
                 }
@@ -714,7 +714,7 @@ class ScienceworksController extends Controller
             $sw->uploaded_work_comment = $request->uploaded_work_comment;
             $sw->workfile_check_status = 'checked';
             $sw->save();
-            return Redirect::to('/teacher/show/')->with('message', 'success!'); 
+            return Redirect::to('/teacher/show/')->with('message', 'Робота повернена!'); 
             }
         }
         return Redirect::to('/teacher/show/')->with('message', 'Помилка!');

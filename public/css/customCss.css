@@ -347,6 +347,7 @@ text-align: center;
         width:76px !important;
         font-size: 10pt !important;
     }
+
 }
 @media(max-width: 1000px){
     .topnav a {
@@ -359,6 +360,20 @@ text-align: center;
     }
 }
 @media (max-width: 767px) {
+    .student-work-reviewing-page{
+        flex-direction:column !important;
+    }
+    #work-review-comment{
+        font-size: 10px!important;
+        max-height: 150px !important;
+        overflow-y: scroll;
+    }
+    #section-in-work-reviewing-page{
+        padding-top: 0px!important;
+        margin-top: 0px!important;
+        padding-left: 0px!important;
+        padding-right: 0px !important;
+    }
     #form-diff{
         margin: 0px !important;
     }

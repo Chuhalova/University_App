@@ -143,7 +143,7 @@
                                 @if($sw->workfile_check_status=='unchecked')
                                 <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Завантажити<br>роботу на перевірку</button>
                                 @elseif($sw->workfile_check_status=='checked')
-                                <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Преглянути<br>перевірену роботуі</button>
+                                <button type="submit" style="margin:auto;width:150px" class="btn btn-primary">Преглянути<br>перевірену роботу</button>
                                 @endif
                             </form>
                         </td>
