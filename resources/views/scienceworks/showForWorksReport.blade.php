@@ -51,6 +51,7 @@
                                     <a class="nav-link" href="{{ route('show-for-student') }}">{{ __('Власні роботи') }}</a>
                                     <a class="nav-link" href="{{ route('show-topics-for-student') }}">{{ __('Вільні теми') }}</a>
                                     <a class="nav-link" href="{{ route('register-sciencework-as-student') }}">{{ __('Створити роботу') }}</a>
+                                    <a class="nav-link" href="{{ route('source-tool') }}">{{ __('Форматування джерел') }}</a>
                                     @endrole
                             @role('teacher')
                             <a class="nav-link" href="{{ route('propose-topic-as-teacher') }}">{{ __('Створити тему') }}</a>

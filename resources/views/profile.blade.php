@@ -17,7 +17,7 @@
         <div class="form-group profile_avatar_displaying col-12">
             @if(count($errors))
             <div class="alert alert-danger" role="alert">
-                <ul class="error_container">
+                <ul class="error_container" style="margin:0;padding:0;">
                     @foreach($errors->all() as $key => $value)
                     <li class="error_li">{{ $value }}</li>
                     @endforeach
@@ -100,7 +100,11 @@
                 @if($student->degree!=null)
                 <tr>
                     <td class="col-md-6">Ступінь</td>
-                    <td class="col-md-6">{{$student->degree}}</td>
+                    @if($student->degree=='bachelor')
+                    <td class="col-md-6">бакалавр</td>
+                    @elseif($student->degree=='master')
+                    <td class="col-md-6">магістр</td>
+                    @endif
                 </tr>
                 @endif
                 @if($student->specialty!=null&&$student->specialty_abbr!=null&&$student->year!=null&&$student->group!=null)

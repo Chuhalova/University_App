@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\View;
 use Illuminate\Support\MessageBag;
+use Mail;
 use App\Sciencework;
 use App\Student;
 use App\Teacher;
 use App\Baseinfo;
 use App\Cathedra;
 use App\Source;
+use App\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Auth\Events\Validated;
@@ -579,6 +581,7 @@ class ScienceworksController extends Controller
         $sw = Sciencework::whereStudent_id($student_id)->first();
         if ($sw != null) {
             $uploaded_work_comment = $sw->uploaded_work_comment;
+            $workfile_check_status = $sw->workfile_check_status;
             $file_exists = false;
             $file_or_note_exists = false;
             if ($sw->status == 'active') {
@@ -594,6 +597,7 @@ class ScienceworksController extends Controller
                     'file_exists' => $file_exists,
                     'file_or_note_exists' => $file_or_note_exists,
                     'uploaded_work_comment' => $uploaded_work_comment,
+                    'workfile_check_status' => $workfile_check_status,
                 ]);
             }
         }
@@ -633,18 +637,32 @@ class ScienceworksController extends Controller
                     if ($sw->uploaded_work_file != '') {
                         Storage::delete($sw->uploaded_work_file);
                     }
+                    $assigned_teacher = User::whereBaseinfo_id(Teacher::whereId($sw->teacher_id)->first()->baseinfo_id_for_teacher)->first();
+                    $assigned_teacher = json_decode($assigned_teacher, true);
+
+                    if (!empty($assigned_teacher)) {
+                        Mail::send(
+                            'mailToTeacher',
+                            ['user' => $assigned_teacher],
+                            function ($message) use ($assigned_teacher) {
+                                $message->subject('Інформація по курсовій/дипломній роботі');
+                                $message->to($assigned_teacher['email']);
+                                $message->from('knushevchenko2020@gmail.com', 'KNU Scienceworks app');
+                            }
+                        );
+                    }
                     $filename = str_slug(Student::whereId($sw->student_id)->first()->studnumber . 'uploaded-work-file');
                     $file =  $request->file('uploaded_work_file');
                     $path = $request->file('uploaded_work_file')->storeAs('/public/textfiles', $filename . '.' . $file->getClientOriginalExtension());
                     $sw->uploaded_work_file = $path;
-                    $sw->workfile_check_status='unchecked';
+                    $sw->workfile_check_status = 'unchecked';
                     $sw->uploaded_work_comment = null;
                     $sw->save();
                 }
                 return Redirect::to('/student/show/')->with('message', 'Роботу завантажено!');
             }
         }
-    }
+    }  
 
     public function workDel()
     {
@@ -656,7 +674,7 @@ class ScienceworksController extends Controller
                 Storage::delete($sw->uploaded_work_file);
             }
             if ($sw->uploaded_work_file != null) {
-                $sw->workfile_check_status='unchecked';
+                $sw->workfile_check_status = 'unchecked';
                 $sw->uploaded_work_comment = null;
                 $sw->uploaded_work_file = null;
                 $sw->save();
@@ -686,20 +704,46 @@ class ScienceworksController extends Controller
 
     public function workDownloadForTeacher($sw_o)
     {
-        
+
         $sw = Sciencework::whereId($sw_o)->first();
-        
+
         if ($sw->uploaded_work_file != null && Storage::exists($sw->uploaded_work_file) && $sw->workfile_check_status == 'unchecked' && $sw->status == 'active') {
             return Storage::download($sw->uploaded_work_file);
         }
         return Redirect::to('/teacher/show/')->with('message', 'Помилка!');
     }
 
-    public function addUploadedWorkComment($sw_o, Request $request){
+    public function approveWorkFile($sw_o, Request $request)
+    {
         $sw = Sciencework::whereId($sw_o)->first();
-        if ($sw->workfile_check_status == 'unchecked' && $sw->status == 'active' && $sw->uploaded_work_comment==null) {
+        if ($sw->status == 'active' && $sw->uploaded_work_comment == null) {
+            $assigned_student = User::whereBaseinfo_id(Student::whereId($sw->student_id)->first()->baseinfo_id_for_student)->first();
+            $assigned_student = json_decode($assigned_student, true);
+
+            if (!empty($assigned_student)) {
+                Mail::send(
+                    'mailToStudentWithInfoThatWorkIsApproved',
+                    ['user' => $assigned_student],
+                    function ($message) use ($assigned_student) {
+                        $message->subject('Інформація по курсовій/дипломній роботі');
+                        $message->to($assigned_student['email']);
+                        $message->from('knushevchenko2020@gmail.com', 'KNU Scienceworks app');
+                    }
+                );
+            }
+            $sw->workfile_check_status = 'approved_file';
+            $sw->save();
+            return Redirect::to('/teacher/show/')->with('message', 'Робота ухвалена!');
+        }
+    return Redirect::to('/teacher/show/')->with('message', 'Помилка!'); 
+    }  
+
+    public function addUploadedWorkComment($sw_o, Request $request)
+    {
+        $sw = Sciencework::whereId($sw_o)->first();
+        if ($sw->workfile_check_status == 'unchecked' && $sw->status == 'active' && $sw->uploaded_work_comment == null) {
             $rules = array(
-                'uploaded_work_comment' => ['required', 'min:2','max:5000'],
+                'uploaded_work_comment' => ['required', 'min:2', 'max:5000'],
             );
             $customMessages = [
                 'uploaded_work_comment.required' => 'Заповніть поле коментара.',
@@ -708,13 +752,28 @@ class ScienceworksController extends Controller
             ];
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $customMessages);
             if ($validator->fails()) {
-                return Redirect::to('/teacher/review-work/'.$sw->id)
+                return Redirect::to('/teacher/review-work/' . $sw->id)
                     ->withErrors($validator);
             } else {
-            $sw->uploaded_work_comment = $request->uploaded_work_comment;
-            $sw->workfile_check_status = 'checked';
-            $sw->save();
-            return Redirect::to('/teacher/show/')->with('message', 'Робота повернена!'); 
+
+                $assigned_student = User::whereBaseinfo_id(Student::whereId($sw->student_id)->first()->baseinfo_id_for_student)->first();
+                $assigned_student = json_decode($assigned_student, true);
+
+                if (!empty($assigned_student)) {
+                    Mail::send(
+                        'mailToStudent',
+                        ['user' => $assigned_student],
+                        function ($message) use ($assigned_student) {
+                            $message->subject('Інформація по курсовій/дипломній роботі');
+                            $message->to($assigned_student['email']);
+                            $message->from('knushevchenko2020@gmail.com', 'KNU Scienceworks app');
+                        }
+                    );
+                }
+                $sw->uploaded_work_comment = $request->uploaded_work_comment;
+                $sw->workfile_check_status = 'checked';
+                $sw->save();
+                return Redirect::to('/teacher/show/')->with('message', 'Робота повернена!');
             }
         }
         return Redirect::to('/teacher/show/')->with('message', 'Помилка!');
