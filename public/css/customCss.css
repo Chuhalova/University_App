@@ -3,6 +3,14 @@ padding-left: 15vw;
 padding-right: 15vw;
 padding-top: 10vh;
 }
+#activate-file-button {
+    position:relative;
+}
+#activate-file-button>button{
+    position:absolute;
+    top:calc(50% - 45px);
+    right: calc(50% - 80px);
+}
 #button-file{
     width: 100px;
     height: 100px;

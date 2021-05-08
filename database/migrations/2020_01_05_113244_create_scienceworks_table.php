@@ -29,7 +29,7 @@ class CreateScienceworksTable extends Migration
             $table->string('comment')->nullable();
             $table->string('uploaded_work_file')->nullable();
             $table->text('uploaded_work_comment')->nullable();
-            $table->enum('workfile_check_status',['unchecked','checked'])->default('unchecked');
+            $table->enum('workfile_check_status',['unchecked','checked','approved_file'])->default('unchecked');
             $table->timestamps();
         });
     }
